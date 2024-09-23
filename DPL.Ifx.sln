@@ -95,7 +95,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{E4676C33-C99
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPL.Ifx.IoC.Contracts", "DPL.Ifx.IoC.Contracts\DPL.Ifx.IoC.Contracts.csproj", "{D9A5CD72-7BC2-4A4D-AA59-A74C0A7D451C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPL.Ifx.IoC.Autofac", "DPL.Ifx.IoC.AutoFac\DPL.Ifx.IoC.Autofac.csproj", "{686870BC-F1ED-404B-957B-10B9FE23C77C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPL.Ifx.IoC.Autofac", "DPL.Ifx.IoC.Autofac\DPL.Ifx.IoC.Autofac.csproj", "{686870BC-F1ED-404B-957B-10B9FE23C77C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPL.Ifx.IoC.Dotnet.ServiceCollection", "DPL.Ifx.IoC.Dotnet.ServiceCollection\DPL.Ifx.IoC.Dotnet.ServiceCollection.csproj", "{E3EFC896-3C2B-47EA-A326-12F8F96973DF}"
 EndProject
