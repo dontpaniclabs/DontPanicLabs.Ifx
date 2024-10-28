@@ -13,6 +13,9 @@
         <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageIcon>dpl_logo_128_square.png</PackageIcon>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
