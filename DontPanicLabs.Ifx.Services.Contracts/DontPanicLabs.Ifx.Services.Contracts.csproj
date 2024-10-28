@@ -4,9 +4,10 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.5.0-preview</Version>
+        <Version>0.5.1-preview</Version>
         <Title>Don't Panic Labs Service Contracts</Title>
         <Authors>Don't Panic Labs LLC</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <Description>Base Service Contracts</Description>
         <Copyright>Copyright (c) Don't Panic Labs LLC 2024</Copyright>
         <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
