@@ -7,6 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{EBA913
 		Assets\dpl_logo_128_square.png = Assets\dpl_logo_128_square.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github/workflows", ".github/workflows", "{383260DB-CC00-4744-9ACC-C734CFE31B25}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\nuget_Ifx_Services_Contracts.yml = .github\workflows\nuget_Ifx_Services_Contracts.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
