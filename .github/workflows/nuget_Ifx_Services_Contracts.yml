@@ -22,6 +22,6 @@ jobs:
       - name: Pack
         run: dotnet pack DontPanicLabs.Ifx.Services.Contracts/DontPanicLabs.Ifx.Services.Contracts.csproj
       - name: Publish Package
-        run: dotnet nuget push **\*.nupkg -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET_APIKEY }}
+        run: dotnet nuget push **\DontPanicLabs*.nupkg -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET_APIKEY }}
       - name: Publish Symbols
-        run: dotnet nuget push **\*.snupkg -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET_APIKEY }}
+        run: dotnet nuget push **\DontPanicLabs*.snupkg -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET_APIKEY }}
