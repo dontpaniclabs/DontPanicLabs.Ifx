@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.5.0-preview</Version>
+        <Title>Don't Panic Labs Service Contracts</Title>
+        <Authors>Don't Panic Labs LLC</Authors>
+        <Description>Base Service Contracts</Description>
+        <Copyright>Copyright (c) Don't Panic Labs LLC 2024</Copyright>
+        <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageIcon>dpl_logo_128_square.png</PackageIcon>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\Assets\dpl_logo_128_square.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>dpl_logo_128_square.png</Link>
+      </None>
+    </ItemGroup>
+
+</Project>
