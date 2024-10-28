@@ -4,15 +4,26 @@ Base contracts for building SOA services in .NET.
 
 ## Getting started
 
-Explain how to use your package, provide clear and concise getting started instructions, including any necessary steps.
+Add the package and decorate your service contracts with either ISubsystem or IComponent based upon their role in your architecture.
 
 ## Usage
 
-Examples about how to use your package by providing code snippets/example images, or samples links on GitHub if applicable.
+```csharp
+public interface IMyService : ISubsystem  
+{
+    [OperationContract]
+    void MyOperation();
+}
 
-- Provide sample code using code snippets
-- Include screenshots, diagrams, or other visual help users better understand how to use your package
+public interface IMyOtherService : IComponent  
+{
+    [OperationContract]
+    void MyOperation();
+}
+```
 
 ## Feedback
 
-Submit issues at https://github.com/dontpaniclabs/DontPanicLabs.Ifx/issues
+Submit issues at:
+
+https://github.com/dontpaniclabs/DontPanicLabs.Ifx/issues
