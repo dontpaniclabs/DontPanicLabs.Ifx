@@ -9,12 +9,14 @@ Add the package and decorate your service contracts with either ISubsystem or IC
 ## Usage
 
 ```csharp
+[ServiceContract]
 public interface IMyService : ISubsystem  
 {
     [OperationContract]
     void MyOperation();
 }
 
+[ServiceContract]
 public interface IMyOtherService : IComponent  
 {
     [OperationContract]
