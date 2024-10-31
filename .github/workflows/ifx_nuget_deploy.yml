@@ -1,0 +1,32 @@
+name: "Ifx nuget deploy"
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        type: choice
+        description: "Select the package to deploy"
+        options:
+          - "DontPanicLabs.Ifx.Services.Contracts"
+
+env:
+  DOTNET_INSTALL_DIR: "./.dotnet"
+
+jobs:
+  build:
+    
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore Dependencies
+        run: dotnet restore
+      - name: Pack
+        run: dotnet pack ${{ github.event.inputs.package }}/${{ github.event.inputs.package }}.csproj
+      - name: Publish Package
+        run: dotnet nuget push **\DontPanicLabs*.nupkg -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET_APIKEY }}
+        # this push command will send both the nuget package and the symbol package
