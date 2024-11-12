@@ -6,7 +6,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
 {
     public class Config : IConfig, IConfiguration
     {
-        protected const string IFxSectionPrefix = "ifx";
+        protected const string IfxSectionPrefix = "ifx";
         protected const string AppSectionPrefix = "appSettings";
         protected const string UserSecretsIdKey = "userSecretsId";
         protected const string SkipEnvironmentVariablesKey = "skipEnvironmentVariables";
@@ -37,7 +37,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
                 .AddJsonFile("appsettings.json", true)
                 .Build();
 
-            var secretsId = secretsConfig[$"{IFxSectionPrefix}:{UserSecretsIdKey}"];
+            var secretsId = secretsConfig[$"{IfxSectionPrefix}:{UserSecretsIdKey}"];
 
             return secretsId;
         }
@@ -92,7 +92,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
 
             try
             {
-                configRoot.GetRequiredSection(IFxSectionPrefix);
+                configRoot.GetRequiredSection(IfxSectionPrefix);
             }
             catch (InvalidOperationException ex)
             {
