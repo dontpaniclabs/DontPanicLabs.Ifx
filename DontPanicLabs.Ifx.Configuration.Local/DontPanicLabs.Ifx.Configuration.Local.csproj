@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.5.0-preview</Version>
+        <Title>Don't Panic Labs Configuration</Title>
+        <Authors>Don't Panic Labs LLC</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Description>Local Configuration Package</Description>
+        <Copyright>Copyright ⓒ Don't Panic Labs LLC 2024</Copyright>
+        <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageIcon>dpl_logo_128_square.png</PackageIcon>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DontPanicLabs.Ifx.Configuration.Contracts" Version="0.5.0-preview"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\Assets\dpl_logo_128_square.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>dpl_logo_128_square.png</Link>
+        </Content>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+</Project>

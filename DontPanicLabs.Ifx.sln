@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Contracts", "DontPanicLabs.Ifx.Configuration.Contracts\DontPanicLabs.Ifx.Configuration.Contracts.csproj", "{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{C4800D4C-B056-435A-AA34-6BC09D57C335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local", "DontPanicLabs.Ifx.Configuration.Local\DontPanicLabs.Ifx.Configuration.Local.csproj", "{1926C25F-00EF-4C31-BBBD-8DB202B085D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +34,14 @@ Global
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1926C25F-00EF-4C31-BBBD-8DB202B085D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1926C25F-00EF-4C31-BBBD-8DB202B085D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1926C25F-00EF-4C31-BBBD-8DB202B085D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1926C25F-00EF-4C31-BBBD-8DB202B085D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
+		{C4800D4C-B056-435A-AA34-6BC09D57C335} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
+		{1926C25F-00EF-4C31-BBBD-8DB202B085D7} = {C4800D4C-B056-435A-AA34-6BC09D57C335}
 	EndGlobalSection
 EndGlobal
