@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github/workflows", ".githu
 		.github\workflows\ifx_nuget_deploy.yml = .github\workflows\ifx_nuget_deploy.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{E8260938-6BFC-4535-829A-B11BF03EA7C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Contracts", "DontPanicLabs.Ifx.Configuration.Contracts\DontPanicLabs.Ifx.Configuration.Contracts.csproj", "{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +26,12 @@ Global
 		{12FE1FF5-C89F-4183-88D4-6D63825BA7D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12FE1FF5-C89F-4183-88D4-6D63825BA7D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12FE1FF5-C89F-4183-88D4-6D63825BA7D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
 	EndGlobalSection
 EndGlobal
