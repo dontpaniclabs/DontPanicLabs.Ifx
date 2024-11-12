@@ -8,6 +8,7 @@ on:
         description: "Select the package to deploy"
         options:
           - "DontPanicLabs.Ifx.Services.Contracts"
+          - "DontPanicLabs.Ifx.Configuration.Contracts"
 
 env:
   DOTNET_INSTALL_DIR: "./.dotnet"
