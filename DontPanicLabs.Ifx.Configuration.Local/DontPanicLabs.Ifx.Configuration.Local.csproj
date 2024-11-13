@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.5.0-preview</Version>
+        <Version>0.5.1-preview</Version>
         <Title>Don't Panic Labs Configuration</Title>
         <Authors>Don't Panic Labs LLC</Authors>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -21,10 +21,10 @@
 
     <ItemGroup>
         <PackageReference Include="DontPanicLabs.Ifx.Configuration.Contracts" Version="0.5.0-preview"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.1" />
     </ItemGroup>
 
     <ItemGroup>
