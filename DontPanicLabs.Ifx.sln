@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github/workflows", ".github/workflows", "{383260DB-CC00-4744-9ACC-C734CFE31B25}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ifx_nuget_deploy.yml = .github\workflows\ifx_nuget_deploy.yml
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{E8260938-6BFC-4535-829A-B11BF03EA7C1}"
