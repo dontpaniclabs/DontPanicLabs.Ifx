@@ -25,14 +25,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="appsettings.json" />
       <Content Include="appsettings.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
     </ItemGroup>
 
 </Project>
