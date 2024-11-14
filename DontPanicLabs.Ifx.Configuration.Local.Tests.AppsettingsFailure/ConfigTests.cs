@@ -5,11 +5,11 @@ using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 namespace DPL.Ifx.Configuration.Tests.AppsettingsFailure
 {
     [TestClass]
-    public class ManualVerificationTests
+    public class ConfigTests
     {
         [TestMethod]
         [TestCategoryCI]
-        public void Config_AppsettingsMissingSections_RetrievalShouldThrow()
+        public void Config_AppsettingsIsMissingDefaultSections_RetrievalShouldThrow()
         {
             IConfig config = new Config();
             

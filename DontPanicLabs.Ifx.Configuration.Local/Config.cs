@@ -11,7 +11,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
         protected const string UserSecretsIdKey = "userSecretsId";
         protected const string SkipEnvironmentVariablesKey = "skipEnvironmentVariables";
 
-        protected static readonly Lazy<IConfiguration> _Configuration = new Lazy<IConfiguration>(BuildConfiguration, LazyThreadSafetyMode.ExecutionAndPublication);
+        protected static Lazy<IConfiguration> _Configuration = new Lazy<IConfiguration>(BuildConfiguration, LazyThreadSafetyMode.ExecutionAndPublication);
 
         public string? this[string key] { get => _Configuration.Value[key]; set => _Configuration.Value[key] = value; }
 

@@ -5,16 +5,16 @@ using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 namespace DPL.Ifx.Configuration.Tests.Debugging
 {
     [TestClass]
-    public class ManualVerificationTests
+    public class ConfigTests
     {
         [TestMethod]
         [Ignore]
         [TestCategoryLocal]
-        public void Configuration_Local_UserSecrets()
+        public void Config_Local_UserSecretsLoaded()
         {
             // In order for this test to succeed:
-            // 1. userSecrets.json must have the necessary settings
-            // 2. appSettings.json must have an entry for the `userSecretsId`
+            // 1. secrets.json must have the necessary settings
+            // 2. appsettings.json must have an entry for the `userSecretsId`
 
             IConfig config = new Config();
 
