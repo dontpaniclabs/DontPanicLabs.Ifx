@@ -2,7 +2,7 @@ using DontPanicLabs.Ifx.Configuration.Contracts;
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 
-namespace DPL.Ifx.Configuration.Tests.AppsettingsFailure
+namespace DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure
 {
     [TestClass]
     public class ConfigTests

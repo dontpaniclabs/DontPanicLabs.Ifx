@@ -1,28 +1,41 @@
 using DontPanicLabs.Ifx.Configuration.Contracts;
-using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 
-namespace DPL.Ifx.Configuration.Tests.Debugging
+namespace DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging
 {
     [TestClass]
+    [TestCategoryLocal]
     public class ConfigTests
     {
-        [TestMethod]
-        [Ignore]
-        [TestCategoryLocal]
-        public void Config_Local_UserSecretsLoaded()
-        {
-            // In order for this test to succeed:
-            // 1. secrets.json must have the necessary settings
-            // 2. appsettings.json must have an entry for the `userSecretsId`
+        /* In order for these tests to succeed, you need to have the following
+           in your secrets.json file for this test project:
+         {
+             "appsettings": {
+               "appsettings": "appsettings secrets success"
+             },
+             "ifx": {
+               "appsettings": "ifx secrets success",
+               "onlyInSecretsValue": "only in secrets"
+             }
+         }
+         */
 
+        [DataTestMethod]
+        [DataRow("appsettings:appsettings", "appsettings secrets success",
+            DisplayName = "appsettings values can be overridden in secrets.json")]
+        [DataRow("ifx:appsettings", "ifx secrets success",
+            DisplayName = "ifx values can be overridden in secrets.json")]
+        [DataRow("appsettings:onlyInAppsettingsValue", "only in appsettings.json",
+            DisplayName = "non-overridden from appsettings.json values are returned")]
+        [DataRow("ifx:onlyInSecretsValue", "only in secrets",
+            DisplayName = "values not in appsettings.json can be pulled from secrets.json")]
+        public void Config_UserSecretsLoaded(string key, string? expectedValue)
+        {
             IConfig config = new Config();
 
-            var appSettings = config["appSettings:file"];
-            var ifx = config["ifx:file"];
+            var value = config[key];
 
-            Assert.AreEqual("secrets.json", appSettings);
-            Assert.AreEqual("secrets.json", ifx);
+            Assert.AreEqual(expectedValue, value);
         }
     }
 }
