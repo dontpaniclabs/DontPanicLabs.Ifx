@@ -1,7 +1,7 @@
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DPL.Ifx.Tests.Shared.Tests;
+namespace DontPanicLabs.Ifx.Tests.Shared.Tests;
 
 [TestClass]
 [TestCategoryCI]

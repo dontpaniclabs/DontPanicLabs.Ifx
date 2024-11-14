@@ -2,7 +2,7 @@ using DontPanicLabs.Ifx.Configuration.Contracts;
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Microsoft.Extensions.Configuration;
-namespace DPL.Ifx.Configuration.Tests.EnvVarsSuccess
+namespace DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess
 {
     [TestClass]
     [TestCategoryCI]
