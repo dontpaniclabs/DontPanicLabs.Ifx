@@ -10,8 +10,8 @@ on:
     branches: [ "main" ]
 
 env:
-  appSettings__envvar: "appsettings success"
-  ifx__envvar: "ifx success"
+  appSettings__envvar: "success"
+  ifx__envvar: "success"
 
 jobs:
   build:
