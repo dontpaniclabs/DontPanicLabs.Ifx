@@ -1,6 +1,6 @@
 namespace DontPanicLabs.Ifx.Tests.Shared.Attributes;
 
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Assembly)]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
 public class TestCategoryAttributeBase : Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryBaseAttribute
 {
     protected TestCategoryAttributeBase(TestCategoryType testCategory)

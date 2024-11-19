@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 namespace DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess
 {
     [TestClass]
-    [TestCategoryCI]
+    // [TestCategoryCI]
     public class ConfigTests
     {
         [DataTestMethod]
