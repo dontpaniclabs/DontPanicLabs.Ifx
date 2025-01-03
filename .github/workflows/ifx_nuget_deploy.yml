@@ -11,6 +11,7 @@ on:
           - "DontPanicLabs.Ifx.Configuration.Contracts"
           - "DontPanicLabs.Ifx.Configuration.Local"
           - "DontPanicLabs.Ifx.IoC.Contracts"
+          - "DontPanicLabs.Ifx.Proxy.Contracts"
 
 env:
   DOTNET_INSTALL_DIR: "./.dotnet"
