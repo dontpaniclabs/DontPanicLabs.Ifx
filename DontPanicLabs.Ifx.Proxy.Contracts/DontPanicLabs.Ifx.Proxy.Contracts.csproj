@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.5.0</Version>
+        <Title>Don't Panic Labs Proxy Contracts</Title>
+        <Authors>Don't Panic Labs LLC</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Description>Base Proxy Contracts</Description>
+        <Copyright>Copyright ⓒ Don't Panic Labs LLC 2024</Copyright>
+        <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageIcon>dpl_logo_128_square.png</PackageIcon>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="..\Assets\dpl_logo_128_square.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>dpl_logo_128_square.png</Link>
+        </Content>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DontPanicLabs.Ifx.Configuration.Local" Version="1.0.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="0.5.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+    </ItemGroup>
+
+</Project>
