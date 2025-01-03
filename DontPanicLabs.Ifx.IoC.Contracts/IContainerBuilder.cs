@@ -1,3 +1,5 @@
+using DontPanicLabs.Ifx.IoC.Contracts.Exceptions;
+
 namespace DontPanicLabs.Ifx.IoC.Contracts;
 
 /// <summary>
@@ -13,7 +15,7 @@ public interface IContainerBuilder<out TContainerBuilder> where TContainerBuilde
     /// Builds the container of registered services.
     /// </summary>
     /// <returns>The container of registered services.</returns>
-    /// <exception cref="System.InvalidOperationException">
+    /// <exception cref="IoCContainerBuildException">
     /// Thrown if an error occurs during the build process.
     /// </exception>
     IContainer Build();
