@@ -1,0 +1,1 @@
+global using MicrosoftServiceCollection = Microsoft.Extensions.DependencyInjection.ServiceCollection;
