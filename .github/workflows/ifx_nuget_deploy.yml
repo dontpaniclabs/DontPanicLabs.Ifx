@@ -10,6 +10,7 @@ on:
           - "DontPanicLabs.Ifx.Services.Contracts"
           - "DontPanicLabs.Ifx.Configuration.Contracts"
           - "DontPanicLabs.Ifx.Configuration.Local"
+          - "DontPanicLabs.Ifx.IoC.Contracts"
 
 env:
   DOTNET_INSTALL_DIR: "./.dotnet"
