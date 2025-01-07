@@ -22,8 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Autofac\DontPanicLabs.Ifx.IoC.Autofac.csproj" />
-      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Contracts\DontPanicLabs.Ifx.IoC.Contracts.csproj" />
       <ProjectReference Include="..\DontPanicLabs.Ifx.Proxy.Autofac\DontPanicLabs.Ifx.Proxy.Autofac.csproj" />
       <ProjectReference Include="..\DontPanicLabs.Ifx.Proxy.Contracts\DontPanicLabs.Ifx.Proxy.Contracts.csproj" />
       <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
