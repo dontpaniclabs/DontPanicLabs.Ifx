@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.7.0" />
+        <PackageReference Include="MSTest.TestFramework" Version="3.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Autofac\DontPanicLabs.Ifx.IoC.Autofac.csproj" />
+      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Contracts\DontPanicLabs.Ifx.IoC.Contracts.csproj" />
+      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection\DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection.csproj" />
+      <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

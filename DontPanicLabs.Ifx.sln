@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Autof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection", "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection\DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection.csproj", "{027B11F4-7FED-428F-9A07-511D385486F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Tests", "DontPanicLabs.Ifx.IoC.Tests\DontPanicLabs.Ifx.IoC.Tests.csproj", "{5C755CA2-A39E-421E-B885-131B5817E7A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{027B11F4-7FED-428F-9A07-511D385486F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{027B11F4-7FED-428F-9A07-511D385486F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{027B11F4-7FED-428F-9A07-511D385486F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
@@ -123,5 +129,6 @@ Global
 		{2E7A0645-9500-4E40-B987-3A17FA747A12} = {2EC16E3E-7A1F-448F-B075-5E8A63172D49}
 		{7BE23167-25B9-4824-AD17-82899BF1B64F} = {E15A7742-77FF-487C-B939-68463FFCEA9B}
 		{027B11F4-7FED-428F-9A07-511D385486F4} = {E15A7742-77FF-487C-B939-68463FFCEA9B}
+		{5C755CA2-A39E-421E-B885-131B5817E7A7} = {E15A7742-77FF-487C-B939-68463FFCEA9B}
 	EndGlobalSection
 EndGlobal
