@@ -49,6 +49,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Autof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection", "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection\DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection.csproj", "{027B11F4-7FED-428F-9A07-511D385486F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Tests", "DontPanicLabs.Ifx.IoC.Tests\DontPanicLabs.Ifx.IoC.Tests.csproj", "{5C755CA2-A39E-421E-B885-131B5817E7A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Autofac", "DontPanicLabs.Ifx.Proxy.Autofac\DontPanicLabs.Ifx.Proxy.Autofac.csproj", "{7E53A918-3DFE-41B7-B072-93B1EDCCA371}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EB81ED69-5B10-4F33-8282-B696CA493732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging", "DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging\DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging.csproj", "{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess", "DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess\DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess.csproj", "{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess", "DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess\DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess.csproj", "{242F3267-284C-4E3D-849F-B61B715A800A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.Exceptions", "DontPanicLabs.Ifx.Proxy.Tests.Exceptions\DontPanicLabs.Ifx.Proxy.Tests.Exceptions.csproj", "{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure", "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure\DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure.csproj", "{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +123,34 @@ Global
 		{027B11F4-7FED-428F-9A07-511D385486F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{027B11F4-7FED-428F-9A07-511D385486F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{027B11F4-7FED-428F-9A07-511D385486F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C755CA2-A39E-421E-B885-131B5817E7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E53A918-3DFE-41B7-B072-93B1EDCCA371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E53A918-3DFE-41B7-B072-93B1EDCCA371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E53A918-3DFE-41B7-B072-93B1EDCCA371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E53A918-3DFE-41B7-B072-93B1EDCCA371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{242F3267-284C-4E3D-849F-B61B715A800A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{242F3267-284C-4E3D-849F-B61B715A800A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{242F3267-284C-4E3D-849F-B61B715A800A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{242F3267-284C-4E3D-849F-B61B715A800A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
@@ -123,5 +167,13 @@ Global
 		{2E7A0645-9500-4E40-B987-3A17FA747A12} = {2EC16E3E-7A1F-448F-B075-5E8A63172D49}
 		{7BE23167-25B9-4824-AD17-82899BF1B64F} = {E15A7742-77FF-487C-B939-68463FFCEA9B}
 		{027B11F4-7FED-428F-9A07-511D385486F4} = {E15A7742-77FF-487C-B939-68463FFCEA9B}
+		{5C755CA2-A39E-421E-B885-131B5817E7A7} = {E15A7742-77FF-487C-B939-68463FFCEA9B}
+		{7E53A918-3DFE-41B7-B072-93B1EDCCA371} = {2EC16E3E-7A1F-448F-B075-5E8A63172D49}
+		{EB81ED69-5B10-4F33-8282-B696CA493732} = {2EC16E3E-7A1F-448F-B075-5E8A63172D49}
+		{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{A8A1B8BB-8700-4CFC-8AF7-D697E295201B} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{242F3267-284C-4E3D-849F-B61B715A800A} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 	EndGlobalSection
 EndGlobal
