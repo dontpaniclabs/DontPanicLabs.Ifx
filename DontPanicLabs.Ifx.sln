@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.Exceptions", "DontPanicLabs.Ifx.Proxy.Tests.Exceptions\DontPanicLabs.Ifx.Proxy.Tests.Exceptions.csproj", "{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure", "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure\DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure.csproj", "{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,10 @@ Global
 		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
@@ -168,5 +174,6 @@ Global
 		{A8A1B8BB-8700-4CFC-8AF7-D697E295201B} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 		{242F3267-284C-4E3D-849F-B61B715A800A} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 	EndGlobalSection
 EndGlobal
