@@ -1,6 +1,7 @@
 using DontPanicLabs.Ifx.Accessor.Proxy.Tests;
 using DontPanicLabs.Ifx.Engine.Proxy.Tests;
 using DontPanicLabs.Ifx.Manager.Proxy.Tests;
+using DontPanicLabs.Ifx.Proxy.Autofac;
 using DontPanicLabs.Ifx.Proxy.Contracts;
 using DontPanicLabs.Ifx.Proxy.Contracts.Exceptions;
 using DontPanicLabs.Ifx.Services.Contracts;
@@ -24,7 +25,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests.Exceptions
             Assert.ThrowsException<NamespaceException>(() => Proxy.ForSubsystem<IManagerInAccNs>());
             Assert.ThrowsException<NamespaceException>(() => Proxy.ForSubsystem<IManagerInEngNs>());
 
-            Assert.IsInstanceOfType<TestManager>(Proxy.ForSubsystem<ITestManager>());
+            Assert.IsInstanceOfType<TestManager>(Proxy.ForSubsystem<ITestManager>().GetProxyTarget());
         }
 
         [TestMethod]
@@ -33,8 +34,8 @@ namespace DontPanicLabs.Ifx.Proxy.Tests.Exceptions
             Assert.ThrowsException<NamespaceException>(() => Proxy.ForComponent<IEngineInMgrNs>(this));
             Assert.ThrowsException<NamespaceException>(() => Proxy.ForComponent<IAccessorInMgrNs>(this));
 
-            Assert.IsInstanceOfType<TestAccessor>(Proxy.ForComponent<ITestAccessor>(this));
-            Assert.IsInstanceOfType<TestEngine>(Proxy.ForComponent<ITestEngine>(this));
+            Assert.IsInstanceOfType<TestAccessor>(Proxy.ForComponent<ITestAccessor>(this).GetProxyTarget());
+            Assert.IsInstanceOfType<TestEngine>(Proxy.ForComponent<ITestEngine>(this).GetProxyTarget());
         }
     }
 }

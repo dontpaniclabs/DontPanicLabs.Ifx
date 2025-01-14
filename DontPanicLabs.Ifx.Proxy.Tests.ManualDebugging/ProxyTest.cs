@@ -67,33 +67,18 @@ namespace DPL.Ifx.Proxy.Tests.ManualDebugging
 
 namespace Company.Product.Customized
 {
-    public class ProxyFactory : DontPanicLabs.Ifx.Proxy.Autofac.ProxyFactory
-    {
-        public ProxyFactory() : base()
-        {
-        }
-
-        protected override IContainer RegisterServices()
-        {
-            var builder = new ContainerBuilder();
-            
-            builder.RegisterServices(options =>
-            {
-                options.RegisterType<TestSubsystem>().As<ITestSubsystem>();
-                options.RegisterType<TestComponent>().As<ITestComponent>();
-            });
-
-            return builder.Build();
-        }
-    }
-
     public static class Proxy
     {
         private static readonly IProxy factory;
 
         static Proxy()
         {
-            factory = new ProxyFactory();
+            var registrations = new Dictionary<Type, Type[]>()
+            {
+                { typeof(ITestSubsystem), [typeof(TestSubsystem)] }
+            };
+
+            factory = new DontPanicLabs.Ifx.Proxy.Autofac.ProxyFactory(registrations);
         }
 
         public static I ForSubsystem<I>() where I : class, ISubsystem

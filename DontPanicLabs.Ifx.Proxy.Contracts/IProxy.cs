@@ -27,5 +27,15 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts
         /// <exception cref="DPL.Ifx.IoC.Contracts.Exceptions.IoCServiceResolutionException" />
         /// <exception cref="NamespaceException" />
         public I ForComponent<I>(object caller) where I : class, IComponent;
+
+        /// <summary>
+        /// Request a component from the proxy.
+        /// </summary>
+        /// <typeparam name="I">The utility to retrieve.</typeparam>
+        /// <returns>The registered instance of the requested service.</returns>
+        /// <exception cref="DPL.Ifx.IoC.Contracts.Exceptions.IoCServiceNotFoundException" />
+        /// <exception cref="DPL.Ifx.IoC.Contracts.Exceptions.IoCServiceResolutionException" />
+        /// <exception cref="NamespaceException" />
+        public I ForUtility<I>() where I : class, IUtility;
     }
 }

@@ -32,6 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Castle.Core" Version="5.1.1" />
       <PackageReference Include="DontPanicLabs.Ifx.Configuration.Local" Version="1.0.0" />
       <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="0.5.0" />
       <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.0" />

@@ -1,45 +1,100 @@
 ﻿using Autofac;
-using DontPanicLabs.Ifx.Services.Contracts;
 using DontPanicLabs.Ifx.Proxy.Contracts;
 using ContainerBuilder = DontPanicLabs.Ifx.IoC.Autofac.ContainerBuilder;
-using IContainer = DontPanicLabs.Ifx.IoC.Contracts.IContainer;
 
 namespace DontPanicLabs.Ifx.Proxy.Autofac
 {
-    public class ProxyFactory : ProxyFactoryBase
+    public class ProxyFactory : ProxyFactoryBase, IProxy
     {
-        protected override IContainer RegisterFromAutoDiscover()
+        private ContainerBuilder? ContainerBuilder;
+
+        // autodiscover will be pulled from config. if true, auto discover.  if false, use explicit configuration
+        public ProxyFactory()
         {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterServices(options =>
-            {
-                options.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(t =>
-                        typeof(IService).IsAssignableFrom(t)
-                    )
-                    .AsImplementedInterfaces();
-            });
-
-            return builder.Build();
+            Initialize(Configuration.AutoDiscoverServices, [], []);            
         }
 
-        protected override IContainer RegisterFromConfiguration(Dictionary<Type, Type[]> serviceTypes)
+        // register this set of services.  No interceptors.
+        public ProxyFactory(Dictionary<Type, Type[]> serviceTypes)
         {
-            var builder = new ContainerBuilder();
+            Initialize(false, serviceTypes, []);
+        }
 
-            builder.RegisterServices(options =>
+        // autodiscover will be pulled from config. if true, auto discover.  if false, use configuration.  always register this set of interceptors.
+        public ProxyFactory(List<IInterceptor> interceptors)
+        {
+            Initialize(Configuration.AutoDiscoverServices, [], interceptors);
+        }
+
+        // register this set of services.  register this set of interceptors
+        public ProxyFactory(Dictionary<Type, Type[]> serviceTypes, List<IInterceptor> interceptors) 
+        {
+            Initialize(false, serviceTypes, interceptors);
+        }
+
+        protected void Initialize(bool autoDiscoverServices, Dictionary<Type, Type[]> serviceTypes, List<IInterceptor> interceptors)
+        {
+            ContainerBuilder = new ContainerBuilder();
+
+            if (autoDiscoverServices)
             {
-                foreach (var contract in serviceTypes)
+                ContainerBuilder = ContainerBuilder.AutoDiscoverServices(true);
+            }
+
+            if (serviceTypes.Count > 0)
+            { 
+                ContainerBuilder = ContainerBuilder.RegisterServices(serviceTypes, true);
+            }
+
+            if (!autoDiscoverServices && !serviceTypes.Any())
+            {
+                ContainerBuilder = ContainerBuilder.RegisterServices(Configuration.ServiceRegistrations,true);
+            }
+
+            if (interceptors.Count > 0)
+            {
+                foreach (var interceptor in interceptors)
                 {
-                    foreach (var implementation in contract.Value)
+                    ContainerBuilder.RegisterServices(options =>
                     {
-                        options.RegisterType(implementation).As(contract.Key);
-                    }
+                        options.Register(context => interceptor);
+                    });
                 }
-            });
+            }
 
-            return builder.Build();
+            Container = ContainerBuilder.Build();
         }
+
+        //private static void RegisterFromAutoDiscover()
+        //{
+        //    bool interceptionEnabled = false;
+
+        //    ContainerBuilder.RegisterServices(builder =>
+        //    {
+        //        var dynamic = builder
+        //            .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
+        //            .Where(t =>
+        //                typeof(IService).IsAssignableFrom(t)
+        //             ).AsImplementedInterfaces()
+        //             .EnableInterfaceInterceptors();
+                
+        //    });
+
+
+        //}
+
+        //private void RegisterFromConfiguration(Dictionary<Type, Type[]> serviceTypes)
+        //{
+        //    ContainerBuilder.RegisterServices(options =>
+        //    {
+        //        foreach (var contract in serviceTypes)
+        //        {
+        //            foreach (var implementation in contract.Value)
+        //            {
+        //                options.RegisterType(implementation).As(contract.Key);
+        //            }
+        //        }
+        //    });
+        //}
     }
 }
