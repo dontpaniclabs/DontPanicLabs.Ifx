@@ -3,6 +3,7 @@ using DontPanicLabs.Ifx.Services.Contracts;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using DontPanicLabs.Ifx.Proxy.Contracts;
 using DontPanicLabs.Ifx.Proxy.Autofac;
+using DontPanicLabs.Ifx.Engine.Proxy.Tests;
 
 namespace DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess
 {
@@ -11,13 +12,13 @@ namespace DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess
     public class ProxyAutoDiscoveryTests
     {
         [TestMethod]
-        public void ServiceRegistrationSuccess_FromAutoDiscovery()
+        public void InterceptionTest_InterceptionEnabled()
         {
-            var instance = Proxy.ForSubsystem<ITestSubsystem>();
+            var subsystem = Proxy.ForSubsystem<ITestSubsystem>();
+            var component = Proxy.ForComponent<ITestComponent>(subsystem);
 
-            Assert.IsInstanceOfType<ITestSubsystem>(instance);
-
-            Assert.IsInstanceOfType<TestSubsystem>(instance);
+            Assert.IsInstanceOfType<TestSubsystem>(subsystem.GetProxyTarget());
+            Assert.IsInstanceOfType<TestComponent>(component.GetProxyTarget());
         }
     }
 }
@@ -25,6 +26,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess
 namespace DontPanicLabs.Ifx.Manager.Proxy.Tests
 {
     public class TestSubsystem : ITestSubsystem;
+
 
     public interface ITestSubsystem : ISubsystem
     {
@@ -35,8 +37,16 @@ namespace DontPanicLabs.Ifx.Manager.Proxy.Tests
             _ = debug;
         }
     }
-
 }
+
+namespace DontPanicLabs.Ifx.Engine.Proxy.Tests
+{ 
+    public class TestComponent : ITestComponent;
+
+    public interface ITestComponent : IComponent
+    { }
+}
+
 namespace DontPanicLabs.Ifx.Proxy.Tests
 {
     public static class Proxy

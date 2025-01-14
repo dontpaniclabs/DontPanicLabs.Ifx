@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Services.Contracts", "DontPanicLabs.Ifx.Services.Contracts\DontPanicLabs.Ifx.Services.Contracts.csproj", "{12FE1FF5-C89F-4183-88D4-6D63825BA7D4}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Services.Contracts", "DontPanicLabs.Ifx.Services.Contracts\DontPanicLabs.Ifx.Services.Contracts.csproj", "{12FE1FF5-C89F-4183-88D4-6D63825BA7D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{EBA91325-6379-4AFB-B2EB-8E18A3BEFCE1}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,55 +18,57 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github/workflows", ".githu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{E8260938-6BFC-4535-829A-B11BF03EA7C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Contracts", "DontPanicLabs.Ifx.Configuration.Contracts\DontPanicLabs.Ifx.Configuration.Contracts.csproj", "{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Configuration.Contracts", "DontPanicLabs.Ifx.Configuration.Contracts\DontPanicLabs.Ifx.Configuration.Contracts.csproj", "{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{C4800D4C-B056-435A-AA34-6BC09D57C335}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local", "DontPanicLabs.Ifx.Configuration.Local\DontPanicLabs.Ifx.Configuration.Local.csproj", "{1926C25F-00EF-4C31-BBBD-8DB202B085D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Configuration.Local", "DontPanicLabs.Ifx.Configuration.Local\DontPanicLabs.Ifx.Configuration.Local.csproj", "{1926C25F-00EF-4C31-BBBD-8DB202B085D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B3CB9573-97EA-4E8A-A50C-EE3D1B2301A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure", "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure\DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure.csproj", "{813D07A4-9D80-4603-9108-BBE46D034B2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure", "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure\DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure.csproj", "{813D07A4-9D80-4603-9108-BBE46D034B2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{7B6820FE-6DDC-4ACC-B7A0-151DFFF66496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Tests.Shared", "DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj", "{7ACD6604-1F89-46F2-BED0-8120F96A8623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Tests.Shared", "DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj", "{7ACD6604-1F89-46F2-BED0-8120F96A8623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Tests.Shared.Tests", "DontPanicLabs.Ifx.Tests.Shared.Tests\DontPanicLabs.Ifx.Tests.Shared.Tests.csproj", "{CA014C3A-27EA-4B2B-A5DA-F274A4F25B87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Tests.Shared.Tests", "DontPanicLabs.Ifx.Tests.Shared.Tests\DontPanicLabs.Ifx.Tests.Shared.Tests.csproj", "{CA014C3A-27EA-4B2B-A5DA-F274A4F25B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess", "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess\DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess.csproj", "{1F1E597F-132A-4CBD-ACB0-58181A57D8F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess", "DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess\DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess.csproj", "{1F1E597F-132A-4CBD-ACB0-58181A57D8F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging", "DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging\DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging.csproj", "{771FF19E-932F-49C8-9AD0-662D3198452E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging", "DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging\DontPanicLabs.Ifx.Configuration.Local.Tests.Debugging.csproj", "{771FF19E-932F-49C8-9AD0-662D3198452E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess", "DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess\DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess.csproj", "{185054A0-E74A-4C41-B324-59BBA20922E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess", "DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess\DontPanicLabs.Ifx.Configuration.Local.Tests.EnvVarsSuccess.csproj", "{185054A0-E74A-4C41-B324-59BBA20922E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{E15A7742-77FF-487C-B939-68463FFCEA9B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proxy", "Proxy", "{2EC16E3E-7A1F-448F-B075-5E8A63172D49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Contracts", "DontPanicLabs.Ifx.IoC.Contracts\DontPanicLabs.Ifx.IoC.Contracts.csproj", "{A1A79227-0CD8-4C6F-8A84-B71E5C4C23D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.IoC.Contracts", "DontPanicLabs.Ifx.IoC.Contracts\DontPanicLabs.Ifx.IoC.Contracts.csproj", "{A1A79227-0CD8-4C6F-8A84-B71E5C4C23D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Contracts", "DontPanicLabs.Ifx.Proxy.Contracts\DontPanicLabs.Ifx.Proxy.Contracts.csproj", "{2E7A0645-9500-4E40-B987-3A17FA747A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Contracts", "DontPanicLabs.Ifx.Proxy.Contracts\DontPanicLabs.Ifx.Proxy.Contracts.csproj", "{2E7A0645-9500-4E40-B987-3A17FA747A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Autofac", "DontPanicLabs.Ifx.IoC.Autofac\DontPanicLabs.Ifx.IoC.Autofac.csproj", "{7BE23167-25B9-4824-AD17-82899BF1B64F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.IoC.Autofac", "DontPanicLabs.Ifx.IoC.Autofac\DontPanicLabs.Ifx.IoC.Autofac.csproj", "{7BE23167-25B9-4824-AD17-82899BF1B64F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection", "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection\DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection.csproj", "{027B11F4-7FED-428F-9A07-511D385486F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection", "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection\DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection.csproj", "{027B11F4-7FED-428F-9A07-511D385486F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.IoC.Tests", "DontPanicLabs.Ifx.IoC.Tests\DontPanicLabs.Ifx.IoC.Tests.csproj", "{5C755CA2-A39E-421E-B885-131B5817E7A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.IoC.Tests", "DontPanicLabs.Ifx.IoC.Tests\DontPanicLabs.Ifx.IoC.Tests.csproj", "{5C755CA2-A39E-421E-B885-131B5817E7A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Autofac", "DontPanicLabs.Ifx.Proxy.Autofac\DontPanicLabs.Ifx.Proxy.Autofac.csproj", "{7E53A918-3DFE-41B7-B072-93B1EDCCA371}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Autofac", "DontPanicLabs.Ifx.Proxy.Autofac\DontPanicLabs.Ifx.Proxy.Autofac.csproj", "{7E53A918-3DFE-41B7-B072-93B1EDCCA371}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EB81ED69-5B10-4F33-8282-B696CA493732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging", "DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging\DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging.csproj", "{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging", "DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging\DontPanicLabs.Ifx.Proxy.Tests.ManualDebugging.csproj", "{D9DA1FDD-E027-4A08-BDB5-1BEE1F35D1B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess", "DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess\DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess.csproj", "{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess", "DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess\DontPanicLabs.Ifx.Proxy.Tests.AutoDiscovery.ServiceRegistrationSuccess.csproj", "{A8A1B8BB-8700-4CFC-8AF7-D697E295201B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess", "DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess\DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess.csproj", "{242F3267-284C-4E3D-849F-B61B715A800A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess", "DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess\DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess.csproj", "{242F3267-284C-4E3D-849F-B61B715A800A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.Exceptions", "DontPanicLabs.Ifx.Proxy.Tests.Exceptions\DontPanicLabs.Ifx.Proxy.Tests.Exceptions.csproj", "{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Tests.Exceptions", "DontPanicLabs.Ifx.Proxy.Tests.Exceptions\DontPanicLabs.Ifx.Proxy.Tests.Exceptions.csproj", "{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure", "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure\DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure.csproj", "{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure", "DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure\DontPanicLabs.Ifx.Proxy.Tests.ServiceRegistrationFailure.csproj", "{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.AutoFac.Tests.Interception", "DontPanicLabs.Ifx.Proxy.AutoFac.Tests.Interception\DontPanicLabs.Ifx.Proxy.AutoFac.Tests.Interception.csproj", "{6C04C359-4EEF-463C-AEFD-E1D9CC7DA15A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +156,13 @@ Global
 		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C04C359-4EEF-463C-AEFD-E1D9CC7DA15A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C04C359-4EEF-463C-AEFD-E1D9CC7DA15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C04C359-4EEF-463C-AEFD-E1D9CC7DA15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C04C359-4EEF-463C-AEFD-E1D9CC7DA15A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
@@ -175,5 +187,9 @@ Global
 		{242F3267-284C-4E3D-849F-B61B715A800A} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 		{EDE5C2AB-EAA6-4041-A724-19EBE3AC20DE} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 		{A9D618B0-0FFE-4C70-8EBB-408B83D9078E} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{6C04C359-4EEF-463C-AEFD-E1D9CC7DA15A} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5AD326F-215D-49C5-A915-284BA9B71D3F}
 	EndGlobalSection
 EndGlobal

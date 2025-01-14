@@ -6,7 +6,7 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts.Configuration
         bool AutoDiscoverServices { get; }
 
         // This is false by default
-        //bool IsInterceptionEnabled { get; }
+        bool IsInterceptionEnabled { get; }
 
         // For this dictionary, the key is the Interface, and the value is the list of implementations
         // that could resolve for the key (interface).

@@ -36,19 +36,21 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
         {
             ContainerBuilder = new ContainerBuilder();
 
+            var isInterceptionEnabled = Configuration.IsInterceptionEnabled;
+
             if (autoDiscoverServices)
             {
-                ContainerBuilder = ContainerBuilder.AutoDiscoverServices(true);
+                ContainerBuilder = ContainerBuilder.AutoDiscoverServices(isInterceptionEnabled);
             }
 
             if (serviceTypes.Count > 0)
             { 
-                ContainerBuilder = ContainerBuilder.RegisterServices(serviceTypes, true);
+                ContainerBuilder = ContainerBuilder.RegisterServices(serviceTypes, isInterceptionEnabled);
             }
 
-            if (!autoDiscoverServices && !serviceTypes.Any())
+            if (!autoDiscoverServices && serviceTypes.Count == 0)
             {
-                ContainerBuilder = ContainerBuilder.RegisterServices(Configuration.ServiceRegistrations,true);
+                ContainerBuilder = ContainerBuilder.RegisterServices(Configuration.ServiceRegistrations, isInterceptionEnabled);
             }
 
             if (interceptors.Count > 0)

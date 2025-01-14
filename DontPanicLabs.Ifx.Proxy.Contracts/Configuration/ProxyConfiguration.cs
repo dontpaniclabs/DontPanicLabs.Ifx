@@ -7,14 +7,18 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts.Configuration
     {
         private const string ServiceRegistrationPath = "ifx:proxy:ServiceRegistrations";
         private const string AutoDiscoverPath = "ifx:proxy:AutodiscoverServices";
+        private const string InterceptionEnabledPath = "ifx:proxy:IsInterceptionEnabled";
 
         public ProxyConfiguration(BindingConfiguration bindingConfig) 
         {
             AutoDiscoverServices = GetAutoDiscoveryValue(bindingConfig);
             ServiceRegistrations = GetServiceRegistrations(bindingConfig);
+            IsInterceptionEnabled = GetInterceptionValue(bindingConfig);
         }
 
         public bool AutoDiscoverServices { get;}
+
+        public bool IsInterceptionEnabled { get; }
 
         public Dictionary<Type, Type[]> ServiceRegistrations { get; }
 
@@ -55,6 +59,15 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts.Configuration
             bool autoDiscover = bindingConfig.AutoDiscoverServices.Value;
 
             return autoDiscover;
+        }
+
+        private bool GetInterceptionValue(BindingConfiguration bindingConfig)
+        {
+            NullConfigurationValueException.ThrowIfNull(bindingConfig.IsInterceptionEnabled, InterceptionEnabledPath);
+
+            bool interceptionEnabled = bindingConfig.IsInterceptionEnabled.Value;
+
+            return interceptionEnabled;
         }
     }
 }
