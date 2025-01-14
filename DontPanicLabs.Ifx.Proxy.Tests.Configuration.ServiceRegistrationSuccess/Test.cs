@@ -14,7 +14,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess
         public void ServiceRegistrationSuccess_FromConfig()
         {
             var instance = Proxy.ForSubsystem<ITestSubsystem>();
-            
+
             Assert.IsInstanceOfType<ITestSubsystem>(instance);
             Assert.IsInstanceOfType<TestSubsystem>(instance);
         }
@@ -34,16 +34,11 @@ namespace DontPanicLabs.Ifx.Manager.Proxy.Tests
 namespace DontPanicLabs.Ifx.Proxy.Tests
 {
     // This child class is needed so that we can override the RegisterFromConfiguration method to use our test IoC container.
-    public class ProxyFactory() : ProxyFactoryBase()
+    public class ProxyFactory : ProxyFactoryBase, IProxyFactory
     {
-        protected override IContainer RegisterFromAutoDiscover()
+        public ProxyFactory()
         {
-            throw new NotImplementedException();
-        }
-
-        protected override IContainer RegisterFromConfiguration(Dictionary<Type, Type[]> serviceTypes)
-        {
-            return new TestContainer(serviceTypes);
+            Container = new TestContainer(Configuration.ServiceRegistrations);
         }
     }
 
@@ -82,7 +77,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
 
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {

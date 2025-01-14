@@ -1,5 +1,4 @@
-﻿using DontPanicLabs.Ifx.IoC.Contracts;
-using DontPanicLabs.Ifx.Proxy.Contracts;
+﻿using DontPanicLabs.Ifx.Proxy.Contracts;
 using DontPanicLabs.Ifx.Proxy.Contracts.Exceptions;
 using DontPanicLabs.Ifx.Services.Contracts;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
@@ -29,23 +28,18 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
         public void Test() { }
     }
 
-    public class ProxyFactory() : ProxyFactoryBase()
+    public class ProxyFactory : ProxyFactoryBase, IProxyFactory
     {
-        protected override IContainer RegisterFromAutoDiscover()
+        public ProxyFactory()
         {
-            throw new NotImplementedException();
-        }
-
-        protected override IContainer RegisterFromConfiguration(Dictionary<Type, Type[]> serviceTypes)
-        {
-            // The test should never get this far.  We should get a proxy exception just parsing the types from config.
-            throw new NotImplementedException();
+            // This call ensures we hit the configuration code, and trigger the exception.
+            _ = Configuration.ServiceRegistrations;
         }
     }
 
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {
