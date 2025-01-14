@@ -1,8 +1,5 @@
 ﻿using DontPanicLabs.Ifx.Engine.ProxyTest;
 using DontPanicLabs.Ifx.Manager.ProxyTest;
-using Autofac;
-using IContainer = DontPanicLabs.Ifx.IoC.Contracts.IContainer;
-using ContainerBuilder = DontPanicLabs.Ifx.IoC.Autofac.ContainerBuilder;
 using System.Diagnostics;
 using DontPanicLabs.Ifx.Services.Contracts;
 using DontPanicLabs.Ifx.Proxy.Contracts;
@@ -69,7 +66,7 @@ namespace Company.Product.Customized
 {
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {
@@ -97,7 +94,7 @@ namespace Company.Product.Default
 {
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {

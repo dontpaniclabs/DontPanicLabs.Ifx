@@ -1,5 +1,4 @@
 using DontPanicLabs.Ifx.Configuration.Contracts;
-using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 namespace DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess
 {

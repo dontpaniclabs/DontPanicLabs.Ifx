@@ -1,5 +1,4 @@
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DontPanicLabs.Ifx.Tests.Shared.Tests;
 

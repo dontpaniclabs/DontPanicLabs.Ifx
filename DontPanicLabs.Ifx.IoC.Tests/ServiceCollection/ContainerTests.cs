@@ -2,7 +2,6 @@ using DontPanicLabs.Ifx.IoC.Contracts.Exceptions;
 using DontPanicLabs.Ifx.IoC.Tests.Helpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContainerBuilder = DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection.ContainerBuilder;
 
 namespace DontPanicLabs.Ifx.IoC.Tests.ServiceCollection;

@@ -3,7 +3,6 @@ using Autofac.Core;
 using DontPanicLabs.Ifx.IoC.Contracts.Exceptions;
 using DontPanicLabs.Ifx.IoC.Tests.Helpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContainerBuilder = DontPanicLabs.Ifx.IoC.Autofac.ContainerBuilder;
 
 namespace DontPanicLabs.Ifx.IoC.Tests.Autofac;

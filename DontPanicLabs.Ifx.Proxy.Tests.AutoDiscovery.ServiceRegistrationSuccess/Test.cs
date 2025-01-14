@@ -41,23 +41,21 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
 {
     public static class Proxy
     {
-        private static readonly IProxy proxy;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {
-            var factory = new Autofac.ProxyFactory();
-
-            proxy = factory;
+            factory = new ProxyFactory();
         }
 
         public static I ForSubsystem<I>() where I : class, ISubsystem
         {
-            return proxy.ForSubsystem<I>();
+            return factory.ForSubsystem<I>();
         }
 
         public static I ForComponent<I>(object caller) where I : class, IComponent
         {
-            return proxy.ForComponent<I>(caller);
+            return factory.ForComponent<I>(caller);
         }
     }
 }

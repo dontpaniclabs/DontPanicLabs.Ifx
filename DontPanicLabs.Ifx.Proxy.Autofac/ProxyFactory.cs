@@ -4,7 +4,7 @@ using ContainerBuilder = DontPanicLabs.Ifx.IoC.Autofac.ContainerBuilder;
 
 namespace DontPanicLabs.Ifx.Proxy.Autofac
 {
-    public class ProxyFactory : ProxyFactoryBase, IProxy
+    public class ProxyFactory : ProxyFactoryBase, IProxyFactory
     {
         private ContainerBuilder? ContainerBuilder;
 
@@ -66,37 +66,5 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
 
             Container = ContainerBuilder.Build();
         }
-
-        //private static void RegisterFromAutoDiscover()
-        //{
-        //    bool interceptionEnabled = false;
-
-        //    ContainerBuilder.RegisterServices(builder =>
-        //    {
-        //        var dynamic = builder
-        //            .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-        //            .Where(t =>
-        //                typeof(IService).IsAssignableFrom(t)
-        //             ).AsImplementedInterfaces()
-        //             .EnableInterfaceInterceptors();
-                
-        //    });
-
-
-        //}
-
-        //private void RegisterFromConfiguration(Dictionary<Type, Type[]> serviceTypes)
-        //{
-        //    ContainerBuilder.RegisterServices(options =>
-        //    {
-        //        foreach (var contract in serviceTypes)
-        //        {
-        //            foreach (var implementation in contract.Value)
-        //            {
-        //                options.RegisterType(implementation).As(contract.Key);
-        //            }
-        //        }
-        //    });
-        //}
     }
 }

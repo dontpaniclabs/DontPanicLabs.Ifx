@@ -81,11 +81,11 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
 {
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {
-            factory = new Autofac.ProxyFactory();
+            factory = new ProxyFactory();
         }
 
         public static I ForSubsystem<I>() where I : class, ISubsystem

@@ -28,7 +28,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
         public void Test() { }
     }
 
-    public class ProxyFactory : ProxyFactoryBase, IProxy
+    public class ProxyFactory : ProxyFactoryBase, IProxyFactory
     {
         public ProxyFactory()
         {
@@ -39,7 +39,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
 
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {

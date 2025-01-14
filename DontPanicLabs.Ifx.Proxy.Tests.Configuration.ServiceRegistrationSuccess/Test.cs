@@ -34,7 +34,7 @@ namespace DontPanicLabs.Ifx.Manager.Proxy.Tests
 namespace DontPanicLabs.Ifx.Proxy.Tests
 {
     // This child class is needed so that we can override the RegisterFromConfiguration method to use our test IoC container.
-    public class ProxyFactory : ProxyFactoryBase, IProxy
+    public class ProxyFactory : ProxyFactoryBase, IProxyFactory
     {
         public ProxyFactory()
         {
@@ -77,7 +77,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
 
     public static class Proxy
     {
-        private static readonly IProxy factory;
+        private static readonly IProxyFactory factory;
 
         static Proxy()
         {
