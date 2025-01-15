@@ -7,61 +7,55 @@ using Microsoft.Extensions.Configuration;
 
 namespace DontPanicLabs.Ifx.Proxy.Contracts
 {
-    public abstract class ProxyFactoryBase : IProxy, IProxyFactory
+    public abstract class ProxyFactoryBase
     {
-        protected IContainer container;
-        
+        protected IContainer? Container;
+
+        protected IProxyConfiguration Configuration;
+
         protected ProxyFactoryBase()
         {
-            container = RegisterServices();
+            IConfiguration configuration = new Config();
+
+            Configuration = configuration.GetProxyConfiguration();
         }
 
         public I ForSubsystem<I>() where I : class, ISubsystem
         {
             NamespaceException.ThrowIfNotSubsystem(typeof(I));
 
-            I subsystem = container.GetService<I>();
+            if (Container is null) throw new ArgumentNullException(nameof(Container));
+
+            I subsystem = Container.GetService<I>();
 
             return subsystem;
         }
-        
+
         public I ForComponent<I>(object caller) where I : class, IComponent
         {
             if (caller == null)
-            { 
+            {
                 throw new ArgumentNullException(nameof(caller), "Invalid component call. Must supply a caller.");
             }
 
             NamespaceException.ThrowIfNotComponent(typeof(I));
 
-            I component = container.GetService<I>();
+            if (Container is null) throw new ArgumentNullException(nameof(Container));
+
+            I component = Container.GetService<I>();
 
             return component;
         }
 
-        protected virtual IContainer RegisterServices()
+        public I ForUtility<I>() where I : class, IUtility
         {
-            IConfiguration configuration = new Config();
+            NamespaceException.ThrowIfNotUtility(typeof(I));
 
-            IProxyConfiguration proxyConfiguration = configuration.GetProxyConfiguration();
+            if (Container is null) throw new ArgumentNullException(nameof(Container));
 
-            IContainer container;
+            I component = Container.GetService<I>();
 
-            if (!proxyConfiguration.AutoDiscoverServices) 
-            {
-                
-                container = RegisterFromConfiguration(proxyConfiguration.ServiceRegistrations);
-            }
-            else
-            {
-                container = RegisterFromAutoDiscover();
-            }
-
-            return container;
+            return component;
         }
-
-        protected abstract IContainer RegisterFromAutoDiscover();
-
-        protected abstract IContainer RegisterFromConfiguration(Dictionary<Type, Type[]> serviceTypes);
     }
 }

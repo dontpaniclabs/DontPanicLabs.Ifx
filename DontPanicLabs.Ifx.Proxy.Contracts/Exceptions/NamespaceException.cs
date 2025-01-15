@@ -11,6 +11,7 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts.Exceptions
         private const string NullMessage = "Namespace is null for the type '{0}'.";
         private const string NotSubsystemMessage = "Invalid subsystem. You can only use a Manager interface to access a subsystem.";
         private const string NotComponentMessage = "Invalid component call. You can only use an Engine or Accessor interface to access a component.";
+        private const string NotUtilityMessage = "Invalid utility call. You can only use a Utility interface to access a utility.";
 
         NamespaceException(string message) : base(message)
         {
@@ -43,6 +44,18 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts.Exceptions
             if (!ns.Contains("Engine") && !ns.Contains("Accessor"))
             {
                 throw new NamespaceException(NotComponentMessage);
+            }
+        }
+
+        public static void ThrowIfNotUtility([NotNull] Type type)
+        {
+            ThrowIfNamespaceNull(type);
+
+            var ns = type.Namespace!;
+
+            if (!ns.Contains("Utility"))
+            {
+                throw new NamespaceException(NotUtilityMessage);
             }
         }
     }
