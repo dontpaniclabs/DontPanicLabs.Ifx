@@ -7,14 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="DontPanicLabs.Ifx.IoC.Autofac" Version="0.5.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="0.5.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.Proxy.Contracts" Version="1.0.1" />
       <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
       <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Autofac\DontPanicLabs.Ifx.IoC.Autofac.csproj" />
-      <ProjectReference Include="..\DontPanicLabs.Ifx.IoC.Contracts\DontPanicLabs.Ifx.IoC.Contracts.csproj" />
-      <ProjectReference Include="..\DontPanicLabs.Ifx.Proxy.Contracts\DontPanicLabs.Ifx.Proxy.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

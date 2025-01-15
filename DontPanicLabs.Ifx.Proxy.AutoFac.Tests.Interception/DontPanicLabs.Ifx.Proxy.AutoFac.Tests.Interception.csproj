@@ -28,8 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DontPanicLabs.Ifx.Proxy.Autofac\DontPanicLabs.Ifx.Proxy.Autofac.csproj" />
-    <ProjectReference Include="..\DontPanicLabs.Ifx.Proxy.Contracts\DontPanicLabs.Ifx.Proxy.Contracts.csproj" />
-    <ProjectReference Include="..\DontPanicLabs.Ifx.Services.Contracts\DontPanicLabs.Ifx.Services.Contracts.csproj" />
     <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
   </ItemGroup>
 

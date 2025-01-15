@@ -9,14 +9,14 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts.Configuration
         private const string AutoDiscoverPath = "ifx:proxy:AutodiscoverServices";
         private const string InterceptionEnabledPath = "ifx:proxy:IsInterceptionEnabled";
 
-        public ProxyConfiguration(BindingConfiguration bindingConfig) 
+        public ProxyConfiguration(BindingConfiguration bindingConfig)
         {
             AutoDiscoverServices = GetAutoDiscoveryValue(bindingConfig);
             ServiceRegistrations = GetServiceRegistrations(bindingConfig);
             IsInterceptionEnabled = GetInterceptionValue(bindingConfig);
         }
 
-        public bool AutoDiscoverServices { get;}
+        public bool AutoDiscoverServices { get; }
 
         public bool IsInterceptionEnabled { get; }
 

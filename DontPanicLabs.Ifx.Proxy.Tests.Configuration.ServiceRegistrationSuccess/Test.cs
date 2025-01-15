@@ -14,7 +14,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests.Configuration.ServiceRegistrationSuccess
         public void ServiceRegistrationSuccess_FromConfig()
         {
             var instance = Proxy.ForSubsystem<ITestSubsystem>();
-            
+
             Assert.IsInstanceOfType<ITestSubsystem>(instance);
             Assert.IsInstanceOfType<TestSubsystem>(instance);
         }

@@ -12,7 +12,7 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts
         protected IContainer? Container;
 
         protected IProxyConfiguration Configuration;
-        
+
         protected ProxyFactoryBase()
         {
             IConfiguration configuration = new Config();
@@ -24,17 +24,17 @@ namespace DontPanicLabs.Ifx.Proxy.Contracts
         {
             NamespaceException.ThrowIfNotSubsystem(typeof(I));
 
-            if(Container is null) throw new ArgumentNullException(nameof(Container));
+            if (Container is null) throw new ArgumentNullException(nameof(Container));
 
             I subsystem = Container.GetService<I>();
 
             return subsystem;
         }
-        
+
         public I ForComponent<I>(object caller) where I : class, IComponent
         {
             if (caller == null)
-            { 
+            {
                 throw new ArgumentNullException(nameof(caller), "Invalid component call. Must supply a caller.");
             }
 
