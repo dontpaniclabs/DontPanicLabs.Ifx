@@ -12,6 +12,7 @@ on:
           - "DontPanicLabs.Ifx.IoC.Autofac"
           - "DontPanicLabs.Ifx.IoC.Contracts"
           - "DontPanicLabs.Ifx.IoC.Dotnet.ServiceCollection"
+          - "DontPanicLabs.Ifx.Proxy.Autofac"
           - "DontPanicLabs.Ifx.Proxy.Contracts"
           - "DontPanicLabs.Ifx.Services.Contracts"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights"
