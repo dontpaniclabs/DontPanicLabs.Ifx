@@ -58,14 +58,24 @@ There may be additional configuration exceptions thrown by the proxy implementat
 
 ### `ForSubsystem<I>()`
 
-The `ForSubsystem<I>()` method attempts to retrieve an instance of the specified service interface `I` from the proxy.
+The `ForSubsystem<I>()` method attempts to retrieve an instance of the specified service interface `I` from the proxy.  `I` must inherit the `ISubsystem` interface.
  - If the interface has been registered with the proxy, the proxy will return an instance of the registered service implementation.
  - If the interface has not been registered with the proxy, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.ProxyTypeLoadException`
- - If the interface does not `DPL.Ifx.IoC.Contracts.Exceptions.IoCServiceResolutionException`
+ - If the interface does not belong to the `Manager` namespace, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.NamespaceException`
 
 ### ForComponent`<I>`()
 
+The `ForComponent<I>()` method attempts to retrieve an instance of the specified service interface `I` from the proxy. `I` must inherit the `IComponent` interface.
+ - If the interface has been registered with the proxy, the proxy will return an instance of the registered service implementation.
+ - If the interface has not been registered with the proxy, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.ProxyTypeLoadException`
+ - If the interface does not belong to the `Engine` or `Accessor` namespaces, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.NamespaceException`
+
 ### ForUtility`<I>`()
+
+The `ForUtility<I>()` method attempts to retrieve an instance of the specified service interface `I` from the proxy. `I` must inherit the `IUtility` interface.
+ - If the interface has been registered with the proxy, the proxy will return an instance of the registered service implementation.
+ - If the interface has not been registered with the proxy, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.ProxyTypeLoadException`
+ - If the interface does not belong to the `Utility` namespace, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.NamespaceException`
 
 ## Feedback
 
