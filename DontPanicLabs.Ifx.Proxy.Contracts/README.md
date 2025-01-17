@@ -54,7 +54,6 @@ If key/value pairs are specified in the `serviceRegistrations` section, the prox
 
 There may be additional configuration exceptions thrown by the proxy implementation.  Check the documentation for your specific proxy implementation to see if there are additional configuration requirements.
 
-
 ## Proxy Methods
 
 ### `ForSubsystem<I>()`
@@ -62,10 +61,11 @@ There may be additional configuration exceptions thrown by the proxy implementat
 The `ForSubsystem<I>()` method attempts to retrieve an instance of the specified service interface `I` from the proxy.
  - If the interface has been registered with the proxy, the proxy will return an instance of the registered service implementation.
  - If the interface has not been registered with the proxy, the proxy will throw a `DontPanicLabs.Ifx.Proxy.Contracts.Exceptions.ProxyTypeLoadException`
- - If the interface does not 
+ - If the interface does not `DPL.Ifx.IoC.Contracts.Exceptions.IoCServiceResolutionException`
 
 ### ForComponent`<I>`()
 
+### ForUtility`<I>`()
 
 ## Feedback
 

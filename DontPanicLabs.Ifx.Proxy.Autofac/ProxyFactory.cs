@@ -8,25 +8,43 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
     {
         private ContainerBuilder? ContainerBuilder;
 
-        // autodiscover will be pulled from config. if true, auto discover.  if false, use explicit configuration
+        /// <summary>
+        /// Create a new instance of the ProxyFactory. 
+        /// Service registrations will be based on configuration.
+        /// No interceptors will be used.
+        /// </summary>
+        /// <returns>New instance of ProxyFactory.</returns>
         public ProxyFactory()
         {
             Initialize(Configuration.AutoDiscoverServices, [], []);            
         }
 
-        // register this set of services.  No interceptors.
+        /// <summary>
+        /// Create a new instance of the ProxyFactory. No interceptors will be used.
+        /// </summary>
+        /// <param name="serviceTypes">The collection of services that will be registered.  The key Type is the interface.  The values in Type[] are possible implementations</param>
+        /// <returns>New instance of ProxyFactory.</returns>
         public ProxyFactory(Dictionary<Type, Type[]> serviceTypes)
         {
             Initialize(false, serviceTypes, []);
         }
 
-        // autodiscover will be pulled from config. if true, auto discover.  if false, use configuration.  always register this set of interceptors.
+        /// <summary>
+        /// Create a new instance of the ProxyFactory. Service registration will be based on configuration.
+        /// </summary>
+        /// <param name="interceptors">The collection of interceptors to register with the IoC container.</param>
+        /// <returns>New instance of ProxyFactory.</returns>
         public ProxyFactory(List<IInterceptor> interceptors)
         {
             Initialize(Configuration.AutoDiscoverServices, [], interceptors);
         }
 
-        // register this set of services.  register this set of interceptors
+        /// <summary>
+        /// Create a new instance of the ProxyFactory.
+        /// </summary>
+        /// <param name="serviceTypes">The collection of services that will be registered.  The key Type is the interface.  The values in Type[] are possible implementations</param>
+        /// <param name="interceptors">The collection of interceptors to register with the IoC container.</param>
+        /// <returns>New instance of ProxyFactory.</returns>
         public ProxyFactory(Dictionary<Type, Type[]> serviceTypes, List<IInterceptor> interceptors) 
         {
             Initialize(false, serviceTypes, interceptors);
