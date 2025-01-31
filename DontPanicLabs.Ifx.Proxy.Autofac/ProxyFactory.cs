@@ -73,13 +73,15 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
 
             if (interceptors.Count > 0)
             {
-                foreach (var interceptor in interceptors)
+                ContainerBuilder.RegisterServices(options =>
                 {
-                    ContainerBuilder.RegisterServices(options =>
-                    {
-                        options.Register(context => interceptor);
-                    });
-                }
+                    //foreach (var interceptor in interceptors)
+                    //{
+                    //    options.Register(context => interceptor);
+                    //}
+
+                    options.Register(context => interceptors[0]);
+                });
             }
 
             Container = ContainerBuilder.Build();
