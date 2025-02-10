@@ -75,7 +75,7 @@ namespace Company.Product.Customized
                 { typeof(ITestSubsystem), [typeof(TestSubsystem)] }
             };
 
-            factory = new DontPanicLabs.Ifx.Proxy.Autofac.ProxyFactory(registrations);
+            factory = new DontPanicLabs.Ifx.Proxy.Autofac.ProxyFactory(registrations, []);
         }
 
         public static I ForSubsystem<I>() where I : class, ISubsystem

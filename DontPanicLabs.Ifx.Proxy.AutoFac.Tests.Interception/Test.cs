@@ -65,7 +65,7 @@ namespace DontPanicLabs.Ifx.Proxy.Tests
                 new LoggingInterceptor()
             ];
 
-            factory = new ProxyFactory(interceptors);
+            factory = new ProxyFactory([], interceptors);
         }
 
         public static I ForSubsystem<I>() where I : class, ISubsystem

@@ -11,7 +11,7 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
         /// <summary>
         /// Create a new instance of the ProxyFactory. 
         /// Service registrations will be based on configuration.
-        /// No interceptors will be used.
+        /// Interceptors will be auto-discoverd based on configuration.
         /// </summary>
         /// <returns>New instance of ProxyFactory.</returns>
         public ProxyFactory()
@@ -20,30 +20,10 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
         }
 
         /// <summary>
-        /// Create a new instance of the ProxyFactory. No interceptors will be used.
-        /// </summary>
-        /// <param name="serviceTypes">The collection of services that will be registered.  The key Type is the interface.  The values in Type[] are possible implementations</param>
-        /// <returns>New instance of ProxyFactory.</returns>
-        public ProxyFactory(Dictionary<Type, Type[]> serviceTypes)
-        {
-            Initialize(false, serviceTypes, []);
-        }
-
-        /// <summary>
-        /// Create a new instance of the ProxyFactory. Service registration will be based on configuration.
-        /// </summary>
-        /// <param name="interceptors">The collection of interceptors to register with the IoC container.</param>
-        /// <returns>New instance of ProxyFactory.</returns>
-        public ProxyFactory(List<IInterceptor> interceptors)
-        {
-            Initialize(Configuration.AutoDiscoverServices, [], interceptors);
-        }
-
-        /// <summary>
         /// Create a new instance of the ProxyFactory.
         /// </summary>
-        /// <param name="serviceTypes">The collection of services that will be registered.  The key Type is the interface.  The values in Type[] are possible implementations</param>
-        /// <param name="interceptors">The collection of interceptors to register with the IoC container.</param>
+        /// <param name="serviceTypes">The collection of services that will be registered.  The key Type is the interface.  The values in Type[] are possible implementations.  An empty list will result in no registrations.</param>
+        /// <param name="interceptors">The collection of interceptors to register with the IoC container.  An empty list will result in no interceptors.  Interception can be enabled/disabled based on configuration.</param>
         /// <returns>New instance of ProxyFactory.</returns>
         public ProxyFactory(Dictionary<Type, Type[]> serviceTypes, List<IInterceptor> interceptors) 
         {
@@ -60,27 +40,24 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
             {
                 ContainerBuilder = ContainerBuilder.AutoDiscoverServices(isInterceptionEnabled);
             }
-
-            if (serviceTypes.Count > 0)
-            { 
-                ContainerBuilder = ContainerBuilder.RegisterServices(serviceTypes, isInterceptionEnabled);
-            }
-
-            if (!autoDiscoverServices && serviceTypes.Count == 0)
+            else
             {
-                ContainerBuilder = ContainerBuilder.RegisterServices(Configuration.ServiceRegistrations, isInterceptionEnabled);
-            }
-
-            if (interceptors.Count > 0)
-            {
-                ContainerBuilder.RegisterServices(options =>
+                if (serviceTypes.Count > 0)
                 {
-                    //foreach (var interceptor in interceptors)
-                    //{
-                    //    options.Register(context => interceptor);
-                    //}
+                    ContainerBuilder = ContainerBuilder.RegisterServices(serviceTypes, isInterceptionEnabled);
+                }
 
-                    options.Register(context => interceptors[0]);
+                if (serviceTypes.Count == 0)
+                {
+                    ContainerBuilder = ContainerBuilder.RegisterServices(Configuration.ServiceRegistrations, isInterceptionEnabled);
+                }
+
+                ContainerBuilder.RegisterServices(builder =>
+                {
+                    foreach (var interceptor in interceptors)
+                    {
+                        builder.RegisterInstance(interceptor).AsSelf();
+                    }
                 });
             }
 

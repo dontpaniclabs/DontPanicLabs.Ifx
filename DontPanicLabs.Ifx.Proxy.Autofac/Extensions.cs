@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DontPanicLabs.Ifx.Services.Contracts;
 using Autofac.Extras.DynamicProxy;
+using DontPanicLabs.Ifx.Proxy.Contracts;
 
 namespace DontPanicLabs.Ifx.Proxy.Autofac
 {
@@ -8,9 +9,9 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
     {
         public static IoC.Autofac.ContainerBuilder AutoDiscoverServices(this IoC.Autofac.ContainerBuilder builder, bool isInterceptionEnabled)
         {
-            builder.RegisterServices(builder =>
+            builder.RegisterServices(options =>
             {
-                var dynamic = builder
+                var dynamic = options
                     .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
                     .Where(t =>
                         typeof(IService).IsAssignableFrom(t)
@@ -19,6 +20,13 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
                 if (isInterceptionEnabled)
                 { 
                     dynamic.EnableInterfaceInterceptors();
+
+                    options
+                        .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
+                        .Where(type =>
+                            typeof(IInterceptor).IsAssignableFrom(type)
+                        )
+                        .AsSelf();
                 }
             });
 
