@@ -4,6 +4,9 @@ using System.Diagnostics;
 using DontPanicLabs.Ifx.Services.Contracts;
 using DontPanicLabs.Ifx.Proxy.Contracts;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
+using DontPanicLabs.Ifx.Proxy.Autofac;
+using IoC = DontPanicLabs.Ifx.IoC.Autofac;
+using Autofac;
 
 namespace DPL.Ifx.Proxy.Tests.ManualDebugging
 {
@@ -70,12 +73,21 @@ namespace Company.Product.Customized
 
         static Proxy()
         {
-            var registrations = new Dictionary<Type, Type[]>()
-            {
-                { typeof(ITestSubsystem), [typeof(TestSubsystem)] }
-            };
+            //var registrations = new Dictionary<Type, Type[]>()
+            //{
+            //    { typeof(ITestSubsystem), [typeof(TestSubsystem)] }
+            //};
 
-            factory = new DontPanicLabs.Ifx.Proxy.Autofac.ProxyFactory(registrations, []);
+            //factory = new DontPanicLabs.Ifx.Proxy.Autofac.ProxyFactory(registrations, []);
+
+            IoC.ContainerBuilder builder = new IoC.ContainerBuilder();
+
+            builder.RegisterServices(options =>
+            { 
+                options.RegisterType<TestSubsystem>().As<ITestSubsystem>();
+            });
+
+            factory = new ProxyFactory(builder);
         }
 
         public static I ForSubsystem<I>() where I : class, ISubsystem

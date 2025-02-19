@@ -30,6 +30,11 @@ namespace DontPanicLabs.Ifx.Proxy.Autofac
             Initialize(false, serviceTypes, interceptors);
         }
 
+        public ProxyFactory(ContainerBuilder builder)
+        {
+            Container = builder.Build();
+        }
+
         protected void Initialize(bool autoDiscoverServices, Dictionary<Type, Type[]> serviceTypes, List<IInterceptor> interceptors)
         {
             ContainerBuilder = new ContainerBuilder();
