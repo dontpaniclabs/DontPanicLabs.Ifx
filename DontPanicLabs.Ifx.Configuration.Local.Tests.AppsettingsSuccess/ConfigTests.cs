@@ -7,6 +7,13 @@ namespace DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsSuccess
     [TestCategoryCI]
     public class ConfigTests
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            // Reset the config to ensure that the tests are not affected by previous tests.
+            Config.Reset();
+        }
+        
         [DataTestMethod]
         [DataRow("appsettings:appsettings", "appsettings success", DisplayName = "appsettings values are returned")]
         [DataRow("ifx:appsettings", "ifx success", DisplayName = "ifx values are returned")]

@@ -107,23 +107,27 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             try
             {
                 _ = configRoot.GetChildren()
-                    .Single(x => x.Key.Equals(IfxSectionPrefix, StringComparison.OrdinalIgnoreCase));
+                    .Single(x => x.Key.Equals(IfxSectionPrefix, StringComparison.OrdinalIgnoreCase) &&
+                                 x.Value == null);
             }
             catch (InvalidOperationException ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{IfxSectionPrefix} is missing from configuration.");
-                exceptions.Add(ex);
+                // Supply a more descriptive exception message
+                exceptions.Add(new InvalidOperationException(
+                    $"'{IfxSectionPrefix}' is missing from configuration or exists but not nestable.", ex));
             }
 
             try
             {
                 _ = configRoot.GetChildren()
-                    .Single(x => x.Key.Equals(AppSectionPrefix, StringComparison.OrdinalIgnoreCase));
+                    .Single(x => x.Key.Equals(AppSectionPrefix, StringComparison.OrdinalIgnoreCase) &&
+                                 x.Value == null); 
             }
             catch (InvalidOperationException ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{AppSectionPrefix} is missing from configuration.");
-                exceptions.Add(ex);
+                // Supply a more descriptive exception message
+                exceptions.Add(new InvalidOperationException(
+                    $"'{AppSectionPrefix}' is missing from configuration or exists but not nestable.", ex));
             }
 
             if (exceptions.Count > 0)
@@ -147,6 +151,16 @@ namespace DontPanicLabs.Ifx.Configuration.Local
         IChangeToken IConfiguration.GetReloadToken()
         {
             return _Configuration.Value.GetReloadToken();
+        }
+
+        /// <summary>
+        /// Internal method to rebuild the configuration.
+        /// Use this in your tests to reset the configuration.
+        /// </summary>
+        internal static void Reset()
+        {
+            _Configuration =
+                new Lazy<IConfiguration>(BuildConfiguration, LazyThreadSafetyMode.ExecutionAndPublication);
         }
     }
 }
