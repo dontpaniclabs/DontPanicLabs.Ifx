@@ -114,7 +114,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             {
                 // Supply a more descriptive exception message
                 exceptions.Add(new InvalidOperationException(
-                    $"'{IfxSectionPrefix}' is missing from configuration or exists but not nestable.", ex));
+                    $"'{IfxSectionPrefix}' is missing from configuration or exists but is not nestable.", ex));
             }
 
             try
@@ -127,7 +127,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             {
                 // Supply a more descriptive exception message
                 exceptions.Add(new InvalidOperationException(
-                    $"'{AppSectionPrefix}' is missing from configuration or exists but not nestable.", ex));
+                    $"'{AppSectionPrefix}' is missing from configuration or exists but is not nestable.", ex));
             }
 
             if (exceptions.Count > 0)
