@@ -23,8 +23,8 @@ namespace DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure
             
             var aggEx = Assert.ThrowsException<AggregateException>(() => config["appSettings:thisdoesntmatter"]);
 
-            var ifxEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'ifx' is missing from configuration or exists but not nestable.");
-            var appEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'appSettings' is missing from configuration or exists but not nestable.");
+            var ifxEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'ifx' is missing from configuration or exists but is not nestable.");
+            var appEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'appSettings' is missing from configuration or exists but is not nestable.");
             
             Assert.IsNotNull(ifxEx, "A configuration section of 'ifx' was found in one of the configuration providers.");       
             Assert.IsNotNull(appEx, "A configuration section of 'appSettings' was found in one of the configuration providers.");
@@ -39,8 +39,8 @@ namespace DontPanicLabs.Ifx.Configuration.Local.Tests.AppsettingsFailure
 
             var aggEx = Assert.ThrowsException<AggregateException>(() => config["appsettings"]);
             
-            var ifxEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'ifx' is missing from configuration or exists but not nestable.");
-            var appEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'appSettings' is missing from configuration or exists but not nestable.");
+            var ifxEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'ifx' is missing from configuration or exists but is not nestable.");
+            var appEx = aggEx.InnerExceptions.FirstOrDefault(ex => ex.Message == "'appSettings' is missing from configuration or exists but is not nestable.");
             
             Assert.IsNotNull(ifxEx, "A configuration section of 'ifx' was found in one of the configuration providers.");
             Assert.IsNotNull(appEx, "A configuration section of 'appSettings' was found in one of the configuration providers.");
