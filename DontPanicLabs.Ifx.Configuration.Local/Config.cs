@@ -11,9 +11,14 @@ namespace DontPanicLabs.Ifx.Configuration.Local
         protected const string UserSecretsIdKey = "userSecretsId";
         protected const string SkipEnvironmentVariablesKey = "skipEnvironmentVariables";
 
-        protected static Lazy<IConfiguration> _Configuration = new Lazy<IConfiguration>(BuildConfiguration, LazyThreadSafetyMode.ExecutionAndPublication);
+        protected static Lazy<IConfiguration> _Configuration =
+            new Lazy<IConfiguration>(BuildConfiguration, LazyThreadSafetyMode.ExecutionAndPublication);
 
-        public string? this[string key] { get => _Configuration.Value[key]; set => _Configuration.Value[key] = value; }
+        public string? this[string key]
+        {
+            get => _Configuration.Value[key];
+            set => _Configuration.Value[key] = value;
+        }
 
         protected static IConfiguration BuildConfiguration()
         {
@@ -55,7 +60,7 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             string? value = envVarConfig[$"{SkipEnvironmentVariablesKey}"];
 
             if (value != null)
-            { 
+            {
                 skipEnvironmentVariables = bool.Parse(value);
             }
 
@@ -64,14 +69,14 @@ namespace DontPanicLabs.Ifx.Configuration.Local
 
         protected static IConfigurationBuilder GetConfigurationBuilder()
         {
-            // Always include Environment Varibles and appsettings.json
+            // Always include Environment Variables and appsettings.json
             var configBuilder = new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory);
 
             if (!SkipEnvironmentVariables())
             {
                 configBuilder.AddEnvironmentVariables();
             }
-                
+
             configBuilder.AddJsonFile("appsettings.json", true);
 
             // Get the usersecrets.json file id if specified
@@ -86,26 +91,43 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             return configBuilder;
         }
 
+        /// <summary>
+        /// Validates ifx and appSettings are present in the configuration root. Names are case insenstive.
+        /// Empty sections are supported.
+        /// </summary>
+        /// <param name="configRoot">ConfigurationRoot</param>
+        /// <exception cref="AggregateException">AggregateException if ifx or appsettings are missing from configuration.</exception>
         protected static void ValidateConfigSections(IConfigurationRoot configRoot)
         {
+            // ConfigurationRoot.GetSection and GetRequiredSection can't differentiate between empty sections and missing sections.
+            // So we check the children to see if the sections are present.
+
             List<Exception> exceptions = new List<Exception>();
 
             try
             {
-                configRoot.GetRequiredSection(IfxSectionPrefix);
+                _ = configRoot.GetChildren()
+                    .Single(x => x.Key.Equals(IfxSectionPrefix, StringComparison.OrdinalIgnoreCase) &&
+                                 x.Value == null);
             }
             catch (InvalidOperationException ex)
             {
-                exceptions.Add(ex);
+                // Supply a more descriptive exception message
+                exceptions.Add(new InvalidOperationException(
+                    $"'{IfxSectionPrefix}' is missing from configuration or exists but is not nestable.", ex));
             }
 
             try
             {
-                configRoot.GetRequiredSection(AppSectionPrefix);
+                _ = configRoot.GetChildren()
+                    .Single(x => x.Key.Equals(AppSectionPrefix, StringComparison.OrdinalIgnoreCase) &&
+                                 x.Value == null); 
             }
             catch (InvalidOperationException ex)
             {
-                exceptions.Add(ex);
+                // Supply a more descriptive exception message
+                exceptions.Add(new InvalidOperationException(
+                    $"'{AppSectionPrefix}' is missing from configuration or exists but is not nestable.", ex));
             }
 
             if (exceptions.Count > 0)
@@ -114,7 +136,6 @@ namespace DontPanicLabs.Ifx.Configuration.Local
 
                 throw aggregate;
             }
-
         }
 
         IConfigurationSection IConfiguration.GetSection(string key)
@@ -130,6 +151,16 @@ namespace DontPanicLabs.Ifx.Configuration.Local
         IChangeToken IConfiguration.GetReloadToken()
         {
             return _Configuration.Value.GetReloadToken();
+        }
+
+        /// <summary>
+        /// Internal method to rebuild the configuration.
+        /// Use this in your tests to reset the configuration.
+        /// </summary>
+        internal static void Reset()
+        {
+            _Configuration =
+                new Lazy<IConfiguration>(BuildConfiguration, LazyThreadSafetyMode.ExecutionAndPublication);
         }
     }
 }
