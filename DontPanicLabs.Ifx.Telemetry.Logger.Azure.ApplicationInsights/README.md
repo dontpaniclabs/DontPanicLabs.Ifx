@@ -10,10 +10,10 @@ Configuration File Example:
 ```json
 {
   "ifx": {
-  "telemetry": {
-    "logging": {
-      "applicationInsights": {
-        "ConnectionString": "copy app insights connection string from azure portal"
+    "telemetry": {
+      "logging": {
+        "applicationInsights": {
+          "ConnectionString": "copy app insights connection string from azure portal"
         }
       }
     }
