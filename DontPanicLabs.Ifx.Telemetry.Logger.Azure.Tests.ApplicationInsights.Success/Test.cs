@@ -4,7 +4,7 @@ using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.Tests.ApplicationInsights.Success
 {
     [TestClass]
-    [TestCategoryLocal]
+    [TestCategoryCI]
     public class LoggerAppInsightsTest
     {
         private Dictionary<string, string>? _customProperties;
