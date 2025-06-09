@@ -10,21 +10,26 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
     public sealed class Logger : Contracts.ILogger
     {
         private readonly TelemetryClient _TelemetryClient;
-        private static readonly Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfig;
 
-        static Logger()
+        /// <remarks>
+        /// `TelemetryConfiguration` is static so that it can be reused across instances of the logger; failure to
+        /// re-use a single object or otherwise `Dispose` each instance results in a memory leak.
+        /// </remarks>
+        private static readonly Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfig =
+            Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.CreateDefault();
+
+        public Logger()
         {
             IConfiguration configuration = new Config();
             IAppInsightsConfiguration appInsightsConfig = configuration.GetAppInsightsConfiguration();
 
             EmptyConnectionStringException.ThrowIfEmpty(appInsightsConfig.ConnectionString!);
 
-            TelemetryConfig = Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.CreateDefault();
-            TelemetryConfig.ConnectionString = appInsightsConfig.ConnectionString;
-        }
+            if (string.IsNullOrEmpty(TelemetryConfig.ConnectionString))
+            {
+                TelemetryConfig.ConnectionString = appInsightsConfig.ConnectionString;
+            }
 
-        public Logger()
-        {
             _TelemetryClient = new TelemetryClient(TelemetryConfig);
         }
 
