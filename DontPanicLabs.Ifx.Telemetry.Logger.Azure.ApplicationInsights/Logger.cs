@@ -10,18 +10,22 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
     public sealed class Logger : Contracts.ILogger
     {
         private readonly TelemetryClient _TelemetryClient;
+        private static readonly Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfig;
 
-        public Logger()
+        static Logger()
         {
             IConfiguration configuration = new Config();
             IAppInsightsConfiguration appInsightsConfig = configuration.GetAppInsightsConfiguration();
 
             EmptyConnectionStringException.ThrowIfEmpty(appInsightsConfig.ConnectionString!);
 
-            _TelemetryClient = new TelemetryClient(new Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration
-            {
-                ConnectionString = appInsightsConfig.ConnectionString
-            });
+            TelemetryConfig = Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.CreateDefault();
+            TelemetryConfig.ConnectionString = appInsightsConfig.ConnectionString;
+        }
+
+        public Logger()
+        {
+            _TelemetryClient = new TelemetryClient(TelemetryConfig);
         }
 
         void Contracts.ILogger.Flush()
