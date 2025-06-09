@@ -72,8 +72,7 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.Tests.ApplicationInsights.Suc
             for (int i = 0; i < 250000; i++)
             {
                 // Instantiate `Logger` without `Dispose` to show memory leak
-                var logger = new Azure.ApplicationInsights.Logger();
-                // logger.Dispose();
+                using var logger = new Azure.ApplicationInsights.Logger();
             }
 
             // Force GC again; 5Mb memory growth is just used as a rough heuristic for "acceptable" memory growth; the

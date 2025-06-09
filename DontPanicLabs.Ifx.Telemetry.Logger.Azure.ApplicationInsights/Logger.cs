@@ -7,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
 {
-    public sealed class Logger : Contracts.ILogger
+    public sealed class Logger : Contracts.ILogger, IDisposable
     {
         private readonly TelemetryClient _TelemetryClient;
+        private readonly Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration _telemetryConfig;
+
 
         public Logger()
         {
@@ -18,10 +20,15 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
 
             EmptyConnectionStringException.ThrowIfEmpty(appInsightsConfig.ConnectionString!);
 
-            _TelemetryClient = new TelemetryClient(new Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration
-            {
-                ConnectionString = appInsightsConfig.ConnectionString
-            });
+            _telemetryConfig = Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.CreateDefault();
+            _telemetryConfig.ConnectionString = appInsightsConfig.ConnectionString;
+            _TelemetryClient = new TelemetryClient(_telemetryConfig);
+        }
+
+        public void Dispose()
+        {
+            _TelemetryClient?.Flush();
+            _telemetryConfig?.Dispose();
         }
 
         void Contracts.ILogger.Flush()
