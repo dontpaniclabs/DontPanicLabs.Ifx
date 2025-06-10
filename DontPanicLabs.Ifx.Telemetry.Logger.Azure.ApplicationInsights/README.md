@@ -4,7 +4,14 @@ This project provides an implementation of the `DontPanicLabs.Ifx.Telemetry.Logg
 ## Configuration Sections
 
 ### ifx
-This package requires only one configuration item:
+#### Required config:
+This package requires only one configuration item - the app insights connection string. 
+
+#### Optional config:
+Optionally, you can specify the telemetry channel to use. Microsoft recommends `ServerTelemetryChannel` by default in
+all production environments. This package defaults to `InMemoryChannel` for historical reasons / to avoid changes
+in existing code, but the recommended configuration is to use `ServerTelemetryChannel` in production. See
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/telemetry-channels for details.
 
 Configuration File Example:
 ```json
@@ -13,7 +20,8 @@ Configuration File Example:
     "telemetry": {
       "logging": {
         "applicationInsights": {
-          "ConnectionString": "copy app insights connection string from azure portal"
+          "ConnectionString": "copy app insights connection string from azure portal",
+          "TelemetryChannel": "optional; see above for notes on telemetry channel"
         }
       }
     }
@@ -24,6 +32,8 @@ Configuration File Example:
 Environment Variable Example:
 ```
 ifx__telemetry__logging__applicationInsights__ConnectionString="copy app insights connection string from azure portal"
+// Optional: 
+ifx__telemetry__logging__applicationInsights__TelemetryChannel="optional; see above for notes on telemetry channel"
 ```
 
 
@@ -33,6 +43,8 @@ When creating a new instance of the `DontPanicLabs.Ifx.Telemetry.Logger.Applicat
 If the configuration key does not exist in the hosting environment, the underlying `DontPanicLabs.Ifx.Configuration.Local` package will throw a `NullConfigurationValueException`.
 
 If the configuration key exists, but value is empty, the logger will throw an `EmptyConnectionStringException`.
+
+For the optional `TelemetryChannel` configuration, if the value is not a valid telemetry channel type, the logger will throw an `InvalidTelemetryChannelException`.
 
 ## Logging Methods
 
