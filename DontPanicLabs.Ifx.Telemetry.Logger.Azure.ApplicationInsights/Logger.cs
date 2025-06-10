@@ -2,8 +2,8 @@ using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights.Configuration;
 using DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights.Exceptions;
 using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
-using Microsoft.Extensions.Configuration;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
 {
@@ -11,17 +11,22 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
     {
         private readonly TelemetryClient _TelemetryClient;
 
+        private static ITelemetryChannel? _telemetryChannel;
+
+        /// <remarks>
+        /// `TelemetryConfiguration` is static so that it can be reused across instances of the logger; failure to
+        /// re-use a single object or otherwise `Dispose` each instance results in a memory leak.
+        /// </remarks>
+        private static readonly Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfig =
+            Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.CreateDefault();
+
         public Logger()
         {
-            IConfiguration configuration = new Config();
-            IAppInsightsConfiguration appInsightsConfig = configuration.GetAppInsightsConfiguration();
+            IAppInsightsConfiguration appInsightsConfig = new Config().GetAppInsightsConfiguration();
 
-            EmptyConnectionStringException.ThrowIfEmpty(appInsightsConfig.ConnectionString!);
+            ConfigureTelemetry(appInsightsConfig);
 
-            _TelemetryClient = new TelemetryClient(new Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration
-            {
-                ConnectionString = appInsightsConfig.ConnectionString
-            });
+            _TelemetryClient = new TelemetryClient(TelemetryConfig);
         }
 
         void Contracts.ILogger.Flush()
@@ -59,5 +64,24 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
             _TelemetryClient.TrackException(ex, properties);
         }
 
+        private static void ConfigureTelemetry(IAppInsightsConfiguration appInsightsConfig)
+        {
+            EmptyConnectionStringException.ThrowIfEmpty(appInsightsConfig.ConnectionString!);
+            TelemetryConfig.ConnectionString ??= appInsightsConfig.ConnectionString;
+
+            InvalidTelemetryChannelException.ThrowIfChannelInvalid(appInsightsConfig.TelemetryChannel);
+            if (_telemetryChannel == null)
+            {
+                _telemetryChannel = appInsightsConfig.TelemetryChannel switch
+                {
+                    "ServerTelemetryChannel" =>
+                        new Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel(),
+                    var channel when string.IsNullOrEmpty(channel) || channel == "InMemoryChannel" =>
+                        new InMemoryChannel(),
+                    _ => throw InvalidTelemetryChannelException.Create(appInsightsConfig.TelemetryChannel)
+                };
+                TelemetryConfig.TelemetryChannel = _telemetryChannel;
+            }
+        }
     }
 }

@@ -34,6 +34,7 @@
     <ItemGroup>
       <PackageReference Include="DontPanicLabs.Ifx.Configuration.Local" Version="1.0.0" />
       <PackageReference Include="DontPanicLabs.Ifx.Telemetry.Logger.Contracts" Version="1.0.0" />
+      <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel" Version="2.23.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.22.0" />
     </ItemGroup>
 

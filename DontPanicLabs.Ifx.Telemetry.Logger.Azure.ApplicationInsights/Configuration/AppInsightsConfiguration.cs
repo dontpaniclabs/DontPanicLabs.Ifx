@@ -3,5 +3,7 @@
     internal class AppInsightsConfiguration : IAppInsightsConfiguration
     {
         public string? ConnectionString { get; set; }
+
+        public string? TelemetryChannel { get; set; }
     }
 }
