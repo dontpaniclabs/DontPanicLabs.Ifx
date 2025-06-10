@@ -4,7 +4,6 @@ using DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights.Exceptions;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
-using Microsoft.Extensions.Configuration;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights
 {
