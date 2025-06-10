@@ -8,7 +8,6 @@ public class InvalidTelemetryChannelException : ArgumentException
     {
     }
 
-
     public static InvalidTelemetryChannelException Create(string? channel)
     {
         return new InvalidTelemetryChannelException(string.Format(InvalidTelemetryChannel, channel));
