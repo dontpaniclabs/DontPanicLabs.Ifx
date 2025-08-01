@@ -4,12 +4,12 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
         <Title>Don't Panic Labs Autofac Proxy</Title>
         <Authors>Don't Panic Labs LLC</Authors>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Description>Proxy Implementation using Autofac</Description>
-        <Copyright>Copyright ⓒ Don't Panic Labs LLC 2024</Copyright>
+        <Copyright>Copyright ⓒ Don't Panic Labs LLC 2024 - 2025</Copyright>
         <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
         <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
@@ -35,7 +35,7 @@
       <PackageReference Include="DontPanicLabs.Ifx.IoC.Autofac" Version="0.5.0" />
       <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="0.5.0" />
       <PackageReference Include="DontPanicLabs.Ifx.Proxy.Contracts" Version="0.5.0" />
-      <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.1" />
     </ItemGroup>
 
 </Project>

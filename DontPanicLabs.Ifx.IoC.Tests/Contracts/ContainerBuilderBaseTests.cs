@@ -1,10 +1,12 @@
 using DontPanicLabs.Ifx.IoC.Contracts;
 using DontPanicLabs.Ifx.IoC.Contracts.Exceptions;
+using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DontPanicLabs.Ifx.IoC.Tests.Contracts;
 
 [TestClass]
+[TestCategoryCI]
 public class ContainerBuilderBaseTests
 {
     [TestMethod]
