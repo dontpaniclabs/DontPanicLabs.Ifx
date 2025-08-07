@@ -219,7 +219,7 @@ public class AsyncMethodInterceptorBaseTests
             }, _cancellationToken);
 
 
-            // Note that this MUST BE `Invoke` on the IInvocationProceedInfo, not Proceed on the IInvocation.
+            // Purposefully call `.Proceed()` after an await to demonstrate this results in a loop. The correct call is `IInvocationProceedInfo.Invoke()`
             invocation.Proceed();
 
             return await (Task<int>) invocation.ReturnValue;
