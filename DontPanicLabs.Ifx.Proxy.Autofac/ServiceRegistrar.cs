@@ -110,7 +110,7 @@ public static class ServiceRegistrar
     /// This resets the static container and builder used by the registrar. This is meant to be used
     /// between tests that need different service registrations.
     /// </summary>
-    internal static void Reset()
+    public static void Reset()
     {
         _Container?.Dispose();
         _Container = null;
