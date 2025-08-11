@@ -1,6 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Services.Contracts", "DontPanicLabs.Ifx.Services.Contracts\DontPanicLabs.Ifx.Services.Contracts.csproj", "{12FE1FF5-C89F-4183-88D4-6D63825BA7D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{EBA91325-6379-4AFB-B2EB-8E18A3BEFCE1}"
@@ -77,10 +76,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Azure.Tests.ApplicationInsights.ServerTelemetryChannel", "DontPanicLabs.Ifx.Telemetry.Logger.Azure.Tests.ApplicationInsights.ServerTelemetryChannel\DontPanicLabs.Ifx.Telemetry.Logger.Azure.Tests.ApplicationInsights.ServerTelemetryChannel.csproj", "{CFB74269-B14F-459A-AFA2-A396CE7007C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Autofac.Tests", "DontPanicLabs.Ifx.Proxy.Autofac.Tests\DontPanicLabs.Ifx.Proxy.Autofac.Tests.csproj", "{968ABD48-A7F5-4226-A52B-5F96CA59240A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Autofac.Extensions", "DontPanicLabs.Ifx.Proxy.Autofac.Extensions\DontPanicLabs.Ifx.Proxy.Autofac.Extensions.csproj", "{4AF42072-037A-4496-889F-1D5C1EA7F8C9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Autofac.Extensions.Tests", "DontPanicLabs.Ifx.Proxy.Autofac.Extensions.Tests\DontPanicLabs.Ifx.Proxy.Autofac.Extensions.Tests.csproj", "{EFDDEC66-4E2F-409D-81F8-82D2D16F6F23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -176,14 +171,6 @@ Global
 		{968ABD48-A7F5-4226-A52B-5F96CA59240A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968ABD48-A7F5-4226-A52B-5F96CA59240A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968ABD48-A7F5-4226-A52B-5F96CA59240A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AF42072-037A-4496-889F-1D5C1EA7F8C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AF42072-037A-4496-889F-1D5C1EA7F8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AF42072-037A-4496-889F-1D5C1EA7F8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AF42072-037A-4496-889F-1D5C1EA7F8C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFDDEC66-4E2F-409D-81F8-82D2D16F6F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFDDEC66-4E2F-409D-81F8-82D2D16F6F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFDDEC66-4E2F-409D-81F8-82D2D16F6F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFDDEC66-4E2F-409D-81F8-82D2D16F6F23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
@@ -213,7 +200,5 @@ Global
 		{35F7985E-A00F-450E-9785-DEFD53091F0E} = {3B963951-C786-416A-9D4A-ADCF8EF940BF}
 		{CFB74269-B14F-459A-AFA2-A396CE7007C4} = {3B963951-C786-416A-9D4A-ADCF8EF940BF}
 		{968ABD48-A7F5-4226-A52B-5F96CA59240A} = {EB81ED69-5B10-4F33-8282-B696CA493732}
-		{4AF42072-037A-4496-889F-1D5C1EA7F8C9} = {2EC16E3E-7A1F-448F-B075-5E8A63172D49}
-		{EFDDEC66-4E2F-409D-81F8-82D2D16F6F23} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 	EndGlobalSection
 EndGlobal
