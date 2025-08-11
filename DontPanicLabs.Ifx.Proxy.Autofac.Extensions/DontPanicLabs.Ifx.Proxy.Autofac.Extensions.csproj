@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>DontPanicLabs.Ifx.Proxy.Autofac.Extensions</AssemblyName>
+        <RootNamespace>DontPanicLabs.Ifx.Proxy.Autofac.Extensions</RootNamespace>
+
+        <Version>1.0.0</Version>
+        <Title>Don't Panic Labs Proxy Autofac Extensions</Title>
+        <Authors>Don't Panic Labs LLC</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Description>Extension methods and utilities for DontPanicLabs.Ifx.Proxy.Autofac packages</Description>
+        <Copyright>Copyright ⓒ Don't Panic Labs LLC 2024 - 2025</Copyright>
+        <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageIcon>dpl_logo_128_square.png</PackageIcon>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="..\Assets\dpl_logo_128_square.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>dpl_logo_128_square.png</Link>
+        </Content>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DontPanicLabs.CodeAnalysis" Version="0.5.5-preview" />
+        <PackageReference Include="DontPanicLabs.Ifx.Proxy.Contracts" Version="*" />
+        <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="*" />
+        <PackageReference Include="Moq" Version="4.20.72" />
+    </ItemGroup>
+
+</Project>
