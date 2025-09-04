@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.5.0</Version>
+        <Title>Don't Panic Labs Telemetry Azure Open Telemetry Logger</Title>
+        <Authors>Don't Panic Labs LLC</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Description>Logger Implementation for Azure Open Telemetry</Description>
+        <Copyright>Copyright ⓒ Don't Panic Labs LLC 2024</Copyright>
+        <PackageProjectUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/dontpaniclabs/DontPanicLabs.Ifx</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageIcon>dpl_logo_128_square.png</PackageIcon>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\Assets\dpl_logo_128_square.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>dpl_logo_128_square.png</Link>
+        </None>
+        <None Update="README.md">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.4.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.Configuration.Local" Version="1.0.1" />
+      <PackageReference Include="DontPanicLabs.Ifx.Telemetry.Logger.Contracts" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>

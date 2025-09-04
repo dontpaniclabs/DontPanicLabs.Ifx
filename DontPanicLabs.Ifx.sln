@@ -71,6 +71,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Aut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Proxy.Autofac.Extensions.Tests", "DontPanicLabs.Ifx.Proxy.Autofac.Extensions.Tests\DontPanicLabs.Ifx.Proxy.Autofac.Extensions.Tests.csproj", "{4633DC70-FF35-4A4C-AB81-CE4CF3FA105F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry", "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry\DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.csproj", "{BB85F44D-403C-4BB7-9D22-EA57DD6CC158}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests", "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests\DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests.csproj", "{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +161,14 @@ Global
 		{4633DC70-FF35-4A4C-AB81-CE4CF3FA105F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4633DC70-FF35-4A4C-AB81-CE4CF3FA105F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4633DC70-FF35-4A4C-AB81-CE4CF3FA105F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB85F44D-403C-4BB7-9D22-EA57DD6CC158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB85F44D-403C-4BB7-9D22-EA57DD6CC158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB85F44D-403C-4BB7-9D22-EA57DD6CC158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB85F44D-403C-4BB7-9D22-EA57DD6CC158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A08EA0E-D068-4EDA-8FF7-B8C013EF71CA} = {E8260938-6BFC-4535-829A-B11BF03EA7C1}
@@ -184,5 +196,7 @@ Global
 		{968ABD48-A7F5-4226-A52B-5F96CA59240A} = {EB81ED69-5B10-4F33-8282-B696CA493732}
 		{457899E3-2E02-4D77-9305-A65C80BB218F} = {2EC16E3E-7A1F-448F-B075-5E8A63172D49}
 		{4633DC70-FF35-4A4C-AB81-CE4CF3FA105F} = {EB81ED69-5B10-4F33-8282-B696CA493732}
+		{BB85F44D-403C-4BB7-9D22-EA57DD6CC158} = {21BC52CA-6CE3-42EB-A36A-545B529D3765}
+		{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0} = {3B963951-C786-416A-9D4A-ADCF8EF940BF}
 	EndGlobalSection
 EndGlobal
