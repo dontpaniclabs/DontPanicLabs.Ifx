@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests;
 
-public class TestLogger : ILogger
+public class TestLogger : Microsoft.Extensions.Logging.ILogger
 {
     private readonly List<LogEntry> _logEntries;
 

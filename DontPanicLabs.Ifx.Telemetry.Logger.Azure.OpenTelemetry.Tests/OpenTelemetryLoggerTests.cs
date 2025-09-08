@@ -1,5 +1,4 @@
 ﻿using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Logging;
 using Shouldly;
 
@@ -9,7 +8,7 @@ namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests;
 public sealed class OpenTelemetryLoggerTests
 {
     private ILoggerFactory _loggerFactory = null!;
-    private Logger _openTelemetryLogger = null!;
+    private ILogger _openTelemetryLogger = null!;
     private TestLoggerProvider _testLoggerProvider = null!;
 
     [TestInitialize]
@@ -37,67 +36,13 @@ public sealed class OpenTelemetryLoggerTests
     {
         // Act
         var message = "Severity level test message";
-        _openTelemetryLogger.Log(message, severityLevel, null);
+        _openTelemetryLogger.Log(message, severityLevel);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
         var logEntry = _testLoggerProvider.LogEntries[0];
         logEntry.LogLevel.ShouldBe(expectedLogLevel);
         logEntry.Message.ShouldBe(message);
-    }
-
-    [TestMethod]
-    public void Log_WithProperties_ShouldThrowPlatformNotSupportedException()
-    {
-        // Arrange
-        const string message = "Test message";
-        var properties = new Dictionary<string, string>
-        {
-            {
-                "key", "value"
-            }
-        };
-
-        // Act + Assert
-        Should.Throw<PlatformNotSupportedException>(() =>
-            _openTelemetryLogger.Log(message, SeverityLevel.Information, properties));
-    }
-
-    [TestMethod]
-    public void Exception_ExceptionOnly_ShouldLogError()
-    {
-        // Arrange
-        var exception = new InvalidOperationException("Test exception");
-
-        // Act
-        _openTelemetryLogger.Exception(exception, null);
-
-        // Assert
-        _testLoggerProvider.LogEntries.Count.ShouldBe(1);
-        var logEntry = _testLoggerProvider.LogEntries[0];
-        logEntry.LogLevel.ShouldBe(LogLevel.Error);
-        logEntry.Message.ShouldBe("Exception occurred");
-        logEntry.Exception.ShouldBe(exception);
-    }
-
-    [TestMethod]
-    public void Exception_WithProperties_ShouldThrowPlatformNotSupportedException()
-    {
-        // Arrange
-        var exception = new InvalidOperationException("Test exception");
-        var properties = new Dictionary<string, string>
-        {
-            {
-                "userId", "123"
-            },
-            {
-                "operation", "test"
-            }
-        };
-
-        // Act + Assert
-        Should.Throw<PlatformNotSupportedException>(() =>
-            _openTelemetryLogger.Exception(exception, properties));
     }
 
     [TestMethod]
@@ -217,7 +162,7 @@ public sealed class OpenTelemetryLoggerTests
     {
         // Act + Assert
         var ex = Should.Throw<AggregateException>(() =>
-            new Logger() // No ILoggerFactory provided
+                new Logger() // No ILoggerFactory provided
         );
         ex.InnerExceptions.ShouldContain(e => e.Message.Contains("'ifx' is missing from configuration"));
     }

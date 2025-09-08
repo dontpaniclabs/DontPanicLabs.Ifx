@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry;
 
-public class Logger : Contracts.ILogger
+public class Logger : ILogger
 {
     private static ILoggerFactory? _LoggerFactory;
     private static readonly object _LockObject = new();
@@ -50,10 +50,7 @@ public class Logger : Contracts.ILogger
             {
                 builder.AddOpenTelemetry(options =>
                 {
-                    options.AddAzureMonitorLogExporter(exporterOptions =>
-                    {
-                        exporterOptions.ConnectionString = openTelemetryConfig.ConnectionString;
-                    });
+                    options.AddAzureMonitorLogExporter(exporterOptions => { exporterOptions.ConnectionString = openTelemetryConfig.ConnectionString; });
                     options.IncludeFormattedMessage = true;
                     options.IncludeScopes = true;
                 });
@@ -62,28 +59,27 @@ public class Logger : Contracts.ILogger
             _IsInitialized = true;
         }
     }
-
-    public void Log(string message, SeverityLevel severityLevel, IDictionary<string, string>? properties)
+    
+    public void Log(string message, SeverityLevel severityLevel)
     {
-        if (properties is { Count: > 0 })
-        {
-            throw new PlatformNotSupportedException("Trace Properties are not supported in OpenTelemetry.");
-        }
-
         var logLevel = ConvertSeverityLevel(severityLevel);
         _logger.Log(logLevel, message);
     }
-
-    public void Exception(Exception exception, IDictionary<string, string>? properties)
+    
+    public void Log(string message, SeverityLevel severityLevel, IDictionary<string, string> properties)
     {
-        if (properties is { Count: > 0 })
-        {
-            throw new PlatformNotSupportedException("Exception Properties are not supported in OpenTelemetry.");
-        }
+        throw new PlatformNotSupportedException("Custom properties are not supported.");
+    }
 
+    public void Exception(Exception exception)
+    {
         _logger.LogError(exception, "Exception occurred");
     }
 
+    public void Exception(Exception exception, IDictionary<string, string> properties)
+    {
+        throw new PlatformNotSupportedException("Custom properties are not supported.");
+    }
 
     public void Event(
         string eventName,

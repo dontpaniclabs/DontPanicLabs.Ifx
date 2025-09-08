@@ -6,7 +6,7 @@ public class TestLoggerProvider : ILoggerProvider
 {
     public List<LogEntry> LogEntries { get; } = [];
 
-    public ILogger CreateLogger(string categoryName)
+    public Microsoft.Extensions.Logging.ILogger CreateLogger(string categoryName)
     {
         return new TestLogger(LogEntries);
     }
