@@ -17,6 +17,7 @@ on:
           - "DontPanicLabs.Ifx.Proxy.Contracts"
           - "DontPanicLabs.Ifx.Services.Contracts"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights"
+          - "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Contracts"
 
 env:
