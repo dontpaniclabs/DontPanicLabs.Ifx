@@ -44,13 +44,17 @@ public class Logger : ILogger
                 return;
             }
 
+            ArgumentNullException.ThrowIfNull(openTelemetryConfig);
             EmptyConnectionStringException.ThrowIfEmpty(openTelemetryConfig.ConnectionString ?? "");
 
             _LoggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddOpenTelemetry(options =>
                 {
-                    options.AddAzureMonitorLogExporter(exporterOptions => { exporterOptions.ConnectionString = openTelemetryConfig.ConnectionString; });
+                    options.AddAzureMonitorLogExporter(exporterOptions =>
+                    {
+                        exporterOptions.ConnectionString = openTelemetryConfig.ConnectionString;
+                    });
                     options.IncludeFormattedMessage = true;
                     options.IncludeScopes = true;
                 });
@@ -59,13 +63,13 @@ public class Logger : ILogger
             _IsInitialized = true;
         }
     }
-    
+
     public void Log(string message, SeverityLevel severityLevel)
     {
         var logLevel = ConvertSeverityLevel(severityLevel);
         _logger.Log(logLevel, message);
     }
-    
+
     public void Log(string message, SeverityLevel severityLevel, IDictionary<string, string> properties)
     {
         throw new PlatformNotSupportedException("Custom properties are not supported.");
