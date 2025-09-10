@@ -1,3 +1,4 @@
+using DontPanicLabs.Ifx.Configuration.Contracts.Exceptions;
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights.Configuration;
 using DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights.Exceptions;

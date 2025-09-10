@@ -44,6 +44,7 @@ public class Logger : ILogger
                 return;
             }
 
+            ArgumentNullException.ThrowIfNull(openTelemetryConfig);
             EmptyConnectionStringException.ThrowIfEmpty(openTelemetryConfig.ConnectionString ?? "");
 
             _LoggerFactory = LoggerFactory.Create(builder =>
