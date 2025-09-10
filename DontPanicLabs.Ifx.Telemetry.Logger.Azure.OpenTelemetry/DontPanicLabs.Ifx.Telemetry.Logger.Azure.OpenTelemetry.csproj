@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.5.1</Version>
+        <Version>0.5.2</Version>
         <Title>Don't Panic Labs Telemetry Azure Open Telemetry Logger</Title>
         <Authors>Don't Panic Labs LLC</Authors>
         <PackageReadmeFile>README.md</PackageReadmeFile>
