@@ -1,12 +1,14 @@
 # DontPanicLabs.Ifx.Telemetry.Logging.Serilog
 
-A Serilog-based implementation of `DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger` that writes logs to SQL Server.
+A Serilog-based implementation of `DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger` with support for multiple logging destinations.
 
 ## Features
 
-- **SQL Server Logging**: Uses Serilog.Sinks.MSSqlServer to write logs to a SQL Server database
-- **Auto-create Tables**: Optionally create log tables automatically using Serilog's default schema
-- **Batched Writes**: Configurable batch size and period for efficient database writes
+- **Multiple Sinks**: Configure one or more logging destinations (SQL Server, File, Console)
+- **Extensible Architecture**: Easy to add custom sink types via polymorphic configuration
+- **SQL Server Logging**: Uses Serilog.Sinks.MSSqlServer with auto-table creation and batched writes
+- **File Logging**: Rolling file logs with configurable retention policies
+- **Console Logging**: Output to console for development and debugging
 - **Structured Logging**: Full support for properties and metrics through Serilog's context enrichment
 - **ILogger Interface**: Implements the standard DPL Ifx ILogger interface (Log, Exception, Event, Flush)
 
@@ -22,7 +24,9 @@ Add a reference to this project in your application:
 
 ## Configuration
 
-Configure the logger in your `appsettings.json`:
+Configure one or more logging sinks in your `appsettings.json`:
+
+### Single Sink Example (SQL Server)
 
 ```json
 {
@@ -30,12 +34,17 @@ Configure the logger in your `appsettings.json`:
     "telemetry": {
       "logging": {
         "serilog": {
-          "connectionString": "Server=localhost;Database=ApplicationLogs;Integrated Security=true;",
-          "tableName": "Logs",
-          "schemaName": "dbo",
-          "autoCreateTable": true,
-          "batchSize": 50,
-          "batchPeriodSeconds": 5
+          "sinks": [
+            {
+              "type": "sql",
+              "connectionString": "Server=localhost;Database=ApplicationLogs;Integrated Security=true;",
+              "tableName": "Logs",
+              "schemaName": "dbo",
+              "autoCreateSqlTable": true,
+              "batchPostingLimit": 50,
+              "batchPeriodSeconds": 5
+            }
+          ]
         }
       }
     }
@@ -43,16 +52,82 @@ Configure the logger in your `appsettings.json`:
 }
 ```
 
-### Configuration Options
+### Multiple Sinks Example
+
+Log to SQL Server, rolling files, and console simultaneously:
+
+```json
+{
+  "ifx": {
+    "telemetry": {
+      "logging": {
+        "serilog": {
+          "sinks": [
+            {
+              "type": "sql",
+              "connectionString": "Server=localhost;Database=Logs;Integrated Security=true;",
+              "tableName": "ApplicationLogs"
+            },
+            {
+              "type": "file",
+              "filePath": "logs/app-.log",
+              "rollingInterval": "Day",
+              "retainedFileCountLimit": 7
+            },
+            {
+              "type": "console"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+### Configuration Options by Sink Type
+
+#### SQL Server Sink (`type: "sql"`)
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `connectionString` | string | *required* | SQL Server connection string |
 | `tableName` | string | "Logs" | Name of the table to store logs |
 | `schemaName` | string | "dbo" | Database schema name |
-| `autoCreateTable` | bool | true | Whether to automatically create the log table if it doesn't exist |
-| `batchSize` | int | 50 | Number of log events to batch before writing |
+| `autoCreateSqlTable` | bool | true | Whether to automatically create the log table if it doesn't exist |
+| `batchPostingLimit` | int | 50 | Number of log events to batch before writing |
 | `batchPeriodSeconds` | int | 5 | Time period (in seconds) to wait between batch writes |
+
+#### File Sink (`type: "file"`)
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `filePath` | string | "logs/log-.txt" | Path to log file (supports date tokens) |
+| `rollingInterval` | string | "Day" | Rolling interval: Infinite, Year, Month, Day, Hour, Minute |
+| `retainedFileCountLimit` | int | 7 | Number of log files to retain (null = unlimited) |
+
+#### Console Sink (`type: "console"`)
+
+No additional configuration required.
+
+### Backward Compatibility
+
+The legacy single-sink configuration format (without the `sinks` array) is still supported for SQL Server:
+
+```json
+{
+  "ifx": {
+    "telemetry": {
+      "logging": {
+        "serilog": {
+          "connectionString": "Server=localhost;Database=Logs;Integrated Security=true;",
+          "tableName": "Logs"
+        }
+      }
+    }
+  }
+}
+```
 
 ## Usage
 
@@ -156,10 +231,75 @@ The logger maps DPL Ifx `SeverityLevel` enum to Serilog log levels:
 }
 ```
 
+## Extending with Custom Sinks
+
+The logger uses a polymorphic configuration pattern that makes it easy to add new sink types without modifying existing code.
+
+### Step 1: Create a Configuration Class
+
+Implement `ISerilogConfiguration` and define the `ConfigureSink` method:
+
+```csharp
+using Serilog;
+
+namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Configuration;
+
+public class CustomSinkConfiguration : ISerilogConfiguration
+{
+    public string? CustomProperty { get; init; }
+
+    public void ConfigureSink(LoggerConfiguration loggerConfig)
+    {
+        // Configure your custom sink
+        loggerConfig.WriteTo.YourCustomSink(CustomProperty);
+    }
+}
+```
+
+### Step 2: Register in ConfigurationExtensions
+
+Update `ConfigurationExtensions.GetSerilogConfigurations()` to recognize your new sink type:
+
+```csharp
+ISerilogConfiguration? sinkConfig = sinkType switch
+{
+    "sql" => sinkSection.Get<SqlSinkConfiguration>(),
+    "file" => sinkSection.Get<FileSinkConfiguration>(),
+    "console" => sinkSection.Get<ConsoleSinkConfiguration>(),
+    "custom" => sinkSection.Get<CustomSinkConfiguration>(),  // Add this line
+    _ => null
+};
+```
+
+### Step 3: Use in Configuration
+
+```json
+{
+  "ifx": {
+    "telemetry": {
+      "logging": {
+        "serilog": {
+          "sinks": [
+            {
+              "type": "custom",
+              "customProperty": "value"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+The polymorphic design means the `Logger` class never needs to change when adding new sink types!
+
 ## Dependencies
 
 - Serilog (>= 4.2.0)
 - Serilog.Sinks.MSSqlServer (>= 8.0.0)
+- Serilog.Sinks.File (>= 7.0.0)
+- Serilog.Sinks.Console (>= 6.0.0)
 - DontPanicLabs.Ifx.Telemetry.Logger.Contracts
 - DontPanicLabs.Ifx.Configuration.Local
 - DontPanicLabs.Ifx.Configuration.Contracts
