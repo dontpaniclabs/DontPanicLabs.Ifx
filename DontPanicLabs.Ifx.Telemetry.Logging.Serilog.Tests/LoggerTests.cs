@@ -259,4 +259,56 @@ public class LoggerTests
             EmptyConnectionStringException.ThrowIfEmpty("valid connection string")
         );
     }
+
+    [TestMethod]
+    [TestCategoryLocal]
+    public void IntegrationSmokeTest()
+    {
+        // Use your real logger instance configured to write to the real DB
+        ILogger logger = new Logger();
+
+        // Log a simple informational message
+        logger.Log(
+            "Integration smoke test log message",
+            SeverityLevel.Verbose,
+            new Dictionary<string, string>
+            {
+                { "TestProperty", "TestValue" }
+            });
+
+        logger.Log(
+            "Integration smoke test log - empty props",
+            SeverityLevel.Information,
+            new Dictionary<string, string>());
+
+        logger.Log(
+            "Integration smoke test log - null props",
+            SeverityLevel.Information,
+            null);
+
+        // Log an exception with properties
+        logger.Exception(
+            new ArgumentException("Test exception"),
+            new Dictionary<string, string>
+            {
+                { "ExceptionProperty", "ExceptionValue" }
+            });
+
+        // Log an event with properties and metrics
+        logger.Event(
+            "IntegrationTestEvent",
+            new Dictionary<string, string>
+            {
+                { "EventProperty", "EventValue" }
+            },
+            new Dictionary<string, double>
+            {
+                { "Metric1", 123.45 }
+            },
+            DateTimeOffset.UtcNow);
+
+        // Flush the logger to ensure all logs are written
+        logger.Flush();
+    }
+
 }
