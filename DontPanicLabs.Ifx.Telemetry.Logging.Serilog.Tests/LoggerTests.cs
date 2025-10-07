@@ -264,7 +264,8 @@ public class LoggerTests
     [TestCategoryLocal]
     public void IntegrationSmokeTest()
     {
-        // Use your real logger instance configured to write to the real DB
+        // Use your real logger instance configured to write to SQL, File, and Console
+        // See appsettings.json for the multi-sink configuration
         ILogger logger = new Logger();
 
         // Log a simple informational message
