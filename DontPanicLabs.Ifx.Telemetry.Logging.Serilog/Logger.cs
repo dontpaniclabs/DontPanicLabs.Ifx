@@ -13,7 +13,7 @@ namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog;
 
 public sealed class Logger : ILogger, IDisposable
 {
-    private readonly SerilogLogger _serilogLogger;
+    private readonly SerilogLogger _logger;
     private bool _disposed;
 
     public Logger()
@@ -25,14 +25,14 @@ public sealed class Logger : ILogger, IDisposable
 
         var sinkOptions = new MSSqlServerSinkOptions
         {
-            TableName = "Logs",
+            TableName = serilogConfig.TableName,
             SchemaName = "dbo",
             AutoCreateSqlTable = true,
             BatchPostingLimit = 50,
             BatchPeriod = TimeSpan.FromSeconds(5)
         };
 
-        _serilogLogger = new LoggerConfiguration()
+        _logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .WriteTo.MSSqlServer(
                 connectionString: serilogConfig.ConnectionString!,
@@ -41,17 +41,17 @@ public sealed class Logger : ILogger, IDisposable
     }
 
     // For testing purposes only
-    internal Logger(SerilogLogger serilogLogger)
+    internal Logger(SerilogLogger logger)
     {
-        _serilogLogger = serilogLogger;
+        _logger = logger;
     }
 
-    void ILogger.Log(string message, SeverityLevel severityLevel, IDictionary<string, string> properties)
+    void ILogger.Log(string message, SeverityLevel severityLevel, IDictionary<string, string>? properties)
     {
         var logLevel = MapSeverityToLogLevel(severityLevel);
 
         // Create a log context with properties
-        ISerilogLogger logContext = _serilogLogger;
+        ISerilogLogger logContext = _logger;
         if (properties != null && properties.Any())
         {
             foreach (var prop in properties)
@@ -63,10 +63,10 @@ public sealed class Logger : ILogger, IDisposable
         logContext.Write(logLevel, message);
     }
 
-    void ILogger.Exception(Exception exception, IDictionary<string, string> properties)
+    void ILogger.Exception(Exception exception, IDictionary<string, string>? properties)
     {
         // Create a log context with properties
-        ISerilogLogger logContext = _serilogLogger;
+        ISerilogLogger logContext = _logger;
         if (properties != null && properties.Any())
         {
             foreach (var prop in properties)
@@ -78,10 +78,11 @@ public sealed class Logger : ILogger, IDisposable
         logContext.Error(exception, exception.Message);
     }
 
-    void ILogger.Event(string eventName, IDictionary<string, string> properties, IDictionary<string, double> metrics, DateTimeOffset timeStamp)
+    void ILogger.Event(string eventName, IDictionary<string, string>? properties, IDictionary<string, double>? metrics,
+        DateTimeOffset timeStamp)
     {
         // Serilog doesn't have a separate Event concept, so we log it as Information with properties
-        ISerilogLogger logContext = _serilogLogger
+        ISerilogLogger logContext = _logger
             .ForContext("EventName", eventName)
             .ForContext("Timestamp", timeStamp);
 
@@ -106,7 +107,7 @@ public sealed class Logger : ILogger, IDisposable
 
     void ILogger.Flush()
     {
-        _serilogLogger.Dispose();
+        _logger.Dispose();
     }
 
     private static LogEventLevel MapSeverityToLogLevel(SeverityLevel severityLevel)
@@ -131,9 +132,10 @@ public sealed class Logger : ILogger, IDisposable
     {
         if (!_disposed)
         {
-            _serilogLogger?.Dispose();
+            _logger?.Dispose();
             _disposed = true;
         }
+
         GC.SuppressFinalize(this);
     }
 }
