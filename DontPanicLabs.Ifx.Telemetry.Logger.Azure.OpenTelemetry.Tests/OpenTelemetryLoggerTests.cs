@@ -1,10 +1,12 @@
 ﻿using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
+using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Microsoft.Extensions.Logging;
 using Shouldly;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests;
 
 [TestClass]
+[TestCategoryCI]
 public sealed class OpenTelemetryLoggerTests
 {
     private ILoggerFactory _loggerFactory = null!;
