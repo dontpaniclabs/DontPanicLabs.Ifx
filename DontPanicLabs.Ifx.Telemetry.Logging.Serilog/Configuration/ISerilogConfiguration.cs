@@ -1,17 +1,16 @@
+using Serilog;
+
 namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Configuration;
 
 /// <summary>
-/// Configuration settings for Serilog logging.
+/// Base interface for Serilog sink configuration.
+/// Implementations define how to configure specific Serilog sinks (SQL, File, Console, etc.)
 /// </summary>
 public interface ISerilogConfiguration
 {
     /// <summary>
-    /// SQL Server connection string for logging database.
+    /// Configures a Serilog sink on the provided LoggerConfiguration.
     /// </summary>
-    public string? ConnectionString { get; init; }
-
-    /// <summary>
-    /// The name of the table to write logs to.
-    /// </summary>
-    public string? TableName { get; init; }
+    /// <param name="loggerConfig">The LoggerConfiguration to add the sink to.</param>
+    void ConfigureSink(LoggerConfiguration loggerConfig);
 }

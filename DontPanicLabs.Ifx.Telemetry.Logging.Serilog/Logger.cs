@@ -1,10 +1,8 @@
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 using DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Configuration;
-using DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Exceptions;
 using Serilog;
 using Serilog.Events;
-using Serilog.Sinks.MSSqlServer;
 using ILogger = DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger;
 using SerilogLogger = Serilog.Core.Logger;
 using ISerilogLogger = Serilog.ILogger;
@@ -18,26 +16,18 @@ public sealed class Logger : ILogger, IDisposable
 
     public Logger()
     {
-        ISerilogConfiguration serilogConfig = new Config().GetSerilogConfiguration();
-        ConfigureLogger(serilogConfig);
+        var serilogConfigs = new Config().GetSerilogConfigurations();
 
-        EmptyConnectionStringException.ThrowIfEmpty(serilogConfig.ConnectionString ?? "");
+        var loggerConfig = new LoggerConfiguration()
+            .MinimumLevel.Verbose();
 
-        var sinkOptions = new MSSqlServerSinkOptions
+        // Configure all sinks
+        foreach (var config in serilogConfigs)
         {
-            TableName = serilogConfig.TableName,
-            SchemaName = "dbo",
-            AutoCreateSqlTable = true,
-            BatchPostingLimit = 50,
-            BatchPeriod = TimeSpan.FromSeconds(5)
-        };
+            config.ConfigureSink(loggerConfig);
+        }
 
-        _logger = new LoggerConfiguration()
-            .MinimumLevel.Verbose()
-            .WriteTo.MSSqlServer(
-                connectionString: serilogConfig.ConnectionString!,
-                sinkOptions: sinkOptions)
-            .CreateLogger();
+        _logger = loggerConfig.CreateLogger();
     }
 
     // For testing purposes only
@@ -121,11 +111,6 @@ public sealed class Logger : ILogger, IDisposable
             SeverityLevel.Critical => LogEventLevel.Fatal,
             _ => LogEventLevel.Information
         };
-    }
-
-    private static void ConfigureLogger(ISerilogConfiguration serilogConfig)
-    {
-        EmptyConnectionStringException.ThrowIfEmpty(serilogConfig.ConnectionString);
     }
 
     public void Dispose()
