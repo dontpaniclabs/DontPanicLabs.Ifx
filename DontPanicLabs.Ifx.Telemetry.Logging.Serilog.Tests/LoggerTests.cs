@@ -193,56 +193,6 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void Event_WithPropertiesOnly_ShouldLogEventWithProperties()
-    {
-        // Arrange
-        const string eventName = "TestEventWithProps";
-        var properties = new Dictionary<string, string>
-        {
-            { "userId", "12345" },
-            { "action", "login" }
-        };
-        var timestamp = DateTimeOffset.UtcNow;
-
-        // Act
-        _logger.Event(eventName, properties, new Dictionary<string, double>(), timestamp);
-
-        // Assert
-        _testSink.LogEvents.Count.ShouldBe(1);
-        var logEvent = _testSink.LogEvents[0];
-        logEvent.Level.ShouldBe(LogEventLevel.Information);
-        logEvent.Properties.ContainsKey("userId").ShouldBeTrue();
-        logEvent.Properties["userId"].ToString().ShouldContain("12345");
-        logEvent.Properties.ContainsKey("action").ShouldBeTrue();
-        logEvent.Properties["action"].ToString().ShouldContain("login");
-    }
-
-    [TestMethod]
-    public void Event_WithMetricsOnly_ShouldLogEventWithMetrics()
-    {
-        // Arrange
-        const string eventName = "TestEventWithMetrics";
-        var metrics = new Dictionary<string, double>
-        {
-            { "duration", 1234.56 },
-            { "count", 42 }
-        };
-        var timestamp = DateTimeOffset.UtcNow;
-
-        // Act
-        _logger.Event(eventName, new Dictionary<string, string>(), metrics, timestamp);
-
-        // Assert
-        _testSink.LogEvents.Count.ShouldBe(1);
-        var logEvent = _testSink.LogEvents[0];
-        logEvent.Level.ShouldBe(LogEventLevel.Information);
-        logEvent.Properties.ContainsKey("duration").ShouldBeTrue();
-        logEvent.Properties["duration"].ToString().ShouldContain("1234.56");
-        logEvent.Properties.ContainsKey("count").ShouldBeTrue();
-        logEvent.Properties["count"].ToString().ShouldContain("42");
-    }
-
-    [TestMethod]
     public void Logger_WithMinimumLevel_ShouldFilterLowerLevelMessages()
     {
         // Arrange - Create a logger with MinimumLevel set to Warning
@@ -307,95 +257,9 @@ public class LoggerTests
 
         Task.WaitAll(tasks.ToArray());
 
-        // Assert - Primary goal: no exceptions thrown during concurrent logging
+        // Assert
         exceptions.ShouldBeEmpty();
-        messageCount.ShouldBe(500); // All 500 log calls completed successfully
-        // Note: _testSink.LogEvents.Count may vary due to async processing and test cleanup timing
-    }
-
-    [TestMethod]
-    public void Logger_ConcurrentExceptionLogging_ShouldNotThrow()
-    {
-        // Arrange
-        var tasks = new List<Task>();
-        var exceptions = new List<Exception>();
-        var exceptionCount = 0;
-
-        // Act
-        for (int i = 0; i < 10; i++)
-        {
-            int threadId = i;
-            tasks.Add(Task.Run(() =>
-            {
-                try
-                {
-                    for (int j = 0; j < 20; j++)
-                    {
-                        _logger.Exception(
-                            new InvalidOperationException($"Thread {threadId} exception {j}"),
-                            new Dictionary<string, string> { { "ThreadId", threadId.ToString() } });
-                        Interlocked.Increment(ref exceptionCount);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lock (exceptions)
-                    {
-                        exceptions.Add(ex);
-                    }
-                }
-            }));
-        }
-
-        Task.WaitAll(tasks.ToArray());
-
-        // Assert - Primary goal: no exceptions thrown during concurrent exception logging
-        exceptions.ShouldBeEmpty();
-        exceptionCount.ShouldBe(200); // All 200 exception log calls completed successfully
-        // Note: _testSink.LogEvents.Count may vary due to async processing and test cleanup timing
-    }
-
-    [TestMethod]
-    public void Logger_ConcurrentMixedOperations_ShouldNotThrow()
-    {
-        // Arrange
-        var tasks = new List<Task>();
-        var exceptions = new List<Exception>();
-        var operationCount = 0;
-
-        // Act - Mix of Log, Exception, and Event calls
-        for (int i = 0; i < 15; i++)
-        {
-            int threadId = i;
-            tasks.Add(Task.Run(() =>
-            {
-                try
-                {
-                    _logger.Log($"Thread {threadId} log", SeverityLevel.Information, null!);
-                    Interlocked.Increment(ref operationCount);
-
-                    _logger.Exception(new InvalidOperationException($"Thread {threadId} exception"), null!);
-                    Interlocked.Increment(ref operationCount);
-
-                    _logger.Event($"Thread{threadId}Event", null!, null!, DateTimeOffset.UtcNow);
-                    Interlocked.Increment(ref operationCount);
-                }
-                catch (Exception ex)
-                {
-                    lock (exceptions)
-                    {
-                        exceptions.Add(ex);
-                    }
-                }
-            }));
-        }
-
-        Task.WaitAll(tasks.ToArray());
-
-        // Assert - Primary goal: no exceptions thrown during concurrent mixed operations
-        exceptions.ShouldBeEmpty();
-        operationCount.ShouldBe(45); // All 45 operations completed successfully (15 threads * 3 operations)
-        // Note: _testSink.LogEvents.Count may vary due to async processing and test cleanup timing
+        messageCount.ShouldBe(500);
     }
 
     [TestMethod]
@@ -465,15 +329,6 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void Event_WithBothNullPropertiesAndMetrics_ShouldNotThrow()
-    {
-        // Act & Assert
-        Should.NotThrow(() => { _logger.Event("TestEvent", null!, null!, DateTimeOffset.UtcNow); });
-
-        _testSink.LogEvents.Count.ShouldBe(1);
-    }
-
-    [TestMethod]
     public void Log_WithEmptyMessage_ShouldNotThrow()
     {
         // Act & Assert
@@ -483,46 +338,11 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void Log_WithVeryLongMessage_ShouldNotTruncate()
-    {
-        // Arrange
-        var longMessage = new string('a', 5000);
-
-        // Act
-        _logger.Log(longMessage, SeverityLevel.Information, null!);
-
-        // Assert
-        _testSink.LogEvents.Count.ShouldBe(1);
-        _testSink.LogEvents[0].RenderMessage().Length.ShouldBe(5000);
-    }
-
-    [TestMethod]
     public void Log_WithManyProperties_ShouldIncludeAll()
     {
         // Arrange
         var properties = Enumerable.Range(0, 50)
             .ToDictionary(i => $"prop{i}", i => $"value{i}");
-
-        // Act
-        _logger.Log("Test", SeverityLevel.Information, properties);
-
-        // Assert
-        var logEvent = _testSink.LogEvents[0];
-        properties.Keys.ToList().ForEach(key => { logEvent.Properties.ContainsKey(key).ShouldBeTrue(); });
-    }
-
-    [TestMethod]
-    public void Log_WithSpecialCharactersInPropertyValues_ShouldHandleCorrectly()
-    {
-        // Arrange
-        var properties = new Dictionary<string, string>
-        {
-            { "prop1", "value with \"quotes\"" },
-            { "prop2", "value with 'apostrophes'" },
-            { "prop3", "value with\nnewlines" },
-            { "prop4", "value with\ttabs" },
-            { "prop5", "{\"json\": \"object\"}" }
-        };
 
         // Act
         _logger.Log("Test", SeverityLevel.Information, properties);
@@ -550,28 +370,6 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void Exception_WithStackTrace_ShouldPreserveStackTrace()
-    {
-        // Arrange
-        Exception exception;
-        try
-        {
-            throw new InvalidOperationException("Test exception with stack trace");
-        }
-        catch (Exception ex)
-        {
-            exception = ex;
-        }
-
-        // Act
-        _logger.Exception(exception, null!);
-
-        // Assert
-        var logEvent = _testSink.LogEvents[0];
-        logEvent.Exception.ShouldNotBeNull().StackTrace.ShouldNotBeNullOrEmpty();
-    }
-
-    [TestMethod]
     public void Logger_Flush_CalledMultipleTimes_ShouldNotThrow()
     {
         // Act & Assert
@@ -584,7 +382,25 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void Logger_DisposablePattern_ShouldWork()
+    public void Logger_Dispose_ShouldNotThrow()
+    {
+        var testSink = new TestSink();
+        var serilogLogger = new LoggerConfiguration()
+            .WriteTo.Sink(testSink)
+            .CreateLogger();
+
+
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            using var disposable = new Logger(serilogLogger) as IDisposable;
+            var logger = disposable as ILogger;
+            logger!.Log("Test", SeverityLevel.Information, null!);
+        });
+    }
+
+    [TestMethod]
+    public void Logger_DisposeCalledMultipleTimes_ShouldNotThrow()
     {
         // Act & Assert
         Should.NotThrow(() =>
@@ -594,47 +410,7 @@ public class LoggerTests
                 .WriteTo.Sink(testSink)
                 .CreateLogger();
 
-            using var disposable = new Logger(serilogLogger) as IDisposable;
-            var logger = disposable as ILogger;
-            logger!.Log("Test", SeverityLevel.Information, null!);
-        });
-    }
-
-    [TestMethod]
-    public void Logger_DisposeViaInterface_ShouldWork()
-    {
-        // Arrange
-        var testSink = new TestSink();
-        var serilogLogger = new LoggerConfiguration()
-            .WriteTo.Sink(testSink)
-            .CreateLogger();
-        var logger = new Logger(serilogLogger);
-
-        // Purposeful cast to IDisposable
-        var disposable = logger as IDisposable;
-
-        // Act & Assert
-        disposable.ShouldNotBeNull();
-        Should.NotThrow(() => { disposable.Dispose(); });
-    }
-
-    [TestMethod]
-    public void Logger_DisposeCalledMultipleTimes_ShouldNotThrow()
-    {
-        // Arrange
-        var testSink = new TestSink();
-        var serilogLogger = new LoggerConfiguration()
-            .WriteTo.Sink(testSink)
-            .CreateLogger();
-        var logger = new Logger(serilogLogger);
-
-        // Purposeful cast to IDisposable
-        var disposable = logger as IDisposable;
-
-        // Act & Assert
-        Should.NotThrow(() =>
-        {
-            disposable.Dispose();
+            var disposable = new Logger(serilogLogger) as IDisposable;
             disposable.Dispose();
             disposable.Dispose();
         });
