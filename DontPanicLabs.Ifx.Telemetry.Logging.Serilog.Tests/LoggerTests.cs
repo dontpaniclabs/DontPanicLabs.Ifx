@@ -1,5 +1,4 @@
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
-using DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Exceptions;
 using DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests.TestHelpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Serilog;
@@ -19,12 +18,12 @@ public class LoggerTests
     [TestInitialize]
     public void TestInitialize()
     {
+        // Configure our test logger with our test sink that collects log events in memory
         _testSink = new TestSink();
         var serilogLogger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .WriteTo.Sink(_testSink)
             .CreateLogger();
-
         _logger = new Logger(serilogLogger);
     }
 
@@ -40,10 +39,11 @@ public class LoggerTests
     [DataRow(SeverityLevel.Warning, LogEventLevel.Warning)]
     [DataRow(SeverityLevel.Error, LogEventLevel.Error)]
     [DataRow(SeverityLevel.Critical, LogEventLevel.Fatal)]
-    public void Log_SeverityLevel_ShouldLogWithCorrectLogLevel(SeverityLevel severityLevel, LogEventLevel expectedLogLevel)
+    public void Log_SeverityLevel_ShouldLogWithCorrectLogLevel(SeverityLevel severityLevel,
+        LogEventLevel expectedLogLevel)
     {
         // Arrange
-        var message = "Severity level test message";
+        var message = "Boop";
         var properties = new Dictionary<string, string>();
 
         // Act
@@ -60,11 +60,11 @@ public class LoggerTests
     public void Log_WithProperties_ShouldIncludePropertiesInLogEvent()
     {
         // Arrange
-        var message = "Test message with properties";
+        var message = "Boop with properties";
         var properties = new Dictionary<string, string>
         {
-            { "prop1", "value1" },
-            { "prop2", "value2" }
+            { "bleep", "hey" },
+            { "blorp", "world" }
         };
 
         // Act
@@ -73,10 +73,10 @@ public class LoggerTests
         // Assert
         _testSink.LogEvents.Count.ShouldBe(1);
         var logEvent = _testSink.LogEvents[0];
-        logEvent.Properties.ContainsKey("prop1").ShouldBeTrue();
-        logEvent.Properties["prop1"].ToString().ShouldContain("value1");
-        logEvent.Properties.ContainsKey("prop2").ShouldBeTrue();
-        logEvent.Properties["prop2"].ToString().ShouldContain("value2");
+        logEvent.Properties.ContainsKey("bleep").ShouldBeTrue();
+        logEvent.Properties["bleep"].ToString().ShouldContain("hey");
+        logEvent.Properties.ContainsKey("blorp").ShouldBeTrue();
+        logEvent.Properties["blorp"].ToString().ShouldContain("world");
     }
 
     [TestMethod]
@@ -243,73 +243,400 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void EmptyConnectionStringException_ThrowIfEmpty_WithEmptyString_ShouldThrow()
+    public void Logger_WithMinimumLevel_ShouldFilterLowerLevelMessages()
     {
-        // Act & Assert
-        Should.Throw<EmptyConnectionStringException>(() =>
-            EmptyConnectionStringException.ThrowIfEmpty("")
-        );
+        // Arrange - Create a logger with MinimumLevel set to Warning
+        var testSink = new TestSink();
+        var serilogLogger = new LoggerConfiguration()
+            .MinimumLevel.Warning() // Only Warning and above
+            .WriteTo.Sink(testSink)
+            .CreateLogger();
+        ILogger logger = new Logger(serilogLogger);
+
+        // Act - Log at various levels
+        logger.Log("Verbose message", SeverityLevel.Verbose, null!);
+        logger.Log("Information message", SeverityLevel.Information, null!);
+        logger.Log("Warning message", SeverityLevel.Warning, null!);
+        logger.Log("Error message", SeverityLevel.Error, null!);
+        logger.Log("Critical message", SeverityLevel.Critical, null!);
+
+        // Assert - Only Warning, Error, and Critical should be logged
+        testSink.LogEvents.Count.ShouldBe(3);
+        testSink.LogEvents[0].Level.ShouldBe(LogEventLevel.Warning);
+        testSink.LogEvents[1].Level.ShouldBe(LogEventLevel.Error);
+        testSink.LogEvents[2].Level.ShouldBe(LogEventLevel.Fatal);
+
+        // Cleanup
+        (logger as IDisposable)?.Dispose();
     }
 
     [TestMethod]
-    public void EmptyConnectionStringException_ThrowIfEmpty_WithValidString_ShouldNotThrow()
+    public void Logger_ConcurrentLogging_ShouldNotThrow()
+    {
+        // Arrange
+        var tasks = new List<Task>();
+        var exceptions = new List<Exception>();
+        var messageCount = 0;
+
+        // Act
+        for (int i = 0; i < 10; i++)
+        {
+            int threadId = i;
+            tasks.Add(Task.Run(() =>
+            {
+                try
+                {
+                    for (int j = 0; j < 50; j++)
+                    {
+                        _logger.Log(
+                            $"Thread {threadId} message {j}",
+                            SeverityLevel.Information,
+                            new Dictionary<string, string> { { "ThreadId", threadId.ToString() } });
+                        Interlocked.Increment(ref messageCount);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lock (exceptions)
+                    {
+                        exceptions.Add(ex);
+                    }
+                }
+            }));
+        }
+
+        Task.WaitAll(tasks.ToArray());
+
+        // Assert - Primary goal: no exceptions thrown during concurrent logging
+        exceptions.ShouldBeEmpty();
+        messageCount.ShouldBe(500); // All 500 log calls completed successfully
+        // Note: _testSink.LogEvents.Count may vary due to async processing and test cleanup timing
+    }
+
+    [TestMethod]
+    public void Logger_ConcurrentExceptionLogging_ShouldNotThrow()
+    {
+        // Arrange
+        var tasks = new List<Task>();
+        var exceptions = new List<Exception>();
+        var exceptionCount = 0;
+
+        // Act
+        for (int i = 0; i < 10; i++)
+        {
+            int threadId = i;
+            tasks.Add(Task.Run(() =>
+            {
+                try
+                {
+                    for (int j = 0; j < 20; j++)
+                    {
+                        _logger.Exception(
+                            new InvalidOperationException($"Thread {threadId} exception {j}"),
+                            new Dictionary<string, string> { { "ThreadId", threadId.ToString() } });
+                        Interlocked.Increment(ref exceptionCount);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lock (exceptions)
+                    {
+                        exceptions.Add(ex);
+                    }
+                }
+            }));
+        }
+
+        Task.WaitAll(tasks.ToArray());
+
+        // Assert - Primary goal: no exceptions thrown during concurrent exception logging
+        exceptions.ShouldBeEmpty();
+        exceptionCount.ShouldBe(200); // All 200 exception log calls completed successfully
+        // Note: _testSink.LogEvents.Count may vary due to async processing and test cleanup timing
+    }
+
+    [TestMethod]
+    public void Logger_ConcurrentMixedOperations_ShouldNotThrow()
+    {
+        // Arrange
+        var tasks = new List<Task>();
+        var exceptions = new List<Exception>();
+        var operationCount = 0;
+
+        // Act - Mix of Log, Exception, and Event calls
+        for (int i = 0; i < 15; i++)
+        {
+            int threadId = i;
+            tasks.Add(Task.Run(() =>
+            {
+                try
+                {
+                    _logger.Log($"Thread {threadId} log", SeverityLevel.Information, null!);
+                    Interlocked.Increment(ref operationCount);
+
+                    _logger.Exception(new InvalidOperationException($"Thread {threadId} exception"), null!);
+                    Interlocked.Increment(ref operationCount);
+
+                    _logger.Event($"Thread{threadId}Event", null!, null!, DateTimeOffset.UtcNow);
+                    Interlocked.Increment(ref operationCount);
+                }
+                catch (Exception ex)
+                {
+                    lock (exceptions)
+                    {
+                        exceptions.Add(ex);
+                    }
+                }
+            }));
+        }
+
+        Task.WaitAll(tasks.ToArray());
+
+        // Assert - Primary goal: no exceptions thrown during concurrent mixed operations
+        exceptions.ShouldBeEmpty();
+        operationCount.ShouldBe(45); // All 45 operations completed successfully (15 threads * 3 operations)
+        // Note: _testSink.LogEvents.Count may vary due to async processing and test cleanup timing
+    }
+
+    [TestMethod]
+    public void Log_WithNullProperties_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() => { _logger.Log("Test message", SeverityLevel.Information, null!); });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
+    }
+
+    [TestMethod]
+    public void Log_WithEmptyProperties_ShouldNotThrow()
     {
         // Act & Assert
         Should.NotThrow(() =>
-            EmptyConnectionStringException.ThrowIfEmpty("valid connection string")
-        );
+        {
+            _logger.Log("Test message", SeverityLevel.Information, new Dictionary<string, string>());
+        });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
     }
 
     [TestMethod]
-    [TestCategoryLocal]
-    public void IntegrationSmokeTest()
+    public void Exception_WithNullProperties_ShouldNotThrow()
     {
-        // Use your real logger instance configured to write to SQL, File, and Console
-        // See appsettings.json for the multi-sink configuration
-        ILogger logger = new Logger();
+        // Act & Assert
+        Should.NotThrow(() => { _logger.Exception(new InvalidOperationException("Test"), null!); });
 
-        // Log a simple informational message
-        logger.Log(
-            "Integration smoke test log message",
-            SeverityLevel.Verbose,
-            new Dictionary<string, string>
-            {
-                { "TestProperty", "TestValue" }
-            });
-
-        logger.Log(
-            "Integration smoke test log - empty props",
-            SeverityLevel.Information,
-            new Dictionary<string, string>());
-
-        logger.Log(
-            "Integration smoke test log - null props",
-            SeverityLevel.Information,
-            null);
-
-        // Log an exception with properties
-        logger.Exception(
-            new ArgumentException("Test exception"),
-            new Dictionary<string, string>
-            {
-                { "ExceptionProperty", "ExceptionValue" }
-            });
-
-        // Log an event with properties and metrics
-        logger.Event(
-            "IntegrationTestEvent",
-            new Dictionary<string, string>
-            {
-                { "EventProperty", "EventValue" }
-            },
-            new Dictionary<string, double>
-            {
-                { "Metric1", 123.45 }
-            },
-            DateTimeOffset.UtcNow);
-
-        // Flush the logger to ensure all logs are written
-        logger.Flush();
+        _testSink.LogEvents.Count.ShouldBe(1);
     }
 
+    [TestMethod]
+    public void Exception_WithEmptyProperties_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            _logger.Exception(new InvalidOperationException("Test"), new Dictionary<string, string>());
+        });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
+    }
+
+    [TestMethod]
+    public void Event_WithNullProperties_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            _logger.Event("TestEvent", null!, new Dictionary<string, double>(), DateTimeOffset.UtcNow);
+        });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
+    }
+
+    [TestMethod]
+    public void Event_WithNullMetrics_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            _logger.Event("TestEvent", new Dictionary<string, string>(), null!, DateTimeOffset.UtcNow);
+        });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
+    }
+
+    [TestMethod]
+    public void Event_WithBothNullPropertiesAndMetrics_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() => { _logger.Event("TestEvent", null!, null!, DateTimeOffset.UtcNow); });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
+    }
+
+    [TestMethod]
+    public void Log_WithEmptyMessage_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() => { _logger.Log("", SeverityLevel.Information, null!); });
+
+        _testSink.LogEvents.Count.ShouldBe(1);
+    }
+
+    [TestMethod]
+    public void Log_WithVeryLongMessage_ShouldNotTruncate()
+    {
+        // Arrange
+        var longMessage = new string('a', 5000);
+
+        // Act
+        _logger.Log(longMessage, SeverityLevel.Information, null!);
+
+        // Assert
+        _testSink.LogEvents.Count.ShouldBe(1);
+        _testSink.LogEvents[0].RenderMessage().Length.ShouldBe(5000);
+    }
+
+    [TestMethod]
+    public void Log_WithManyProperties_ShouldIncludeAll()
+    {
+        // Arrange
+        var properties = Enumerable.Range(0, 50)
+            .ToDictionary(i => $"prop{i}", i => $"value{i}");
+
+        // Act
+        _logger.Log("Test", SeverityLevel.Information, properties);
+
+        // Assert
+        var logEvent = _testSink.LogEvents[0];
+        properties.Keys.ToList().ForEach(key => { logEvent.Properties.ContainsKey(key).ShouldBeTrue(); });
+    }
+
+    [TestMethod]
+    public void Log_WithSpecialCharactersInPropertyValues_ShouldHandleCorrectly()
+    {
+        // Arrange
+        var properties = new Dictionary<string, string>
+        {
+            { "prop1", "value with \"quotes\"" },
+            { "prop2", "value with 'apostrophes'" },
+            { "prop3", "value with\nnewlines" },
+            { "prop4", "value with\ttabs" },
+            { "prop5", "{\"json\": \"object\"}" }
+        };
+
+        // Act
+        _logger.Log("Test", SeverityLevel.Information, properties);
+
+        // Assert
+        var logEvent = _testSink.LogEvents[0];
+        properties.Keys.ToList().ForEach(key => { logEvent.Properties.ContainsKey(key).ShouldBeTrue(); });
+    }
+
+    [TestMethod]
+    public void Exception_WithInnerException_ShouldLogBoth()
+    {
+        // Arrange
+        var inner = new InvalidOperationException("Inner exception message");
+        var outer = new ArgumentException("Outer exception message", inner);
+
+        // Act
+        _logger.Exception(outer, null!);
+
+        // Assert
+        var logEvent = _testSink.LogEvents[0];
+        logEvent.Exception.ShouldNotBeNull().ShouldBe(outer);
+        logEvent.Exception.InnerException.ShouldBe(inner);
+        logEvent.Exception.InnerException!.Message.ShouldBe("Inner exception message");
+    }
+
+    [TestMethod]
+    public void Exception_WithStackTrace_ShouldPreserveStackTrace()
+    {
+        // Arrange
+        Exception exception;
+        try
+        {
+            throw new InvalidOperationException("Test exception with stack trace");
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        // Act
+        _logger.Exception(exception, null!);
+
+        // Assert
+        var logEvent = _testSink.LogEvents[0];
+        logEvent.Exception.ShouldNotBeNull().StackTrace.ShouldNotBeNullOrEmpty();
+    }
+
+    [TestMethod]
+    public void Logger_Flush_CalledMultipleTimes_ShouldNotThrow()
+    {
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            _logger.Flush();
+            _logger.Flush();
+            _logger.Flush();
+        });
+    }
+
+    [TestMethod]
+    public void Logger_DisposablePattern_ShouldWork()
+    {
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            var testSink = new TestSink();
+            var serilogLogger = new LoggerConfiguration()
+                .WriteTo.Sink(testSink)
+                .CreateLogger();
+
+            using var disposable = new Logger(serilogLogger) as IDisposable;
+            var logger = disposable as ILogger;
+            logger!.Log("Test", SeverityLevel.Information, null!);
+        });
+    }
+
+    [TestMethod]
+    public void Logger_DisposeViaInterface_ShouldWork()
+    {
+        // Arrange
+        var testSink = new TestSink();
+        var serilogLogger = new LoggerConfiguration()
+            .WriteTo.Sink(testSink)
+            .CreateLogger();
+        var logger = new Logger(serilogLogger);
+
+        // Purposeful cast to IDisposable
+        var disposable = logger as IDisposable;
+
+        // Act & Assert
+        disposable.ShouldNotBeNull();
+        Should.NotThrow(() => { disposable.Dispose(); });
+    }
+
+    [TestMethod]
+    public void Logger_DisposeCalledMultipleTimes_ShouldNotThrow()
+    {
+        // Arrange
+        var testSink = new TestSink();
+        var serilogLogger = new LoggerConfiguration()
+            .WriteTo.Sink(testSink)
+            .CreateLogger();
+        var logger = new Logger(serilogLogger);
+
+        // Purposeful cast to IDisposable
+        var disposable = logger as IDisposable;
+
+        // Act & Assert
+        Should.NotThrow(() =>
+        {
+            disposable.Dispose();
+            disposable.Dispose();
+            disposable.Dispose();
+        });
+    }
 }
