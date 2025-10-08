@@ -6,7 +6,6 @@ using Shouldly;
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests;
 
 [TestClass]
-[TestCategoryCI]
 public sealed class OpenTelemetryLoggerTests
 {
     private ILoggerFactory _loggerFactory = null!;
