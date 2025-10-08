@@ -1,8 +1,9 @@
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
-using DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Configuration;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
+using Serilog.Settings.Configuration;
 using ILogger = DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger;
 using SerilogLogger = Serilog.Core.Logger;
 using ISerilogLogger = Serilog.ILogger;
@@ -16,21 +17,19 @@ public sealed class Logger : ILogger, IDisposable
 
     public Logger()
     {
-        var serilogConfigs = new Config().GetSerilogConfigurations();
+        IConfiguration config = new Config();
 
-        var loggerConfig = new LoggerConfiguration()
-            .MinimumLevel.Verbose();
-
-        // Configure all sinks
-        foreach (var config in serilogConfigs)
-        {
-            config.ConfigureSink(loggerConfig);
-        }
-
-        _logger = loggerConfig.CreateLogger();
+        _logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(config, new ConfigurationReaderOptions
+            {
+                SectionName = "ifx:telemetry:logging:serilog"
+            })
+            .CreateLogger();
     }
 
-    // For testing purposes only
+    /// <summary>
+    /// Internal constructor for unit testing purposes only.
+    /// </summary>
     internal Logger(SerilogLogger logger)
     {
         _logger = logger;
@@ -39,48 +38,47 @@ public sealed class Logger : ILogger, IDisposable
     void ILogger.Log(string message, SeverityLevel severityLevel, IDictionary<string, string>? properties)
     {
         var logLevel = MapSeverityToLogLevel(severityLevel);
+        ISerilogLogger logger = _logger;
 
-        // Create a log context with properties
-        ISerilogLogger logContext = _logger;
-        if (properties != null && properties.Any())
+        if (properties is { Count: > 0 })
         {
             foreach (var prop in properties)
             {
-                logContext = logContext.ForContext(prop.Key, prop.Value);
+                logger = logger.ForContext(prop.Key, prop.Value);
             }
         }
 
-        logContext.Write(logLevel, message);
+        logger.Write(logLevel, message);
     }
 
     void ILogger.Exception(Exception exception, IDictionary<string, string>? properties)
     {
-        // Create a log context with properties
-        ISerilogLogger logContext = _logger;
-        if (properties != null && properties.Any())
+        ISerilogLogger logger = _logger;
+
+        if (properties is { Count: > 0 })
         {
             foreach (var prop in properties)
             {
-                logContext = logContext.ForContext(prop.Key, prop.Value);
+                logger = logger.ForContext(prop.Key, prop.Value);
             }
         }
 
-        logContext.Error(exception, exception.Message);
+        logger.Error(exception, exception.Message);
     }
 
     void ILogger.Event(string eventName, IDictionary<string, string>? properties, IDictionary<string, double>? metrics,
         DateTimeOffset timeStamp)
     {
         // Serilog doesn't have a separate Event concept, so we log it as Information with properties
-        ISerilogLogger logContext = _logger
+        ISerilogLogger logger = _logger
             .ForContext("EventName", eventName)
             .ForContext("Timestamp", timeStamp);
 
-        if (properties != null && properties.Any())
+        if (properties is { Count: > 0 })
         {
             foreach (var prop in properties)
             {
-                logContext = logContext.ForContext(prop.Key, prop.Value);
+                logger = logger.ForContext(prop.Key, prop.Value);
             }
         }
 
@@ -88,11 +86,11 @@ public sealed class Logger : ILogger, IDisposable
         {
             foreach (var metric in metrics)
             {
-                logContext = logContext.ForContext(metric.Key, metric.Value);
+                logger = logger.ForContext(metric.Key, metric.Value);
             }
         }
 
-        logContext.Information("Event: {EventName}", eventName);
+        logger.Information("Event: {EventName}", eventName);
     }
 
     void ILogger.Flush()
