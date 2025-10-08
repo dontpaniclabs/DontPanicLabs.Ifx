@@ -10,19 +10,24 @@ using ISerilogLogger = Serilog.ILogger;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog;
 
+/// <summary>
+/// `ILogger` implementation using Serilog.
+/// </summary>
 public sealed class Logger : ILogger, IDisposable
 {
     private readonly SerilogLogger _logger;
     private bool _disposed;
+    private const string ConfigSectionName = "ifx:telemetry:logging:serilog";
 
     public Logger()
     {
         IConfiguration config = new Config();
 
+        // Instantiate our logger using Serilog-standard configuration. See README.md for details.
         _logger = new LoggerConfiguration()
             .ReadFrom.Configuration(config, new ConfigurationReaderOptions
             {
-                SectionName = "ifx:telemetry:logging:serilog"
+                SectionName = ConfigSectionName
             })
             .CreateLogger();
     }
@@ -69,7 +74,8 @@ public sealed class Logger : ILogger, IDisposable
     void ILogger.Event(string eventName, IDictionary<string, string>? properties, IDictionary<string, double>? metrics,
         DateTimeOffset timeStamp)
     {
-        // Serilog doesn't have a separate Event concept, so we log it as Information with properties
+        // Serilog doesn't have a separate Event concept, so we log it as Information with properties encoding that
+        // this is an Event.
         ISerilogLogger logger = _logger
             .ForContext("EventName", eventName)
             .ForContext("Timestamp", timeStamp);
@@ -82,7 +88,7 @@ public sealed class Logger : ILogger, IDisposable
             }
         }
 
-        if (metrics != null && metrics.Any())
+        if (metrics is { Count: > 0 })
         {
             foreach (var metric in metrics)
             {
@@ -98,6 +104,17 @@ public sealed class Logger : ILogger, IDisposable
         _logger.Dispose();
     }
 
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        _logger.Dispose();
+        _disposed = true;
+    }
+
     private static LogEventLevel MapSeverityToLogLevel(SeverityLevel severityLevel)
     {
         return severityLevel switch
@@ -109,16 +126,5 @@ public sealed class Logger : ILogger, IDisposable
             SeverityLevel.Critical => LogEventLevel.Fatal,
             _ => LogEventLevel.Information
         };
-    }
-
-    public void Dispose()
-    {
-        if (!_disposed)
-        {
-            _logger?.Dispose();
-            _disposed = true;
-        }
-
-        GC.SuppressFinalize(this);
     }
 }
