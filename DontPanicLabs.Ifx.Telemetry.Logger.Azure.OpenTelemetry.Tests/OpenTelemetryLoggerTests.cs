@@ -54,7 +54,7 @@ public sealed class OpenTelemetryLoggerTests
         var timestamp = DateTimeOffset.UtcNow;
 
         // Act
-        _openTelemetryLogger.Event(eventName, null, null, timestamp);
+        _openTelemetryLogger.Event(eventName, null!, null!, timestamp);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
@@ -119,7 +119,7 @@ public sealed class OpenTelemetryLoggerTests
         var timestamp = DateTimeOffset.UtcNow;
 
         // Act
-        _openTelemetryLogger.Event(eventName, properties, null, timestamp);
+        _openTelemetryLogger.Event(eventName, properties, null!, timestamp);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
@@ -147,7 +147,7 @@ public sealed class OpenTelemetryLoggerTests
         var timestamp = DateTimeOffset.UtcNow;
 
         // Act
-        _openTelemetryLogger.Event(eventName, null, metrics, timestamp);
+        _openTelemetryLogger.Event(eventName, null!, metrics, timestamp);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
