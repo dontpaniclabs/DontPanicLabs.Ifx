@@ -18,6 +18,7 @@ on:
           - "DontPanicLabs.Ifx.Services.Contracts"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Azure.ApplicationInsights"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry"
+          - "DontPanicLabs.Ifx.Telemetry.Logger.Serilog"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Contracts"
 
 env:
@@ -26,7 +27,7 @@ env:
 jobs:
   build:
     
-    runs-on: [ubuntu-latest]
+    runs-on: [ ubuntu-latest ]
     
     steps:
       - uses: actions/checkout@v4

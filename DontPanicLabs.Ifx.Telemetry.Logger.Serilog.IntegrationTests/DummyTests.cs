@@ -1,6 +1,6 @@
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 
-namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.IntegrationTests;
+namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests;
 
 [TestClass]
 [TestCategoryCI]

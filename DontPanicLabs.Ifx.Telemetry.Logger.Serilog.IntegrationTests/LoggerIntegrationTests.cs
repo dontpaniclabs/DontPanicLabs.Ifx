@@ -2,7 +2,7 @@ using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Shouldly;
 
-namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.IntegrationTests;
+namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests;
 
 [TestClass]
 [TestCategoryLocal]
@@ -21,7 +21,7 @@ public class LoggerIntegrationTests
 
         // Use a real logger instance configured to write to SQL, File, and Console
         // See appsettings.json for the multi-sink configuration
-        ILogger logger = new Logger();
+        Contracts.ILogger logger = new Logger();
 
         // Log a simple informational message
         logger.Log(
@@ -86,7 +86,7 @@ public class LoggerIntegrationTests
     public void Logger_Constructor_ShouldLoadConfigurationFromCustomSection()
     {
         // Arrange & Act
-        ILogger logger = new Logger();
+        Contracts.ILogger logger = new Logger();
 
         // This tests that ReadFrom.Configuration properly finds ifx:telemetry:logging:serilog
         logger.ShouldNotBeNull();
@@ -102,7 +102,7 @@ public class LoggerIntegrationTests
     public void Logger_Constructor_ShouldConfigureMultipleSinks()
     {
         // Arrange & Act - appsettings.json has SQL, File, and Console sinks configured
-        ILogger logger = new Logger();
+        Contracts.ILogger logger = new Logger();
 
         // Assert - Verify logger accepts logs without throwing
         Should.NotThrow(() =>

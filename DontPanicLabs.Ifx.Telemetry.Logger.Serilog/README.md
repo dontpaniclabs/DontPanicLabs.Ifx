@@ -1,4 +1,4 @@
-# DontPanicLabs.Ifx.Telemetry.Logging.Serilog
+# DontPanicLabs.Ifx.Telemetry.Logger.Serilog
 
 A Serilog-based implementation of `DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger` with support for multiple
 logging destinations.
@@ -13,7 +13,7 @@ logging destinations.
 Install the core logging package:
 
 ```bash
-dotnet add package DontPanicLabs.Ifx.Telemetry.Logging.Serilog
+dotnet add package DontPanicLabs.Ifx.Telemetry.Logger.Serilog
 ```
 
 **IMPORTANT**: You must also install the Serilog sink packages you want to use. The core package does not include any
@@ -61,8 +61,8 @@ behavior writes this data as XML in the `Properties` column.
                   "batchPeriod": "0.00:00:05"
                 },
                 "columnOptionsSection": {
-                  "addStandardColumns": [ "LogEvent" ],
-                  "removeStandardColumns": [ "Properties" ],
+                  "addStandardColumns": ["LogEvent"],
+                  "removeStandardColumns": ["Properties"],
                   "logEvent": {
                     "excludeStandardColumns": true
                   }
@@ -79,7 +79,7 @@ behavior writes this data as XML in the `Properties` column.
 
 ### Multiple Sinks Example
 
-Log to SQL Server, rolling files, and console simultaneously:
+Log to a rolling file log and the console, both using JSON formatting to display structured log data.
 
 ```json
 {
@@ -93,13 +93,17 @@ Log to SQL Server, rolling files, and console simultaneously:
             {
               "Name": "File",
               "Args": {
+                "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog",
                 "path": "logs/app-.log",
                 "rollingInterval": "Day",
                 "retainedFileCountLimit": 7
               }
             },
             {
-              "Name": "Console"
+              "Name": "Console",
+              "Args": {
+                "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog"
+              }
             }
           ]
         }
@@ -117,7 +121,7 @@ Log to SQL Server, rolling files, and console simultaneously:
 
 // Create the logger (automatically loads configuration from appsettings.json); namespaces shown in-line for clarity.
 // Consuming code should instantiate the logger but use the `ILogger` interface to interact.
-DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger logger = new DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Logger();
+DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger logger = new DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Logger();
 
 // Use the logger
 logger.Log("Application started", SeverityLevel.Information, null);

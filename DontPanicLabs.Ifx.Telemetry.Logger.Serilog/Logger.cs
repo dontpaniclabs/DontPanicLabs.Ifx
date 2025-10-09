@@ -7,7 +7,7 @@ using Serilog.Settings.Configuration;
 using SerilogLogger = Serilog.Core.Logger;
 using ISerilogLogger = Serilog.ILogger;
 
-namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog;
+namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog;
 
 /// <summary>
 /// `DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger` implementation using Serilog.
