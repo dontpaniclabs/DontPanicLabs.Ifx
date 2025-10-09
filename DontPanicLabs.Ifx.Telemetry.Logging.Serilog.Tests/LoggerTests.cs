@@ -4,7 +4,6 @@ using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Serilog;
 using Serilog.Events;
 using Shouldly;
-using ILogger = DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests;
 
@@ -13,7 +12,7 @@ namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests;
 public class LoggerTests
 {
     private TestSink _testSink = null!;
-    private ILogger _logger = null!;
+    private DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger _logger = null!;
 
     [TestInitialize]
     public void TestInitialize()
@@ -197,11 +196,11 @@ public class LoggerTests
     {
         // Arrange - Create a logger with MinimumLevel set to Warning
         var testSink = new TestSink();
-        var serilogLogger = new LoggerConfiguration()
+        var serilogLoggerConfig = new LoggerConfiguration()
             .MinimumLevel.Warning() // Only Warning and above
             .WriteTo.Sink(testSink)
             .CreateLogger();
-        ILogger logger = new Logger(serilogLogger);
+        ILogger logger = new Logger(serilogLoggerConfig);
 
         // Act - Log at various levels
         logger.Log("Verbose message", SeverityLevel.Verbose, null!);
@@ -370,15 +369,11 @@ public class LoggerTests
     }
 
     [TestMethod]
-    public void Logger_Flush_CalledMultipleTimes_ShouldNotThrow()
+    public void Logger_Flush_ShouldThrowPlatformNotSupportedException()
     {
         // Act & Assert
-        Should.NotThrow(() =>
-        {
-            _logger.Flush();
-            _logger.Flush();
-            _logger.Flush();
-        });
+        var ex = Should.Throw<PlatformNotSupportedException>(() => { _logger.Flush(); });
+        ex.Message.ShouldBe("Serilog does not implement a Flush method, dispose of instances instead.");
     }
 
     [TestMethod]

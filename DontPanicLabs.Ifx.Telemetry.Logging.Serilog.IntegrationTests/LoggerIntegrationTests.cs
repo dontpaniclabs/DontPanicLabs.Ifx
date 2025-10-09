@@ -1,7 +1,6 @@
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Shouldly;
-using ILogger = DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.IntegrationTests;
 

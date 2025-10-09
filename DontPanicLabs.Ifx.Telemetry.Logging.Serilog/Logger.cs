@@ -4,14 +4,13 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 using Serilog.Settings.Configuration;
-using ILogger = DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger;
 using SerilogLogger = Serilog.Core.Logger;
 using ISerilogLogger = Serilog.ILogger;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog;
 
 /// <summary>
-/// `ILogger` implementation using Serilog.
+/// `DontPanicLabs.Ifx.Telemetry.Logger.Contracts.ILogger` implementation using Serilog.
 /// </summary>
 public sealed class Logger : ILogger, IDisposable
 {
@@ -40,7 +39,7 @@ public sealed class Logger : ILogger, IDisposable
         _logger = logger;
     }
 
-    void ILogger.Log(string message, SeverityLevel severityLevel, IDictionary<string, string>? properties)
+    public void Log(string message, SeverityLevel severityLevel, IDictionary<string, string>? properties)
     {
         var logLevel = MapSeverityToLogLevel(severityLevel);
         ISerilogLogger logger = _logger;
@@ -56,7 +55,7 @@ public sealed class Logger : ILogger, IDisposable
         logger.Write(logLevel, message);
     }
 
-    void ILogger.Exception(Exception exception, IDictionary<string, string>? properties)
+    public void Exception(Exception exception, IDictionary<string, string>? properties)
     {
         ISerilogLogger logger = _logger;
 
@@ -71,7 +70,7 @@ public sealed class Logger : ILogger, IDisposable
         logger.Error(exception, exception.Message);
     }
 
-    void ILogger.Event(string eventName, IDictionary<string, string>? properties, IDictionary<string, double>? metrics,
+    public void Event(string eventName, IDictionary<string, string>? properties, IDictionary<string, double>? metrics,
         DateTimeOffset timeStamp)
     {
         // Serilog doesn't have a separate Event concept, so we log it as Information with properties encoding that
@@ -99,10 +98,10 @@ public sealed class Logger : ILogger, IDisposable
         logger.Information("Event: {EventName}", eventName);
     }
 
-    void ILogger.Flush()
+    public void Flush()
     {
-        // Serilog doesn't provide a Flush() method without disposing. Instead, buffered sinks will be flushed when the
-        // ILogger instance is disposed. This is a no-op.
+        throw new PlatformNotSupportedException(
+            "Serilog does not implement a Flush method, dispose of instances instead.");
     }
 
     public void Dispose()
