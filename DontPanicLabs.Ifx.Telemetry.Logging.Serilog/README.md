@@ -35,6 +35,11 @@ serilog settings for the sink in your app settings under `ifx:telemetry:logging:
 
 ### Single Sink Example (SQL Server)
 
+This sample configuration configures logging to SQL server. The `columnOptionsSection` shown here configures writing
+the `metrics` and `properties` `IDictionary<string, object>` parameters passed to the logging methods to be written
+as JSON to the `LogEvent` column in the SQL table. If `columnOptionsSection` is not specified, the default Serilog
+behavior writes this data as XML in the `Properties` column.
+
 ```json
 {
   "ifx": {
@@ -47,13 +52,20 @@ serilog settings for the sink in your app settings under `ifx:telemetry:logging:
             {
               "Name": "MSSqlServer",
               "Args": {
-                "connectionString": "Server=localhost;Database=ApplicationLogs;Integrated Security=true;",
+                "connectionString": "{YOUR SQL CONNECTION STRING HERE}",
                 "sinkOptionsSection": {
                   "tableName": "Logs",
                   "schemaName": "dbo",
                   "autoCreateSqlTable": true,
                   "batchPostingLimit": 50,
                   "batchPeriod": "0.00:00:05"
+                },
+                "columnOptionsSection": {
+                  "addStandardColumns": [ "LogEvent" ],
+                  "removeStandardColumns": [ "Properties" ],
+                  "logEvent": {
+                    "excludeStandardColumns": true
+                  }
                 }
               }
             }
@@ -75,22 +87,9 @@ Log to SQL Server, rolling files, and console simultaneously:
     "telemetry": {
       "logging": {
         "serilog": {
-          "Using": ["Serilog.Sinks.MSSqlServer", "Serilog.Sinks.File", "Serilog.Sinks.Console"],
+          "Using": ["Serilog.Sinks.File", "Serilog.Sinks.Console"],
           "MinimumLevel": "Verbose",
           "WriteTo": [
-            {
-              "Name": "MSSqlServer",
-              "Args": {
-                "connectionString": "Server=localhost;Database=ApplicationLogs;Integrated Security=true;",
-                "sinkOptionsSection": {
-                  "tableName": "ApplicationLogs",
-                  "schemaName": "dbo",
-                  "autoCreateSqlTable": true,
-                  "batchPostingLimit": 50,
-                  "batchPeriod": "0.00:00:05"
-                }
-              }
-            },
             {
               "Name": "File",
               "Args": {
