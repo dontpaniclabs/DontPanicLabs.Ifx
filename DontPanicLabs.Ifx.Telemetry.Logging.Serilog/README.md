@@ -16,7 +16,7 @@ Install the core logging package:
 dotnet add package DontPanicLabs.Ifx.Telemetry.Logging.Serilog
 ```
 
-**IMPORTANT**: You must also install the Serilog sink packages you want to use. The core package does NOT include any
+**IMPORTANT**: You must also install the Serilog sink packages you want to use. The core package does not include any
 sinks.
 
 For example, to use SQL Server, File, and Console sinks:
