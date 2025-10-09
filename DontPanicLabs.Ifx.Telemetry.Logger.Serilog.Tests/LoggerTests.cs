@@ -1,11 +1,11 @@
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
-using DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests.TestHelpers;
+using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests.TestHelpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Serilog;
 using Serilog.Events;
 using Shouldly;
 
-namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests;
+namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests;
 
 [TestClass]
 [TestCategoryCI]

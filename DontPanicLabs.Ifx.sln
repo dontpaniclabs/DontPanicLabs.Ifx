@@ -75,15 +75,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests", "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests\DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests.csproj", "{82218BF8-E5B5-4F3B-84EE-AD040EFED1C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logging.Serilog", "DontPanicLabs.Ifx.Telemetry.Logging.Serilog\DontPanicLabs.Ifx.Telemetry.Logging.Serilog.csproj", "{3B882A36-B633-4483-AC9A-A06529369B02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Serilog", "DontPanicLabs.Ifx.Telemetry.Logger.Serilog\DontPanicLabs.Ifx.Telemetry.Logger.Serilog.csproj", "{3B882A36-B633-4483-AC9A-A06529369B02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests", "DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests\DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests.csproj", "{77910F70-FCDF-4045-8DE4-79C3BF812BB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests", "DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests\DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests.csproj", "{77910F70-FCDF-4045-8DE4-79C3BF812BB4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serilog", "Serilog", "{EECDDB4C-C43E-4526-950C-B1263613463B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BA49892F-5355-4103-9BBA-0B1BE9EBE1F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logging.Serilog.IntegrationTests", "DontPanicLabs.Ifx.Telemetry.Logging.Serilog.IntegrationTests\DontPanicLabs.Ifx.Telemetry.Logging.Serilog.IntegrationTests.csproj", "{FF2E3F4A-9389-44BE-8060-2C98C3D520DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests", "DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests\DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests.csproj", "{FF2E3F4A-9389-44BE-8060-2C98C3D520DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

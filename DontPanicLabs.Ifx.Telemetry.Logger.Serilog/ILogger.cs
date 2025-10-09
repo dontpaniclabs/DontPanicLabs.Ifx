@@ -1,6 +1,6 @@
 using Contracts = DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 
-namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog;
+namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog;
 
 /// <summary>
 /// A Serilog-specific version of our core <see cref="Contracts.ILogger"/> interface.

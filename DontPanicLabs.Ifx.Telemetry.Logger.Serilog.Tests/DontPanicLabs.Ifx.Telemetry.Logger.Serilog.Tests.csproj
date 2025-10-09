@@ -11,10 +11,10 @@
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-        <PackageReference Include="MSTest.TestAdapter" Version="3.7.0" />
-        <PackageReference Include="MSTest.TestFramework" Version="3.7.0" />
-        <PackageReference Include="Shouldly" Version="4.3.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
+        <PackageReference Include="MSTest.TestAdapter" Version="3.7.0"/>
+        <PackageReference Include="MSTest.TestFramework" Version="3.7.0"/>
+        <PackageReference Include="Shouldly" Version="4.3.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -22,8 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DontPanicLabs.Ifx.Telemetry.Logging.Serilog\DontPanicLabs.Ifx.Telemetry.Logging.Serilog.csproj" />
-      <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
+        <ProjectReference Include="..\DontPanicLabs.Ifx.Telemetry.Logger.Serilog\DontPanicLabs.Ifx.Telemetry.Logger.Serilog.csproj"/>
+        <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj"/>
     </ItemGroup>
 
 </Project>

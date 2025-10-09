@@ -1,7 +1,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog.Tests.TestHelpers;
+namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests.TestHelpers;
 
 public class TestSink : ILogEventSink
 {
