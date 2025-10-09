@@ -79,8 +79,7 @@ public class LoggerIntegrationTests
             },
             DateTimeOffset.UtcNow);
 
-        // Flush the logger to ensure all logs are written
-        logger.Flush();
+        (logger as IDisposable)?.Dispose();
     }
 
     [TestMethod]
@@ -88,20 +87,15 @@ public class LoggerIntegrationTests
     public void Logger_Constructor_ShouldLoadConfigurationFromCustomSection()
     {
         // Arrange & Act
-        ILogger logger = null!;
+        ILogger logger = new Logger();
 
         // This tests that ReadFrom.Configuration properly finds ifx:telemetry:logging:serilog
-        Should.NotThrow(() => { logger = new Logger(); });
-
-        // Assert - If we got here without exception, config loaded successfully
         logger.ShouldNotBeNull();
 
         // Verify logger is functional by logging something
-        Should.NotThrow(() =>
-        {
-            logger.Log("Configuration test", SeverityLevel.Information, null!);
-            logger.Flush();
-        });
+        Should.NotThrow(() => { logger.Log("Configuration test", SeverityLevel.Information, null!); });
+
+        (logger as IDisposable)?.Dispose();
     }
 
     [TestMethod]
@@ -117,7 +111,8 @@ public class LoggerIntegrationTests
             logger.Log("Multi-sink test", SeverityLevel.Information, null!);
             logger.Exception(new InvalidOperationException("Test"), null!);
             logger.Event("TestEvent", null!, null!, DateTimeOffset.UtcNow);
-            logger.Flush();
         });
+
+        (logger as IDisposable)?.Dispose();
     }
 }
