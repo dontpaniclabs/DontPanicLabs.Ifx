@@ -101,7 +101,8 @@ public sealed class Logger : ILogger, IDisposable
 
     void ILogger.Flush()
     {
-        _logger.Dispose();
+        // Serilog doesn't provide a Flush() method without disposing. Instead, buffered sinks will be flushed when the
+        // ILogger instance is disposed. This is a no-op.
     }
 
     public void Dispose()
