@@ -1,0 +1,12 @@
+using Contracts = DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
+
+namespace DontPanicLabs.Ifx.Telemetry.Logging.Serilog;
+
+/// <summary>
+/// A Serilog-specific version of our core <see cref="Contracts.ILogger"/> interface.
+/// </summary>
+public interface ILogger : Contracts.ILogger
+{
+    [Obsolete("Serilog does not implement a Flush method, dispose of instances instead.", error: true)]
+    public new void Flush();
+}

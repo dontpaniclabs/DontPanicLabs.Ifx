@@ -16,6 +16,13 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry\DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.csproj" />
+      <ProjectReference Include="..\DontPanicLabs.Ifx.Tests.Shared\DontPanicLabs.Ifx.Tests.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

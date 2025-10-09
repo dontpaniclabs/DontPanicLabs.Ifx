@@ -1,10 +1,12 @@
 ﻿using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
+using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Microsoft.Extensions.Logging;
 using Shouldly;
 
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry.Tests;
 
 [TestClass]
+[TestCategoryCI]
 public sealed class OpenTelemetryLoggerTests
 {
     private ILoggerFactory _loggerFactory = null!;
@@ -15,7 +17,10 @@ public sealed class OpenTelemetryLoggerTests
     public void TestInitialize()
     {
         _testLoggerProvider = new TestLoggerProvider();
-        _loggerFactory = LoggerFactory.Create(builder => { builder.AddProvider(_testLoggerProvider).SetMinimumLevel(LogLevel.Trace); });
+        _loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddProvider(_testLoggerProvider).SetMinimumLevel(LogLevel.Trace);
+        });
 
         _openTelemetryLogger = new Logger(_loggerFactory);
     }
@@ -53,7 +58,7 @@ public sealed class OpenTelemetryLoggerTests
         var timestamp = DateTimeOffset.UtcNow;
 
         // Act
-        _openTelemetryLogger.Event(eventName, null, null, timestamp);
+        _openTelemetryLogger.Event(eventName, null!, null!, timestamp);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
@@ -118,7 +123,7 @@ public sealed class OpenTelemetryLoggerTests
         var timestamp = DateTimeOffset.UtcNow;
 
         // Act
-        _openTelemetryLogger.Event(eventName, properties, null, timestamp);
+        _openTelemetryLogger.Event(eventName, properties, null!, timestamp);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
@@ -146,7 +151,7 @@ public sealed class OpenTelemetryLoggerTests
         var timestamp = DateTimeOffset.UtcNow;
 
         // Act
-        _openTelemetryLogger.Event(eventName, null, metrics, timestamp);
+        _openTelemetryLogger.Event(eventName, null!, metrics, timestamp);
 
         // Assert
         _testLoggerProvider.LogEntries.Count.ShouldBe(1);
