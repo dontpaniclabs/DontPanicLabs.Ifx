@@ -42,7 +42,7 @@ public class LoggerTests
         LogEventLevel expectedLogLevel)
     {
         // Arrange
-        var message = "Boop";
+        var message = "boop";
         var properties = new Dictionary<string, string>();
 
         // Act
