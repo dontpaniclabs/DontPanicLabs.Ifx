@@ -16,7 +16,10 @@ public sealed class OpenTelemetryLoggerTests
     public void TestInitialize()
     {
         _testLoggerProvider = new TestLoggerProvider();
-        _loggerFactory = LoggerFactory.Create(builder => { builder.AddProvider(_testLoggerProvider).SetMinimumLevel(LogLevel.Trace); });
+        _loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddProvider(_testLoggerProvider).SetMinimumLevel(LogLevel.Trace);
+        });
 
         _openTelemetryLogger = new Logger(_loggerFactory);
     }
