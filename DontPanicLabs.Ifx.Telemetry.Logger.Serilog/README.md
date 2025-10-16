@@ -44,7 +44,7 @@ serilog settings for the sink in your app settings under `ifx:telemetry:logging:
 
 #### Specify Serilog configuration programmatically:
 
-The `Logger` also exposes a constructor that accepts an a string representing the Serilog configuration in JSON format.
+The `Logger` also exposes a constructor that accepts a string representing the Serilog configuration in JSON format.
 
 ```csharp
 var logger = new Logger(serilogJsonConfig);
