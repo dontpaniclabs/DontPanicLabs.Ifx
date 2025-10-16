@@ -1,3 +1,4 @@
+using System.Reflection;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests.TestHelpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
@@ -30,6 +31,43 @@ public class LoggerTests
     public void TestCleanup()
     {
         (_logger as IDisposable)?.Dispose();
+    }
+
+    [TestMethod]
+    [DoNotParallelize]
+    public void Log_WithDirectlyProvidedConfiguration_ShouldIncludePropertiesInLogEvent()
+    {
+        // Arrange
+        var message = "Boop with properties";
+        var properties = new Dictionary<string, string>
+        {
+            { "bleep", "hey" },
+            { "blorp", "world" }
+        };
+        StaticTestSink.LogEvents = new List<LogEvent>();
+
+        // Act
+        var serilogLogger = $@"
+        {{
+          ""Using"": [""{Assembly.GetExecutingAssembly().GetName().Name}""],
+          ""MinimumLevel"": ""Verbose"",
+          ""WriteTo"": [
+            {{ ""Name"": ""{nameof(StaticTestSink)}"" }}
+          ]
+        }}";
+        var logger = new Logger(serilogLogger);
+
+        logger.Log(message, SeverityLevel.Information, properties);
+
+        // Assert
+        StaticTestSink.LogEvents.Count.ShouldBe(1);
+        var logEvent = StaticTestSink.LogEvents[0];
+        logEvent.Properties.ContainsKey("bleep").ShouldBeTrue();
+        logEvent.Properties["bleep"].ToString().ShouldContain("hey");
+        logEvent.Properties.ContainsKey("blorp").ShouldBeTrue();
+        logEvent.Properties["blorp"].ToString().ShouldContain("world");
+
+        StaticTestSink.LogEvents = new List<LogEvent>();
     }
 
     [TestMethod]
