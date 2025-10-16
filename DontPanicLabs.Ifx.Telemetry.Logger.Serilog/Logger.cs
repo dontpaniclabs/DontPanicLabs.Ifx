@@ -1,6 +1,7 @@
 using System.Text;
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
+using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
@@ -47,6 +48,8 @@ public sealed class Logger : ILogger, IDisposable
     /// </param>
     public Logger(string serilogConfigJson)
     {
+        InvalidConfigurationException.ThrowIfConfigNullOrEmpty(serilogConfigJson);
+
         // Wrap the provided JSON in a parent object to create a valid configuration section; the name of the
         // section doesn't really matter as long as it matches what we specify below in config reader options.
         var wrappedJson = $"{{ \"{SerilogConfigSectionName}\": {serilogConfigJson} }}";

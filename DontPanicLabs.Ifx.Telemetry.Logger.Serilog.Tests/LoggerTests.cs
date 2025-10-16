@@ -1,5 +1,6 @@
 using System.Reflection;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
+using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Exceptions;
 using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests.TestHelpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Serilog;
@@ -35,7 +36,7 @@ public class LoggerTests
 
     [TestMethod]
     [DoNotParallelize]
-    public void Log_WithDirectlyProvidedConfiguration_ShouldIncludePropertiesInLogEvent()
+    public void Log_WithValidDirectlyProvidedConfiguration_ShouldIncludePropertiesInLogEvent()
     {
         // Arrange
         var message = "Boop with properties";
@@ -47,7 +48,7 @@ public class LoggerTests
         StaticTestSink.LogEvents = new List<LogEvent>();
 
         // Act
-        var serilogLogger = $@"
+        var serilogConfig = $@"
         {{
           ""Using"": [""{Assembly.GetExecutingAssembly().GetName().Name}""],
           ""MinimumLevel"": ""Verbose"",
@@ -55,7 +56,7 @@ public class LoggerTests
             {{ ""Name"": ""{nameof(StaticTestSink)}"" }}
           ]
         }}";
-        var logger = new Logger(serilogLogger);
+        var logger = new Logger(serilogConfig);
 
         logger.Log(message, SeverityLevel.Information, properties);
 
@@ -68,6 +69,17 @@ public class LoggerTests
         logEvent.Properties["blorp"].ToString().ShouldContain("world");
 
         StaticTestSink.LogEvents = new List<LogEvent>();
+    }
+
+    [TestMethod]
+    [DataRow(null)]
+    [DataRow("")]
+    public void Log_WithValidDirectlyProvidedConfiguration_ShouldIncludePropertiesInLogEvent(string? serilogConfigJson)
+    {
+        // Act + Assert
+        var exception = Should.Throw<InvalidConfigurationException>(() => { _ = new Logger(serilogConfigJson!); });
+
+        exception.Message.ShouldBe("Serilong configuration JSON must not be null or empty.");
     }
 
     [TestMethod]
