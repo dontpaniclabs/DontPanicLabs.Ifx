@@ -79,7 +79,21 @@ public class LoggerTests
         // Act + Assert
         var exception = Should.Throw<InvalidConfigurationException>(() => { _ = new Logger(serilogConfigJson!); });
 
-        exception.Message.ShouldBe("Serilong configuration JSON must not be null or empty.");
+        exception.Message.ShouldBe("Serilog configuration JSON must not be null or empty.");
+    }
+
+    [TestMethod]
+    [DataRow("not valid json")]
+    [DataRow("{\"MinimumLevel\": }")]
+    [DataRow("{\"MinimumLevel\": \"Debug\"")]
+    [DataRow("{ invalid }")]
+    public void Logger_WithInvalidJson_ShouldThrowInvalidConfigurationException(string invalidJson)
+    {
+        // Act + Assert
+        var exception = Should.Throw<InvalidConfigurationException>(() => { _ = new Logger(invalidJson); });
+
+        exception.Message.ShouldBe("Serilog configuration JSON is not valid.");
+        exception.InnerException.ShouldNotBeNull();
     }
 
     [TestMethod]

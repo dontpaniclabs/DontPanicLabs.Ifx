@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json;
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Exceptions;
@@ -50,14 +51,22 @@ public sealed class Logger : ILogger, IDisposable
     {
         InvalidConfigurationException.ThrowIfConfigNullOrEmpty(serilogConfigJson);
 
-        // Wrap the provided JSON in a parent object to create a valid configuration section; the name of the
-        // section doesn't really matter as long as it matches what we specify below in config reader options.
-        var wrappedJson = $"{{ \"{SerilogConfigSectionName}\": {serilogConfigJson} }}";
-        using var configMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(wrappedJson));
+        IConfigurationRoot config;
+        try
+        {
+            // Wrap the provided JSON in a parent object to create a valid configuration section; the name of the
+            // section doesn't really matter as long as it matches what we specify below in config reader options.
+            var wrappedJson = $"{{ \"{SerilogConfigSectionName}\": {serilogConfigJson} }}";
+            using var configMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(wrappedJson));
 
-        var config = new ConfigurationBuilder()
-            .AddJsonStream(configMemoryStream)
-            .Build();
+            config = new ConfigurationBuilder()
+                .AddJsonStream(configMemoryStream)
+                .Build();
+        }
+        catch (Exception ex)
+        {
+            throw InvalidConfigurationException.CreateForInvalidJson(ex);
+        }
 
         _logger = new LoggerConfiguration()
             .ReadFrom.Configuration(config, new ConfigurationReaderOptions

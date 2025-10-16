@@ -1,5 +1,3 @@
-using Contracts = DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
-
 namespace DontPanicLabs.Ifx.Telemetry.Logger.Serilog;
 
 /// <summary>
