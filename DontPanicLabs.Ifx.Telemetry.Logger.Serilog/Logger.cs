@@ -1,3 +1,4 @@
+using System.Text;
 using DontPanicLabs.Ifx.Configuration.Local;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
 using Microsoft.Extensions.Configuration;
@@ -16,17 +17,49 @@ public sealed class Logger : ILogger, IDisposable
 {
     private readonly SerilogLogger _logger;
     private bool _disposed;
-    private const string ConfigSectionName = "ifx:telemetry:logging:serilog";
+    private const string SerilogConfigSectionName = "ifx:telemetry:logging:serilog";
 
+    /// <summary>
+    /// A constructor that initializes the logger using configuration from appsettings.json or environment variables.
+    /// The configuration section used is "ifx:telemetry:logging:serilog".
+    /// </summary>
     public Logger()
     {
-        IConfiguration config = new Config();
+        _logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(new Config(), new ConfigurationReaderOptions
+            {
+                SectionName = SerilogConfigSectionName
+            })
+            .CreateLogger();
+    }
 
-        // Instantiate our logger using Serilog-standard configuration. See README.md for details.
+    /// <summary>
+    /// Initializes the logger using a provided Serilog configuration in JSON format.
+    /// </summary>
+    /// <param name="serilogConfigJson">
+    /// The Serilog configuration as a JSON string.
+    /// <example>
+    /// {
+    ///   "MinimumLevel": "Debug",
+    ///   "WriteTo": [ "Console" ]
+    /// }
+    /// </example>
+    /// </param>
+    public Logger(string serilogConfigJson)
+    {
+        // Wrap the provided JSON in a parent object to create a valid configuration section; the name of the
+        // section doesn't really matter as long as it matches what we specify below in config reader options.
+        var wrappedJson = $"{{ \"{SerilogConfigSectionName}\": {serilogConfigJson} }}";
+        using var configMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(wrappedJson));
+
+        var config = new ConfigurationBuilder()
+            .AddJsonStream(configMemoryStream)
+            .Build();
+
         _logger = new LoggerConfiguration()
             .ReadFrom.Configuration(config, new ConfigurationReaderOptions
             {
-                SectionName = ConfigSectionName
+                SectionName = SerilogConfigSectionName
             })
             .CreateLogger();
     }
