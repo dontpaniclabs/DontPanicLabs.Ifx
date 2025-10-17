@@ -1,4 +1,6 @@
+using System.Reflection;
 using DontPanicLabs.Ifx.Telemetry.Logger.Contracts;
+using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Exceptions;
 using DontPanicLabs.Ifx.Telemetry.Logger.Serilog.Tests.TestHelpers;
 using DontPanicLabs.Ifx.Tests.Shared.Attributes;
 using Serilog;
@@ -30,6 +32,68 @@ public class LoggerTests
     public void TestCleanup()
     {
         (_logger as IDisposable)?.Dispose();
+    }
+
+    [TestMethod]
+    [DoNotParallelize]
+    public void Log_WithValidDirectlyProvidedConfiguration_ShouldIncludePropertiesInLogEvent()
+    {
+        // Arrange
+        var message = "Boop with properties";
+        var properties = new Dictionary<string, string>
+        {
+            { "bleep", "hey" },
+            { "blorp", "world" }
+        };
+        StaticTestSink.LogEvents = new List<LogEvent>();
+
+        // Act
+        var serilogConfig = $@"
+        {{
+          ""Using"": [""{Assembly.GetExecutingAssembly().GetName().Name}""],
+          ""MinimumLevel"": ""Verbose"",
+          ""WriteTo"": [
+            {{ ""Name"": ""{nameof(StaticTestSink)}"" }}
+          ]
+        }}";
+        var logger = new Logger(serilogConfig);
+
+        logger.Log(message, SeverityLevel.Information, properties);
+
+        // Assert
+        StaticTestSink.LogEvents.Count.ShouldBe(1);
+        var logEvent = StaticTestSink.LogEvents[0];
+        logEvent.Properties.ContainsKey("bleep").ShouldBeTrue();
+        logEvent.Properties["bleep"].ToString().ShouldContain("hey");
+        logEvent.Properties.ContainsKey("blorp").ShouldBeTrue();
+        logEvent.Properties["blorp"].ToString().ShouldContain("world");
+
+        StaticTestSink.LogEvents = new List<LogEvent>();
+    }
+
+    [TestMethod]
+    [DataRow(null)]
+    [DataRow("")]
+    public void Log_WithValidDirectlyProvidedConfiguration_ShouldIncludePropertiesInLogEvent(string? serilogConfigJson)
+    {
+        // Act + Assert
+        var exception = Should.Throw<InvalidConfigurationException>(() => { _ = new Logger(serilogConfigJson!); });
+
+        exception.Message.ShouldBe("Serilog configuration JSON must not be null or empty.");
+    }
+
+    [TestMethod]
+    [DataRow("not valid json")]
+    [DataRow("{\"MinimumLevel\": }")]
+    [DataRow("{\"MinimumLevel\": \"Debug\"")]
+    [DataRow("{ invalid }")]
+    public void Logger_WithInvalidJson_ShouldThrowInvalidConfigurationException(string invalidJson)
+    {
+        // Act + Assert
+        var exception = Should.Throw<InvalidConfigurationException>(() => { _ = new Logger(invalidJson); });
+
+        exception.Message.ShouldBe("Serilog configuration JSON is not valid.");
+        exception.InnerException.ShouldNotBeNull();
     }
 
     [TestMethod]

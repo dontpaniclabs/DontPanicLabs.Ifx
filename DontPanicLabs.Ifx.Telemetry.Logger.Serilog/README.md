@@ -29,9 +29,37 @@ dotnet add package Serilog.Sinks.Console
 
 ## Configuration
 
+This logger can either be configured programmatically or via application configuration (appsettings.json, environment
+variables, etc).
+
+### Configuration Format
+
 This logger uses Serilog's [native configuration format](https://github.com/serilog/serilog-settings-configuration).
+Configure your logger using one of the following options:
+
+#### App Settings / Environment Variables-based configuration:
+
 Configure one or more [logging sinks](https://github.com/serilog/serilog/wiki/Provided-Sinks) by adding standard
 serilog settings for the sink in your app settings under `ifx:telemetry:logging:serilog`.
+
+#### Specify Serilog configuration programmatically:
+
+The `Logger` also exposes a constructor that accepts a string representing the Serilog configuration in JSON format.
+
+```csharp
+var logger = new Logger(serilogJsonConfig);
+```
+
+where `serilogJsonConfig` is a string containing the Serilog configuration whose structure is the same as what would be
+in `ifx:telemetry:logging:serilog`:
+
+```json
+{
+    "MinimumLevel": "Debug",
+    "WriteTo": [ "Console" ],
+    ...
+}
+```
 
 ### Single Sink Example (SQL Server)
 
