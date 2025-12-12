@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DontPanicLabs.Ifx.Configuration.Contracts" Version="2.0.0" />
+        <PackageReference Include="DontPanicLabs.Ifx.Configuration.Contracts" Version="1.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
