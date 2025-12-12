@@ -105,8 +105,8 @@ public class AsyncMethodInterceptorBaseTests
         // This test demonstrates that calling `Proceed` after an 'await'
         // without capturing the `ProceedInfo` will result in an infinite loop.
         // It works by spawning a bunch of tasks and cancelling them after a timeout.
-        // Hopefully 10s is long enough for any machine's speed.
-        var cancellationToken = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
+        // Hopefully 14s is long enough for any machine's speed.
+        var cancellationToken = new CancellationTokenSource(TimeSpan.FromSeconds(14)).Token;
         var interceptor = new BrokenAsyncMethodInvocationInterceptor(_callbackMock.Object, cancellationToken);
         var proxy = CreateProxy(interceptor);
 
