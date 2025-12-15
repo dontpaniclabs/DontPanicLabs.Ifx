@@ -35,7 +35,7 @@
       <PackageReference Include="Autofac" Version="8.4.0" />
       <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
       <PackageReference Include="DontPanicLabs.Ifx.Proxy.Contracts" Version="1.1.0" />
-      <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.Services.Contracts" Version="1.1.1" />
     </ItemGroup>
 
 </Project>
