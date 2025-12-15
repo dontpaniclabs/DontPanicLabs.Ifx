@@ -32,7 +32,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="1.0.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="2.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
     </ItemGroup>

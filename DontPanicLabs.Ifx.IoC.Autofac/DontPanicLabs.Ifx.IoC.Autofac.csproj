@@ -34,7 +34,7 @@
     <ItemGroup>
       <PackageReference Include="Autofac" Version="8.2.0" />
       <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
-      <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="1.0.0" />
+      <PackageReference Include="DontPanicLabs.Ifx.IoC.Contracts" Version="2.0.0" />
     </ItemGroup>
 
 </Project>
