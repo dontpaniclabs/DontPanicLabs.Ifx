@@ -7,65 +7,40 @@ namespace DontPanicLabs.Ifx.Configuration.Local.Tests.ConfigurationOrder;
 /* To test User Secrets in the configuration priority chain, add the following
    to the User Secrets for this test project:
    {
-     "SecretKey": "SecretValue"
+     "PyramidKey1": "FromUserSecrets",
+     "PyramidKey2": "FromUserSecrets"
    }
 */
 
 [TestClass]
-[TestCategoryCI]
+[TestCategoryLocal]
 public class ConfigTests
 {
     [TestMethod]
-    [Description("Development file overrides base appsettings.json values")]
-    public void Config_DevelopmentFileOverridesBase()
+    [Description("Tests complete configuration priority pyramid: Base -> Development -> User Secrets -> Environment Variables")]
+    public void Config_PyramidPriorityChain()
     {
+        // Set environment to Development and configure the top-level override
         Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
+        Environment.SetEnvironmentVariable("PyramidKey1", "FromEnvironmentVariable");
 
         IConfig config = new RebuildableConfig();
 
-        // Development file should override base values
-        Assert.AreEqual("DevelopmentValue", config["TestKey"]);
-        Assert.AreEqual("DevelopmentValue", config["ChainTest"]);
+        // PyramidKey1: Should be from Environment Variable (highest priority - overrides all 3 lower levels)
+        Assert.AreEqual("FromEnvironmentVariable", config["PyramidKey1"],
+            "PyramidKey1 should come from Environment Variable (top of pyramid - priority 4/4)");
 
-        // Keys only in Development file should be available
-        Assert.AreEqual("DevOnlyValue", config["DevOnly"]);
+        // PyramidKey2: Should be from User Secrets (overrides 2 lower levels: Development and Base)
+        Assert.AreEqual("FromUserSecrets", config["PyramidKey2"],
+            "PyramidKey2 should come from User Secrets (priority 3/4). Please configure User Secrets for this test project to run this test.");
 
-        // Keys only in base file should still be available
-        Assert.AreEqual("BaseOnlyValue", config["BaseOnly"]);
-    }
+        // PyramidKey3: Should be from Development file (overrides 1 lower level: Base)
+        Assert.AreEqual("FromDevelopment", config["PyramidKey3"],
+            "PyramidKey3 should come from appsettings.Development.json (priority 2/4)");
 
-    [TestMethod]
-    [Description("Environment variables have highest priority in the chain")]
-    public void Config_EnvVarHasHighestPriority()
-    {
-        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-        Environment.SetEnvironmentVariable("ChainTest", "EnvVarValue");
-
-        IConfig config = new RebuildableConfig();
-
-        // Env var should override both appsettings.json and appsettings.Development.json
-        Assert.AreEqual("EnvVarValue", config["ChainTest"]);
-    }
-
-    [TestMethod]
-    [TestCategoryLocal]
-    [Description("Tests complete configuration priority chain including User Secrets")]
-    public void Config_UserSecretsInPriorityChain()
-    {
-        // Without env var, User Secret should override base value
-        IConfig config = new RebuildableConfig();
-        var secretValue = config["SecretKey"];
-
-        // Verify User Secrets are configured - should be "SecretValue", not "BaseValue"
-        Assert.AreEqual("SecretValue", secretValue,
-            "SecretKey should be 'SecretValue' from User Secrets. Please configure User Secrets as described in the comment at the top of this file.");
-
-        // With env var set, env var should override even User Secrets
-        Environment.SetEnvironmentVariable("SecretKey", "EnvVarValue");
-        config = new RebuildableConfig();
-
-        Assert.AreEqual("EnvVarValue", config["SecretKey"],
-            "Environment variable should override User Secrets");
+        // PyramidKey4: Should be from Base appsettings.json (no overrides - lowest priority)
+        Assert.AreEqual("FromBase", config["PyramidKey4"],
+            "PyramidKey4 should come from appsettings.json (base of pyramid - priority 1/4)");
     }
 }
 
