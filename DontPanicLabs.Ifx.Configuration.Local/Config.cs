@@ -67,12 +67,16 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             return skipEnvironmentVariables;
         }
 
-        // Order of configuration sources matters. Later sources override earlier ones.
-        // The order below is:
-        // 1. appsettings.json
-        // 2. appsettings.{Environment}.json
-        // 3. User Secrets (if specified)
-        // 4. Environment Variables
+        /// <summary>
+        /// Builds the configuration using a priority-based pyramid approach where later sources override earlier ones.
+        /// <para>Configuration priority (lowest to highest):</para>
+        /// <list type="number">
+        /// <item><description>appsettings.json (base configuration)</description></item>
+        /// <item><description>appsettings.{Environment}.json (environment-specific overrides)</description></item>
+        /// <item><description>User Secrets (local development secrets)</description></item>
+        /// <item><description>Environment Variables (highest priority - runtime overrides)</description></item>
+        /// </list>
+        /// </summary>
         protected static IConfigurationBuilder GetConfigurationBuilder()
         {
             // Always include Environment Variables and appsettings.json
