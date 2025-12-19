@@ -48,6 +48,7 @@ public class ConfigTests
     }
 
     [TestMethod]
+    [TestCategoryLocal]
     [Description("Tests complete configuration priority chain including User Secrets")]
     public void Config_UserSecretsInPriorityChain()
     {
