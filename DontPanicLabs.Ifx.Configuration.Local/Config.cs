@@ -67,17 +67,24 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             return skipEnvironmentVariables;
         }
 
+        // Order of configuration sources matters. Later sources override earlier ones.
+        // The order below is:
+        // 1. appsettings.json
+        // 2. appsettings.{Environment}.json
+        // 3. User Secrets (if specified)
+        // 4. Environment Variables
         protected static IConfigurationBuilder GetConfigurationBuilder()
         {
             // Always include Environment Variables and appsettings.json
             var configBuilder = new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory);
 
-            if (!SkipEnvironmentVariables())
-            {
-                configBuilder.AddEnvironmentVariables();
-            }
-
             configBuilder.AddJsonFile("appsettings.json", true);
+            
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (!string.IsNullOrEmpty(environment))
+            {
+                configBuilder.AddJsonFile($"appsettings.{environment}.json", true);
+            }
 
             // Get the usersecrets.json file id if specified
             var secretsId = GetUserSecretsId();
@@ -86,6 +93,11 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             if (!string.IsNullOrEmpty(secretsId))
             {
                 configBuilder.AddUserSecrets(secretsId);
+            }
+            
+            if (!SkipEnvironmentVariables())
+            {
+                configBuilder.AddEnvironmentVariables();
             }
 
             return configBuilder;
