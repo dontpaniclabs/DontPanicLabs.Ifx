@@ -67,17 +67,28 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             return skipEnvironmentVariables;
         }
 
+        /// <summary>
+        /// Builds the configuration using a priority-based pyramid approach where later sources override earlier ones.
+        /// <para>Configuration priority (lowest to highest):</para>
+        /// <list type="number">
+        /// <item><description>appsettings.json (base configuration)</description></item>
+        /// <item><description>appsettings.{Environment}.json (environment-specific overrides)</description></item>
+        /// <item><description>User Secrets (local development secrets)</description></item>
+        /// <item><description>Environment Variables (highest priority - runtime overrides)</description></item>
+        /// </list>
+        /// </summary>
         protected static IConfigurationBuilder GetConfigurationBuilder()
         {
             // Always include Environment Variables and appsettings.json
             var configBuilder = new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory);
 
-            if (!SkipEnvironmentVariables())
-            {
-                configBuilder.AddEnvironmentVariables();
-            }
-
             configBuilder.AddJsonFile("appsettings.json", true);
+            
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (!string.IsNullOrEmpty(environment))
+            {
+                configBuilder.AddJsonFile($"appsettings.{environment}.json", true);
+            }
 
             // Get the usersecrets.json file id if specified
             var secretsId = GetUserSecretsId();
@@ -86,6 +97,11 @@ namespace DontPanicLabs.Ifx.Configuration.Local
             if (!string.IsNullOrEmpty(secretsId))
             {
                 configBuilder.AddUserSecrets(secretsId);
+            }
+            
+            if (!SkipEnvironmentVariables())
+            {
+                configBuilder.AddEnvironmentVariables();
             }
 
             return configBuilder;

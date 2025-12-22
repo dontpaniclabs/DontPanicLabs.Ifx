@@ -1,33 +1,27 @@
 # Local Configuration
-This project supports three configuration sources:
- - Environment variables
- - The `appsettings.json` file
- - The .NET User Secrets store
+This project supports four configuration sources:
 
-## Environment Variables
-The Config class first checks the `appsettings.json` file for the presence of the `skipEnvironmentVariables` entry. If this entry is found, and it is set to true, environment variables will not be loaded.
-```json
-{
-    "skipEnvironmentVariables": true,
-    "ifx": {},
-    "appsettings": {}
-}
-```
-This setting is primarily intended to ensure consistent environment configuration for testing purposes.
+ - The `appsettings.json` file
+ - The `appsettings.{env}.json` file
+ - The .NET User Secrets store
+ - Environment variables
 
 ## appsettings.json
-After loading environment variables (or not), the Config class loads the `appsettings.json` file, if included in the project. Values from appsettings.json will override values loaded from environment variables.
+First the Config class loads the `appsettings.json` file, if included in the project. Values from appsettings.json will be overriden by values loaded from `appsettings.{env}.json`, user secrets and environment variables.
 
 > [!CAUTION]
 > appsettings.json should never contain sensitive keys or secrets, as this file is checked into source control.
 
+## appsettings.{env}.json
+Next the Config class tries to get the `ASPNETCORE_ENVIRONMENT` variable and adds the `appsettings.{env}.json` if it exists. Values from `appsettings.{env}.json` will be overriden by values loaded from user secrets and environment variables.
+
 > [!CAUTION]
-> Because appsettings.json values will override matching environment variables, it's especially easy for checked-in appsettings.json values to unintentionally override environment variables in non-development environments.
+> appsettings.{env}.json should also never contain sensitive keys or secrets, as this file is checked into source control.
 
 ## User Secrets
 The recommended method for managing configuration in a development environment is to use User Secrets:  https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-8.0&tabs=windows.
 
-User secrets are stored outside of the project directory, so they are not checked into source control.  The Config class will load user secrets after loading environment variables and the `appsettings.json` file.  
+User secrets are stored outside of the project directory, so they are not checked into source control.  The Config class will load user secrets after loading `appsettings.json` and the `appsettings.{env}.json` files.  
 
 In order to load user secrets, you must specify the secrets file name in the `ifx` section of the config:
 ```json
@@ -45,6 +39,18 @@ The user secrets file name is specified in the project file.
   <UserSecretsId>dpl.ifx.configuration.tests</UserSecretsId>
 </PropertyGroup>
 ```
+
+## Environment Variables
+The Config class checks the `appsettings.json` file for the presence of the `skipEnvironmentVariables` entry. If this entry is found, and it is set to true, environment variables will not be loaded.
+Otherwise, environment variables will be loaded last, and will override any values loaded from the other configuration sources.
+```json
+{
+    "skipEnvironmentVariables": true,
+    "ifx": {},
+    "appsettings": {}
+}
+```
+This setting is primarily intended to ensure consistent environment configuration for testing purposes.
 
 ## Configuration Sections
 
