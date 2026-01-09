@@ -75,6 +75,69 @@ public class ConfigTests
         Assert.AreEqual("FromBase", config["PyramidKey4"],
             "PyramidKey4 should come from appsettings.json (base of pyramid - priority 1/4)");
     }
+
+    [TestMethod]
+    [Description("Tests that DOTNET_ENVIRONMENT takes precedence over ASPNETCORE_ENVIRONMENT when both are set")]
+    public void Config_DotnetEnvironmentTakesPrecedenceOverAspNetCore()
+    {
+        // Create test environment-specific config files
+        var dotnetEnvFile = "appsettings.DotnetEnv.json";
+        var aspNetEnvFile = "appsettings.AspNetEnv.json";
+
+        try
+        {
+            // Create appsettings.DotnetEnv.json with a distinct value
+            File.WriteAllText(dotnetEnvFile, JsonSerializer.Serialize(new
+            {
+                EnvironmentTestKey = "FromDotnetEnvironment"
+            }));
+
+            // Create appsettings.AspNetEnv.json with a different value
+            File.WriteAllText(aspNetEnvFile, JsonSerializer.Serialize(new
+            {
+                EnvironmentTestKey = "FromAspNetCoreEnvironment"
+            }));
+
+            // Test 1: When both environment variables are set, DOTNET_ENVIRONMENT should win
+            Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", "DotnetEnv");
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "AspNetEnv");
+
+            IConfig config = new RebuildableConfig();
+
+            Assert.AreEqual("FromDotnetEnvironment", config["EnvironmentTestKey"],
+                "When both DOTNET_ENVIRONMENT and ASPNETCORE_ENVIRONMENT are set, DOTNET_ENVIRONMENT should take precedence");
+
+            // Test 2: When only ASPNETCORE_ENVIRONMENT is set, it should be used
+            Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", null);
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "AspNetEnv");
+
+            config = new RebuildableConfig();
+
+            Assert.AreEqual("FromAspNetCoreEnvironment", config["EnvironmentTestKey"],
+                "When only ASPNETCORE_ENVIRONMENT is set, it should be used");
+
+            // Test 3: Verify DOTNET_ENVIRONMENT still works when ASPNETCORE_ENVIRONMENT is not set
+            Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", "DotnetEnv");
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", null);
+
+            config = new RebuildableConfig();
+
+            Assert.AreEqual("FromDotnetEnvironment", config["EnvironmentTestKey"],
+                "DOTNET_ENVIRONMENT should work when ASPNETCORE_ENVIRONMENT is not set");
+        }
+        finally
+        {
+            // Clean up environment variables
+            Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", null);
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", null);
+
+            // Clean up test files
+            if (File.Exists(dotnetEnvFile))
+                File.Delete(dotnetEnvFile);
+            if (File.Exists(aspNetEnvFile))
+                File.Delete(aspNetEnvFile);
+        }
+    }
 }
 
 /// <summary>

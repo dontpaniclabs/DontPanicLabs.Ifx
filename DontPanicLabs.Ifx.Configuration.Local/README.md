@@ -13,7 +13,7 @@ First the Config class loads the `appsettings.json` file, if included in the pro
 > appsettings.json should never contain sensitive keys or secrets, as this file is checked into source control.
 
 ## appsettings.{env}.json
-Next the Config class tries to get the `ASPNETCORE_ENVIRONMENT` variable and adds the `appsettings.{env}.json` if it exists. Values from `appsettings.{env}.json` will be overriden by values loaded from user secrets and environment variables.
+Next the Config class tries to get the `DOTNET_ENVIRONMENT` or the `ASPNETCORE_ENVIRONMENT` variable, in that respective order, and adds the `appsettings.{env}.json` if it exists. Values from `appsettings.{env}.json` will be overriden by values loaded from user secrets and environment variables.
 
 > [!CAUTION]
 > appsettings.{env}.json should also never contain sensitive keys or secrets, as this file is checked into source control.

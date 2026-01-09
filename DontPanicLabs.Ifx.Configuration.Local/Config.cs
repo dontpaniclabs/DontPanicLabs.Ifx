@@ -84,7 +84,8 @@ namespace DontPanicLabs.Ifx.Configuration.Local
 
             configBuilder.AddJsonFile("appsettings.json", true);
             
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") 
+                              ?? Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             if (!string.IsNullOrEmpty(environment))
             {
                 configBuilder.AddJsonFile($"appsettings.{environment}.json", true);
