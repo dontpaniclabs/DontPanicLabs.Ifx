@@ -85,6 +85,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BA49892F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests", "DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests\DontPanicLabs.Ifx.Telemetry.Logger.Serilog.IntegrationTests.csproj", "{FF2E3F4A-9389-44BE-8060-2C98C3D520DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicLabs.Ifx.Configuration.Local.Tests.ConfigurationOrder", "DontPanicLabs.Ifx.Configuration.Local.Tests.ConfigurationOrder\DontPanicLabs.Ifx.Configuration.Local.Tests.ConfigurationOrder.csproj", "{99741306-74CB-44DB-A463-BDF072590B62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -395,6 +397,18 @@ Global
 		{FF2E3F4A-9389-44BE-8060-2C98C3D520DE}.Release|x64.Build.0 = Release|Any CPU
 		{FF2E3F4A-9389-44BE-8060-2C98C3D520DE}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF2E3F4A-9389-44BE-8060-2C98C3D520DE}.Release|x86.Build.0 = Release|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Debug|x64.Build.0 = Debug|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Debug|x86.Build.0 = Debug|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Release|x64.ActiveCfg = Release|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Release|x64.Build.0 = Release|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Release|x86.ActiveCfg = Release|Any CPU
+		{99741306-74CB-44DB-A463-BDF072590B62}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -432,5 +446,6 @@ Global
 		{EECDDB4C-C43E-4526-950C-B1263613463B} = {64907FEB-0312-4189-8174-44BDBCC7A382}
 		{BA49892F-5355-4103-9BBA-0B1BE9EBE1F7} = {EECDDB4C-C43E-4526-950C-B1263613463B}
 		{FF2E3F4A-9389-44BE-8060-2C98C3D520DE} = {BA49892F-5355-4103-9BBA-0B1BE9EBE1F7}
+		{99741306-74CB-44DB-A463-BDF072590B62} = {B3CB9573-97EA-4E8A-A50C-EE3D1B2301A8}
 	EndGlobalSection
 EndGlobal
