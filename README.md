@@ -11,3 +11,4 @@ View the individual README files under each project or click here for links to t
 - [DontPanicLabs.Ifx.Services.Contracts](https://www.nuget.org/packages/DontPanicLabs.Ifx.Services.Contracts/#readme-body-tab)
 - [DontPanicLabs.Ifx.Configuration.Contracts](https://www.nuget.org/packages/DontPanicLabs.Ifx.Configuration.Contracts/#readme-body-tab)
 - [DontPanicLabs.Ifx.Configuration.Local](https://www.nuget.org/packages/DontPanicLabs.Ifx.Configuration.Local/#readme-body-tab)
+- DontPanicLabs.Ifx.DtoMapper (coming soon)

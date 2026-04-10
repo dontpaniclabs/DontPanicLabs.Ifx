@@ -1,0 +1,18 @@
+<Project>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System.Reflection"/>
+    <Using Include="System.Diagnostics"/>
+    <Using Include="System.ComponentModel"/>
+    <Using Include="System.Linq.Expressions"/>
+    <Using Include="AutoMapper.QueryableExtensions" />
+    <Using Include="AutoMapper.Internal" />
+  </ItemGroup>
+
+</Project>
