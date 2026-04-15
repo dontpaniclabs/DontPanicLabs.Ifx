@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public class ExplicitMapperCreation : AutoMapperSpecBase
 {
     protected override MapperConfiguration CreateConfiguration() =>new(cfg => cfg.CreateMap<Source, Dest>());

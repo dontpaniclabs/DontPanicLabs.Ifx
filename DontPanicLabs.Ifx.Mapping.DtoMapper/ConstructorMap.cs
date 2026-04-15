@@ -1,4 +1,4 @@
-﻿namespace AutoMapper;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public sealed class ConstructorMap
 {

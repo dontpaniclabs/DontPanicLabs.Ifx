@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-namespace AutoMapper.QueryableExtensions.Impl;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
 using ParameterBag = IDictionary<string, object>;
 using TypePairCount = Dictionary<ProjectionRequest, int>;
 [EditorBrowsable(EditorBrowsableState.Never)]

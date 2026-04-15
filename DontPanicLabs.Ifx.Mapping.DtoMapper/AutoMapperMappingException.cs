@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 /// <summary>
 /// Wraps mapping exceptions. Check exception.ToString() for the full error message.
@@ -68,7 +68,7 @@ public class AutoMapperMappingException : Exception
             return string.Join(Environment.NewLine,
                 base.StackTrace
                     .Split([Environment.NewLine], StringSplitOptions.None)
-                    .Where(str => !str.TrimStart().StartsWith("at AutoMapper.")));
+                    .Where(str => !str.TrimStart().StartsWith("at DontPanicLabs.Ifx.Mapping.DtoMapper.")));
         }
     }
 #endif
@@ -188,7 +188,7 @@ public class AutoMapperConfigurationException : Exception
                 return string.Join(Environment.NewLine,
                     base.StackTrace
                         .Split([Environment.NewLine], StringSplitOptions.None)
-                        .Where(str => !str.TrimStart().StartsWith("at AutoMapper."))
+                        .Where(str => !str.TrimStart().StartsWith("at DontPanicLabs.Ifx.Mapping.DtoMapper."))
                         .ToArray());
 
             return base.StackTrace;

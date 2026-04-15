@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Bug;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 
 // Bug #511
 // https://github.com/AutoMapper/AutoMapper/issues/511

@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests.BuiltInTypes;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.BuiltInTypes;
 
 public class DateTimeToNullableDateTime : IntegrationTest<DateTimeToNullableDateTime.DatabaseInitializer>
 {

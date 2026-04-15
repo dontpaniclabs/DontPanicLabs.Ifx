@@ -1,4 +1,4 @@
-namespace AutoMapper.Internal;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
 [DebuggerDisplay("{RequestedTypes.SourceType.Name}, {RequestedTypes.DestinationType.Name} : {RuntimeTypes.SourceType.Name}, {RuntimeTypes.DestinationType.Name}")]
 public readonly record struct MapRequest(TypePair RequestedTypes, TypePair RuntimeTypes, MemberMap MemberMap)
 {

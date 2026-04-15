@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.NullBehavior;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.NullBehavior;
 public class NullDestinationType : AutoMapperSpecBase
 {
     protected override MapperConfiguration CreateConfiguration() => new(c => { });

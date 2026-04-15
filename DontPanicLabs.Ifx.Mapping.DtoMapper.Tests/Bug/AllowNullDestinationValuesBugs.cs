@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.Bug;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 
 public class When_mapping_to_an_assignable_object_with_nullable_off : AutoMapperSpecBase
 {

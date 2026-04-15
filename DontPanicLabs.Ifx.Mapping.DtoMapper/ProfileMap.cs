@@ -1,6 +1,6 @@
-using AutoMapper.Configuration.Conventions;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Conventions;
 using System.Collections.Concurrent;
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 [DebuggerDisplay("{Name}")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public sealed class ProfileMap

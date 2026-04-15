@@ -1,4 +1,4 @@
-namespace AutoMapper.QueryableExtensions;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions;
 
 using MemberPaths = IEnumerable<MemberInfo[]>;
 using ParameterBag = IDictionary<string, object>;

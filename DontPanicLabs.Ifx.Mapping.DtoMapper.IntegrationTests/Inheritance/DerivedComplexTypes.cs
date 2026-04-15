@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests.Inheritance;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.Inheritance;
 
 public class DerivedComplexTypes : IntegrationTest<DerivedComplexTypes.DatabaseInitializer>
 {

@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Configuration;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration;
 /// <summary>
 /// Member configuration options
 /// </summary>

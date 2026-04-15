@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Configuration.Annotations;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Annotations;
 
 /// <summary>
 /// Ignore this member for configuration validation and skip during mapping.

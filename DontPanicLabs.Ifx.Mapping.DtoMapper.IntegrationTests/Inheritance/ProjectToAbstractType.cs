@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace AutoMapper.IntegrationTests.Inheritance;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.Inheritance;
 
 public class ProjectToAbstractType : IntegrationTest<ProjectToAbstractType.DatabaseInitializer>
 {

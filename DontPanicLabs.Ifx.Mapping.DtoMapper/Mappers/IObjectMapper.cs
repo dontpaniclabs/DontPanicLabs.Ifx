@@ -1,4 +1,4 @@
-namespace AutoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 /// <summary>
 /// Mapping execution strategy, as a chain of responsibility
 /// </summary>

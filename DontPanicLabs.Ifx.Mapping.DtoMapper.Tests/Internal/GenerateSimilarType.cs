@@ -1,6 +1,6 @@
-﻿using AutoMapper.Execution;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Execution;
 
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class GenerateSimilarType
 {

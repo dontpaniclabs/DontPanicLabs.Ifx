@@ -1,6 +1,6 @@
 ﻿using System.Reflection.Emit;
 
-namespace AutoMapper.UnitTests.Bug;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 
 public class NullConstructorParameterName
 {

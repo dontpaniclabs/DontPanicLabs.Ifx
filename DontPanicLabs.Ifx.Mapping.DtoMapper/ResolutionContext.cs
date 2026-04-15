@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 /// <summary>
 /// Context information regarding resolution of a destination value
 /// </summary>

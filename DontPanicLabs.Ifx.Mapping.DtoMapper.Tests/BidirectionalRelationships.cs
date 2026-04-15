@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.BidirectionalRelationships;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.BidirectionalRelationships;
 
 public class RecursiveMappingWithStruct : AutoMapperSpecBase
 {

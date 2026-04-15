@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
-using AutoMapper.UnitTests;
-namespace AutoMapper.Tests;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public class CreateProjectionEnum : AutoMapperSpecBase
 {
     public class Source

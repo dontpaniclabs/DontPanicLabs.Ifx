@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Projection;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Projection;
 public class ParameterizedQueriesTests_with_anonymous_object_and_factory : AutoMapperSpecBase
 {
     private Dest[] _dests;

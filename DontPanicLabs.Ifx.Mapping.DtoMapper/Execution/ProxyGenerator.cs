@@ -1,6 +1,6 @@
 using System.Reflection.Emit;
 
-namespace AutoMapper.Execution;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Execution;
 
 public static class ProxyGenerator
 {
@@ -13,7 +13,7 @@ public static class ProxyGenerator
     private static ModuleBuilder CreateProxyModule()
     {
         var assemblyName = typeof(Mapper).Assembly.GetName();
-        assemblyName.Name = "AutoMapper.Proxies.emit";
+        assemblyName.Name = "DontPanicLabs.Ifx.Mapping.DtoMapper.Proxies.emit";
         var builder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
         return builder.DefineDynamicModule(assemblyName.Name);
     }

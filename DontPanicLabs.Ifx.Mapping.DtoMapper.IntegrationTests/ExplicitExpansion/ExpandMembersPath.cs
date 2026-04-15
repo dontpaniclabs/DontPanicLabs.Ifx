@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests.ExplicitExpansion;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.ExplicitExpansion;
 
 public class ExpandMembersPath : IntegrationTest<ExpandMembersPath.DatabaseInitializer>
 {

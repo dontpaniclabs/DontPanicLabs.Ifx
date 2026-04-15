@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.CustomMapping;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.CustomMapping;
 public class StringToEnumConverter : AutoMapperSpecBase
 {
     class Source
@@ -55,7 +55,7 @@ public class MissingConverter : AutoMapperSpecBase
     public void Should_report_the_missing_converter()
     {
         new Action(()=>Mapper.Map<int, int>(0))
-            .ShouldThrowException<AutoMapperMappingException>(e=>e.Message.ShouldBe("Cannot create an instance of type AutoMapper.ITypeConverter`2[System.Int32,System.Int32]"));
+            .ShouldThrowException<AutoMapperMappingException>(e=>e.Message.ShouldBe("Cannot create an instance of type DontPanicLabs.Ifx.Mapping.DtoMapper.ITypeConverter`2[System.Int32,System.Int32]"));
     }
 }
 
@@ -228,7 +228,7 @@ public class When_specifying_type_converters : AutoMapperSpecBase
         {
             Value1 = "5",
             Value2 = "01/01/2000",
-            Value3 = "AutoMapper.UnitTests.CustomMapping.When_specifying_type_converters+Destination"
+            Value3 = "DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.CustomMapping.When_specifying_type_converters+Destination"
         };
 
         _result = Mapper.Map<Source, Destination>(source);

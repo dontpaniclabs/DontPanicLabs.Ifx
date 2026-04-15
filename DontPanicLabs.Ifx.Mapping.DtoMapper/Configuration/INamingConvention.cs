@@ -1,4 +1,4 @@
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 /// <summary>
 /// Defines a naming convention strategy

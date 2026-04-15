@@ -1,7 +1,7 @@
 ﻿using OmmitedDatabaseModel3;
 using OmmitedDTOModel3;
 
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class MapAtRuntime : AutoMapperSpecBase
 {

@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Internal.Mappers;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 public sealed class KeyValueMapper : IObjectMapper
 {
     public bool IsMatch(TypePair context) => IsKeyValue(context.SourceType) && IsKeyValue(context.DestinationType);

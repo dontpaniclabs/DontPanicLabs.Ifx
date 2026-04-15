@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests;
 
 public abstract class IntegrationTest<TInitializer> : AutoMapperSpecBase, IAsyncLifetime where TInitializer : IInitializer, new()
 {
@@ -31,8 +31,17 @@ public abstract class LocalDbContext : DbContext
         BuildConnectionString(GetType().ToString()),
         o => o.EnableRetryOnFailure(maxRetryCount: 10).CommandTimeout(120));
 
+
     private static string BuildConnectionString(string databaseName)
     {
+        // SQL Server's physical filename limit rejects long database names.
+        // Use a stable short hash when the name exceeds 64 chars.
+        if (databaseName.Length > 64)
+        {
+            var hash = System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(databaseName));
+            databaseName = "T_" + Convert.ToHexString(hash)[..20];
+        }
+
         var baseConnection = Environment.GetEnvironmentVariable("DTOMAPPER_SQL_CONNECTION");
         if (!string.IsNullOrWhiteSpace(baseConnection))
             return $"{baseConnection};Database={databaseName}";

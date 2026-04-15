@@ -1,6 +1,6 @@
-using AutoMapper.Features;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
 
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 /// <summary>
 /// Common mapping configuration options between generic and non-generic mapping configuration

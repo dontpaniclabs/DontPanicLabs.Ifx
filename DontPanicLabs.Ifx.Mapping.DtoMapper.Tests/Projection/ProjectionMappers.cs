@@ -1,5 +1,5 @@
-﻿using AutoMapper.QueryableExtensions.Impl;
-namespace AutoMapper.UnitTests.Projection;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Projection;
 public class ProjectionMappers : AutoMapperSpecBase
 {
     class Source

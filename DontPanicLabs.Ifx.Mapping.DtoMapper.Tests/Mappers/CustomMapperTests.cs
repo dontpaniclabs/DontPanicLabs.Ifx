@@ -1,6 +1,6 @@
-﻿using AutoMapper.Internal.Mappers;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 using System.Globalization;
-namespace AutoMapper.UnitTests.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers;
 using static TypeDescriptor;
 public class When_specifying_mapping_with_the_BCL_type_converter_class : NonValidatingSpecBase
 {

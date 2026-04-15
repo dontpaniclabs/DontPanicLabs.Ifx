@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers;
 
 public class TypeHelperTests
 {

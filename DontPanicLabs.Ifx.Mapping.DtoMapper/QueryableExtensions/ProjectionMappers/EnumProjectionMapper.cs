@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.QueryableExtensions.Impl;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public sealed class EnumProjectionMapper : IProjectionMapper
 {

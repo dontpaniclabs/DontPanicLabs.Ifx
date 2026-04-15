@@ -1,6 +1,6 @@
-﻿using AutoMapper.Features;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
 
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class ConfigurationFeatureTest
 {

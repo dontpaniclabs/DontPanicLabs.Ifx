@@ -1,6 +1,6 @@
 using System.Dynamic;
-using AutoMapper.Internal.Mappers;
-namespace AutoMapper.UnitTests.ArraysAndLists;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.ArraysAndLists;
 
 public class When_mapping_to_Existing_IEnumerable : AutoMapperSpecBase
 {

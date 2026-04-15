@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Microsoft.CSharp.RuntimeBinder;
 using Binder = Microsoft.CSharp.RuntimeBinder.Binder;
-namespace AutoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 public sealed class FromDynamicMapper : IObjectMapper
 {
     private static readonly MethodInfo MapMethodInfo = typeof(FromDynamicMapper).GetStaticMethod(nameof(Map));

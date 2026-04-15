@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-namespace AutoMapper.Execution;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Execution;
 using static Internal.ReflectionHelper;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public static class ExpressionBuilder

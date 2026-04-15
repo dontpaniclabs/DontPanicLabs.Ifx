@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.MappingInheritance;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.MappingInheritance;
 public class InheritanceWithoutIncludeShouldWork : AutoMapperSpecBase
 {
     public class FooBase { }

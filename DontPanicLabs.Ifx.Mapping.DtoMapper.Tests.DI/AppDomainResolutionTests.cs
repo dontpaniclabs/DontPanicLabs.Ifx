@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace AutoMapper.Extensions.Microsoft.DependencyInjection.Tests
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI
 {
     using System;
-    using AutoMapper.Internal;
+    using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
     using Shouldly;
     using Xunit;
 

@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Projection.MapFromTest;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Projection.MapFromTest;
 
 public class CustomMapFromExpressionTest
 {

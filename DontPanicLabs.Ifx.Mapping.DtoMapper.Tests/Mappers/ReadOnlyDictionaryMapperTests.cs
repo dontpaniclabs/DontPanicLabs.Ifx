@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Mappers.ReadOnlyDictionaryMapper;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers.ReadOnlyDictionaryMapper;
 
 public class When_mapping_to_interface_readonly_dictionary : AutoMapperSpecBase
 {

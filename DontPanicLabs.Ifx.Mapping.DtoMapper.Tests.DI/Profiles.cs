@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutoMapper.Extensions.Microsoft.DependencyInjection.Tests
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI
 {
     public class Source
     {

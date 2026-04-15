@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.ConditionalMapping;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.ConditionalMapping;
 
 public class When_adding_a_condition_for_all_members : AutoMapperSpecBase
 {

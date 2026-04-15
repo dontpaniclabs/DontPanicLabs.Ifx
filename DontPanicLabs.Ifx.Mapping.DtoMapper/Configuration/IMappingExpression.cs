@@ -1,4 +1,4 @@
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 /// <summary>
 /// Mapping configuration options for non-generic maps
 /// </summary>

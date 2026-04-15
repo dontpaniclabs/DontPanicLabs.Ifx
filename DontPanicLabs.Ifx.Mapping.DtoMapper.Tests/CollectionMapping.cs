@@ -1,6 +1,6 @@
 using System.Collections.Specialized;
 using System.Collections.Immutable;
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public class UnsupportedCollection : AutoMapperSpecBase
 {
     class Source

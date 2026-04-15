@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace AutoMapper.UnitTests.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers;
 
 public class NameValueCollectionMapperTests
 {

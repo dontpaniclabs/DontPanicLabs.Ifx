@@ -1,6 +1,6 @@
-﻿using AutoMapper.Configuration.Conventions;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Conventions;
 
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public abstract class SourceToDestinationMapperAttribute : Attribute
 {

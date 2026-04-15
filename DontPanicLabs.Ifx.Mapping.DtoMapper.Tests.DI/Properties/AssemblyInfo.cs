@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AutoMapper.Extensions.Microsoft.DependencyInjection.Tests")]
+[assembly: AssemblyProduct("DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

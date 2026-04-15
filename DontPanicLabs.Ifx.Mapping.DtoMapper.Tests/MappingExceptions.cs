@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.MappingExceptions;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.MappingExceptions;
 
 public class When_encountering_a_member_mapping_problem_during_mapping : NonValidatingSpecBase
 {

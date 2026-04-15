@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.QueryableExtensions.Impl;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
 public sealed class NullableSourceProjectionMapper : IProjectionMapper
 {
     public Expression Project(IGlobalConfiguration configuration, in ProjectionRequest request, Expression resolvedSource, LetPropertyMaps letPropertyMaps) =>

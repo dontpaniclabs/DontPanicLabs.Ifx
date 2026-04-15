@@ -1,6 +1,6 @@
-using AutoMapper.QueryableExtensions.Impl;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
 
-namespace AutoMapper.UnitTests
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests
 {
     public static class ExpressionBuilderExtensions
     {

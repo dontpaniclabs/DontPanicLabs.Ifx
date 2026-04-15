@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.Tests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Tests;
 
 public class MapperTests : NonValidatingSpecBase
 {

@@ -1,4 +1,4 @@
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 using Features;
 using Internal.Mappers;
 using QueryableExtensions.Impl;

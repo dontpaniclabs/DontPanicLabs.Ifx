@@ -1,6 +1,6 @@
 ﻿using StringDictionary = System.Collections.Generic.Dictionary<string, object>;
 
-namespace AutoMapper.UnitTests.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers;
 
 class Destination
 {

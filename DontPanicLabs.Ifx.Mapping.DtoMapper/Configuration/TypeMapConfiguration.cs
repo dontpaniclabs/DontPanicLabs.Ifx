@@ -1,5 +1,5 @@
-using AutoMapper.Features;
-namespace AutoMapper.Configuration;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class TypeMapConfiguration(MemberList memberList, TypePair types)
 {
