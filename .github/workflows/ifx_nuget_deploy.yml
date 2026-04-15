@@ -20,6 +20,8 @@ on:
           - "DontPanicLabs.Ifx.Telemetry.Logger.Azure.OpenTelemetry"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Serilog"
           - "DontPanicLabs.Ifx.Telemetry.Logger.Contracts"
+          - "DontPanicLabs.Ifx.Mapping.Contracts"
+          - "DontPanicLabs.Ifx.Mapping.DtoMapper"
 
 env:
   DOTNET_INSTALL_DIR: "./.dotnet"
