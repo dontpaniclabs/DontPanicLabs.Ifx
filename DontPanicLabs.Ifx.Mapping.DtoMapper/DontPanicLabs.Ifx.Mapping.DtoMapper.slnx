@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests/DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.csproj" />
+  <Project Path="../DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI/DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI.csproj" />
+  <Project Path="../DontPanicLabs.Ifx.Mapping.DtoMapper.Tests/DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.csproj" />
+  <Project Path="DontPanicLabs.Ifx.Mapping.DtoMapper.csproj" />
+</Solution>
