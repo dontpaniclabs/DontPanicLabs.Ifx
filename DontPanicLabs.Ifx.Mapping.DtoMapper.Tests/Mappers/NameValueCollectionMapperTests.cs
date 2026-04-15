@@ -1,5 +1,5 @@
 ﻿using System.Collections.Specialized;
-
+using DontPanicLabs.Ifx.Mapping.Contracts;
 namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers;
 
 public class NameValueCollectionMapperTests

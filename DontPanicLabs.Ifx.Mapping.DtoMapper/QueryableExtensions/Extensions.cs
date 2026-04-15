@@ -1,5 +1,7 @@
 namespace DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions;
 
+using DontPanicLabs.Ifx.Mapping.Contracts;
+
 using MemberPaths = IEnumerable<MemberInfo[]>;
 using ParameterBag = IDictionary<string, object>;
 /// <summary>

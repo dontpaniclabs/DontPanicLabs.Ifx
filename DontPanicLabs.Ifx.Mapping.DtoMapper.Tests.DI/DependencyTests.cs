@@ -1,3 +1,4 @@
+using DontPanicLabs.Ifx.Mapping.Contracts;
 ﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI
 {
     using System;

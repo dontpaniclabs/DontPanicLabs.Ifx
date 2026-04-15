@@ -1,4 +1,5 @@
-﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Conventions;
+﻿using DontPanicLabs.Ifx.Mapping.Contracts;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Conventions;
 using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
 using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 using DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;

@@ -1,4 +1,5 @@
-﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Projection;
+﻿using DontPanicLabs.Ifx.Mapping.Contracts;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Projection;
 public class NonGenericProjectEnumTest
 {
     private MapperConfiguration _config;

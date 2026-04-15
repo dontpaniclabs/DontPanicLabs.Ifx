@@ -1,3 +1,4 @@
+using DontPanicLabs.Ifx.Mapping.Contracts;
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using Xunit;

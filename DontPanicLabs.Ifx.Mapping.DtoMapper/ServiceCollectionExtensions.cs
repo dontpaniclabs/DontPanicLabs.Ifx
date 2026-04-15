@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using DontPanicLabs.Ifx.Mapping.Contracts;
 using DontPanicLabs.Ifx.Mapping.DtoMapper;
 using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
 using Microsoft.Extensions.DependencyInjection.Extensions;
