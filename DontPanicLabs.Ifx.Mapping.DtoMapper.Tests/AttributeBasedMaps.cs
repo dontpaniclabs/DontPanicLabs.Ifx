@@ -1,6 +1,6 @@
-﻿using AutoMapper.Configuration.Annotations;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Annotations;
 
-namespace AutoMapper.UnitTests
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests
 {
     namespace AttributeBasedMaps
     {

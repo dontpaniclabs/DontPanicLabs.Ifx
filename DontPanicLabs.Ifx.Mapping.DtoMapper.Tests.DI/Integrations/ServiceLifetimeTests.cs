@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Shouldly;
 using Xunit;
 
-namespace AutoMapper.Extensions.Microsoft.DependencyInjection.Tests.Integrations
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI.Integrations
 {
 	public class ServiceLifetimeTests
 	{

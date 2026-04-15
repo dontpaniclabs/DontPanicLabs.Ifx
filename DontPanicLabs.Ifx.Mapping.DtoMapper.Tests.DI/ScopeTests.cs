@@ -2,7 +2,7 @@
 using Shouldly;
 using Xunit;
 
-namespace AutoMapper.Extensions.Microsoft.DependencyInjection.Tests
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI
 {
     public class ScopeTests
     {

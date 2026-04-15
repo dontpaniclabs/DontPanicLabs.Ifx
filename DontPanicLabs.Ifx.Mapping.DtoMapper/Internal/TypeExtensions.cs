@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Dynamic;
-namespace AutoMapper.Internal;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
 public static class TypeExtensions
 {
     public const BindingFlags InstanceFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;

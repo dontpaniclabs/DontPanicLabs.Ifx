@@ -1,4 +1,4 @@
-namespace AutoMapper.Execution;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Execution;
 public ref struct TypeMapPlanBuilder(IGlobalConfiguration configuration, TypeMap typeMap)
 {
     static readonly MethodInfo MappingError = typeof(TypeMapPlanBuilder).GetStaticMethod(nameof(MemberMappingError));

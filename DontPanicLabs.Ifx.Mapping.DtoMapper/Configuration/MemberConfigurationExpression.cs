@@ -1,4 +1,4 @@
-namespace AutoMapper.Configuration;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration;
 public interface IPropertyMapConfiguration
 {
     void Configure(TypeMap typeMap);

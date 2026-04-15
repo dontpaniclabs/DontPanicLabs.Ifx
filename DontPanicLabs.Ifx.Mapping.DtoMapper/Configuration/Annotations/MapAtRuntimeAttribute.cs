@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Configuration.Annotations;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Annotations;
 
 /// <summary>
 /// Do not precompute the execution plan for this member, just map it at runtime.

@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.MemberResolution;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.MemberResolution;
 
 public class When_multiple_source_members_match_postfix : AutoMapperSpecBase
 {

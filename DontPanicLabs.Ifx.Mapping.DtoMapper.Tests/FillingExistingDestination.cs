@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class When_a_source_child_object_is_null : AutoMapperSpecBase
 {

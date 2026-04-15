@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-namespace AutoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 using static ReflectionHelper;
 public sealed class CollectionMapper : IObjectMapper
 {

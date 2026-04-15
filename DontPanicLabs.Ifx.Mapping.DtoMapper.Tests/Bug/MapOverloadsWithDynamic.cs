@@ -1,6 +1,6 @@
 ﻿using System.Dynamic;
 
-namespace AutoMapper.UnitTests.Bug;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 
 public class MapOverloadsWithDynamic : AutoMapperSpecBase
 {

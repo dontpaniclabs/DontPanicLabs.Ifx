@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests;
 
 public class NullSubstitute : IntegrationTest<NullSubstitute.DatabaseInitializer>
 {

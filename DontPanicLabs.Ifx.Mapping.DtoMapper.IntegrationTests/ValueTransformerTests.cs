@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests
 {
     namespace ValueTransformerTests
     {

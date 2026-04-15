@@ -1,4 +1,4 @@
-﻿namespace AutoMapper;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 using StringDictionary = Dictionary<string, object>;
 /// <summary>
 /// Options for a single map operation

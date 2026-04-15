@@ -1,8 +1,8 @@
-﻿namespace AutoMapper;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 /// <summary>
 /// Auto map to this destination type from the specified source type.
-/// Discovered during scanning assembly scanning for configuration when calling <see cref="O:AutoMapper.IMapperConfigurationExpression.AddMaps"/>
+/// Discovered during scanning assembly scanning for configuration when calling <see cref="O:DontPanicLabs.Ifx.Mapping.DtoMapper.IMapperConfigurationExpression.AddMaps"/>
 /// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple = true)]
 public sealed class AutoMapAttribute(Type sourceType) : Attribute

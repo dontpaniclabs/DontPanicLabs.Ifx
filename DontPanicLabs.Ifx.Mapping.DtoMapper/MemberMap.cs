@@ -1,4 +1,4 @@
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 /// <summary>
 /// The base class for member maps (property, constructor and path maps).
 /// </summary>

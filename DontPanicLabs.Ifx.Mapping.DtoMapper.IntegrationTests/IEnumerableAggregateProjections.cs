@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests;
 public class IEnumerableAggregateProjections : IntegrationTest<IEnumerableAggregateProjections.DatabaseInitializer>
 {
     public class Customer

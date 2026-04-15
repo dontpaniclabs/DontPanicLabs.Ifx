@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.IntegrationTests.ExplicitExpansion;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.ExplicitExpansion;
 
 public class ConstructorExplicitExpansionOverride : IntegrationTest<ConstructorExplicitExpansionOverride.DatabaseInitializer> {
     public class Entity {

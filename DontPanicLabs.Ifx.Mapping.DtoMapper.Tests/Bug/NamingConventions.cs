@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.Bug.NamingConventions;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug.NamingConventions;
 
 public class RemoveNameSplitMapper : NonValidatingSpecBase
 {

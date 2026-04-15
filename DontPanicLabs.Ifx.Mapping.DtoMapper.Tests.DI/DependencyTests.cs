@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Extensions.Microsoft.DependencyInjection.Tests
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.DI
 {
     using System;
     using global::Microsoft.Extensions.DependencyInjection;

@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.Bug;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 
 // Regression tests for CVE-2026-32933: uncontrolled recursion in TypeMapPlanBuilder
 // when building expression trees for cyclic type maps. Without the fix, configuring

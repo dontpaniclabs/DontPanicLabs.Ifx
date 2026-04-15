@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Internal.Mappers;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 public sealed class ToStringDictionaryMapper : IObjectMapper
 {
     private static readonly MethodInfo MembersDictionaryMethodInfo = typeof(ToStringDictionaryMapper).GetStaticMethod(nameof(MembersDictionary));

@@ -16,5 +16,5 @@ if ($versionNumbers[1] -eq "0" -AND ($versionNumbers[2] -split "[-+]")[0] -eq "0
 $oldVersion = $oldVersion.ToString() + ".0.0"
 echo $oldVersion
 
-& ..\..\nuget install AutoMapper -Version $oldVersion -OutputDirectory ..\LastMajorVersionBinary
-& copy "..\LastMajorVersionBinary\AutoMapper.$oldVersion\lib\netstandard2.1\AutoMapper.dll" ..\LastMajorVersionBinary
+& ..\..\nuget install DontPanicLabs.Ifx.Mapping.DtoMapper -Version $oldVersion -OutputDirectory ..\LastMajorVersionBinary
+& copy "..\LastMajorVersionBinary\DontPanicLabs.Ifx.Mapping.DtoMapper.$oldVersion\lib\net10.0\DontPanicLabs.Ifx.Mapping.DtoMapper.dll" ..\LastMajorVersionBinary

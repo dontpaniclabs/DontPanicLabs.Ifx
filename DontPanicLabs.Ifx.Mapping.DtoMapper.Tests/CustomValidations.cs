@@ -1,7 +1,7 @@
-using AutoMapper.Configuration;
-using AutoMapper.Internal.Mappers;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class CustomValidations
 {

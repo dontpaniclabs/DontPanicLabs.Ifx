@@ -1,4 +1,4 @@
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 using IObjectMappingOperationOptions = IMappingOperationOptions<object, object>;
 using Factory = Func<Type, object>;

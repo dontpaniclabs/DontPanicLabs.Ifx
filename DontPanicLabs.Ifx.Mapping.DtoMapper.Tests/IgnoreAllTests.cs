@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class When_overriding_global_ignore : AutoMapperSpecBase
 {

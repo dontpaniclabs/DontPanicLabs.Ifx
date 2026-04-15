@@ -1,7 +1,7 @@
-using AutoMapper.Features;
-using AutoMapper.Internal.Mappers;
-using AutoMapper.QueryableExtensions.Impl;
-namespace AutoMapper;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 using Validator = Action<ValidationContext>;
 public interface IMapperConfigurationExpression : IProfileExpression

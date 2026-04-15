@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System.Runtime.CompilerServices;
 
-namespace AutoMapper.QueryableExtensions;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions;
 
 /// <summary>
 /// Expression visitor for making member access null-safe.

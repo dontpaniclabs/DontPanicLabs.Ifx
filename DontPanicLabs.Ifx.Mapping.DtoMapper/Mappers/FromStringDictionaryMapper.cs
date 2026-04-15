@@ -1,5 +1,5 @@
 ﻿using StringDictionary = System.Collections.Generic.IDictionary<string, object>;
-namespace AutoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 public sealed class FromStringDictionaryMapper : IObjectMapper
 {
     private static readonly MethodInfo MapDynamicMethod = typeof(FromStringDictionaryMapper).GetStaticMethod(nameof(MapDynamic));

@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Bug;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 public class EnumCaseSensitivityBug : AutoMapperSpecBase
 {
     private SecondEnum _resultSecondEnum;

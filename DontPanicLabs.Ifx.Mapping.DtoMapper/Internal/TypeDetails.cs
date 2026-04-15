@@ -1,4 +1,4 @@
-namespace AutoMapper.Internal;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
 /// <summary>
 /// Contains cached reflection information for easy retrieval
 /// </summary>

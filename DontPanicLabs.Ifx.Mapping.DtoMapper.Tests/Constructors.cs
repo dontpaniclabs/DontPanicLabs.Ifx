@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Constructors;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Constructors;
 public class RecordConstructorValidation : AutoMapperSpecBase
 {
     record Destination(int Value) { }

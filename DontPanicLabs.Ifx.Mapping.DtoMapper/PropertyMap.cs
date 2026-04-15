@@ -1,4 +1,4 @@
-namespace AutoMapper;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 
 [DebuggerDisplay("{DestinationMember.Name}")]
 [EditorBrowsable(EditorBrowsableState.Never)]

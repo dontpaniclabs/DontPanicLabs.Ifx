@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Projection;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Projection;
 public class NonGenericConstructorTests : AutoMapperSpecBase
 {
     private Dest[] _dest;

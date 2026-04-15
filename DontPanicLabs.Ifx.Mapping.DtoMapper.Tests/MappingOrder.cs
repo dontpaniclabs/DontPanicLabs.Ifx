@@ -1,6 +1,6 @@
-using static AutoMapper.UnitTests.Bug.MapFromClosureBug;
+using static DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug.MapFromClosureBug;
 
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 public class When_specifying_a_mapping_order_for_base_members : AutoMapperSpecBase
 {

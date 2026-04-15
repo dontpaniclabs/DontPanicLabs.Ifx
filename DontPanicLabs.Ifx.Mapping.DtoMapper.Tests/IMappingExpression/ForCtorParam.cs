@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public class ForCtorParamValidation : AutoMapperSpecBase
 {
     record Source(float Value = 0);

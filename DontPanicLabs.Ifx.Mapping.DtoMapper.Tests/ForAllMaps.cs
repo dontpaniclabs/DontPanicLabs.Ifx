@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.UnitTests.Bug;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 public class ForAllMapsTypeConverter : AutoMapperSpecBase
 {
     protected override MapperConfiguration CreateConfiguration() => new(c =>

@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public abstract class AutoMapperSpecBase : NonValidatingSpecBase
 {
     protected override void OnConfig(MapperConfiguration mapperConfiguration) => mapperConfiguration.AssertConfigurationIsValid();

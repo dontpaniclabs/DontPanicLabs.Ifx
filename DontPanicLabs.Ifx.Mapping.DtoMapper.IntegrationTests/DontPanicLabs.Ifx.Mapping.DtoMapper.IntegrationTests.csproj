@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <Using Include="System.ComponentModel.DataAnnotations.Schema" />
-    <Using Include="AutoMapper.UnitTests" />
+    <Using Include="DontPanicLabs.Ifx.Mapping.DtoMapper.Tests" />
   </ItemGroup>
 
 </Project>

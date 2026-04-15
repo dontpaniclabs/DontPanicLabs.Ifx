@@ -1,4 +1,4 @@
-﻿namespace AutoMapper.Features;
+﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
 public interface IGlobalFeature
 {
     void Configure(IGlobalConfiguration configuration);

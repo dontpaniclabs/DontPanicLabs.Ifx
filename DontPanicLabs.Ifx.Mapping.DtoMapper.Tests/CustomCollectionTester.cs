@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public class CustomCollectionTester {
     [Fact]
     public void Should_be_able_to_handle_custom_dictionary_with_custom_methods() {

@@ -1,6 +1,6 @@
-﻿using AutoMapper.Internal.Mappers;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 
-namespace AutoMapper.UnitTests.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers;
 
 public class ConvertMapperTests : AutoMapperSpecBase
 {

@@ -1,9 +1,9 @@
-﻿using AutoMapper.Configuration.Conventions;
-using AutoMapper.Features;
-using AutoMapper.Internal.Mappers;
-using AutoMapper.QueryableExtensions.Impl;
+﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Conventions;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.QueryableExtensions.Impl;
 
-namespace AutoMapper.Internal;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
 
 using Validator = Action<ValidationContext>;
 [EditorBrowsable(EditorBrowsableState.Never)]

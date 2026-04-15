@@ -1,5 +1,5 @@
-using AutoMapper.Internal.Mappers;
-namespace AutoMapper.Configuration;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public class ConfigurationValidator(IGlobalConfiguration config)
 {

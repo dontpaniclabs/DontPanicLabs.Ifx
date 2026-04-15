@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests.Bug;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Bug;
 
 public class When_specifying_a_type_converter_implementing_multiple_type_converter_interfaces : AutoMapperSpecBase
     {

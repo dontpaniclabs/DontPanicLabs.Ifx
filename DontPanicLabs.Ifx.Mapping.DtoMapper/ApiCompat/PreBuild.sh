@@ -22,8 +22,8 @@ echo "$oldVersion"
 
 rm -rf ../LastMajorVersionBinary
 
-curl "https://globalcdn.nuget.org/packages/automapper.$oldVersion.nupkg" \
-    --create-dirs -o "../LastMajorVersionBinary/automapper.$oldVersion.nupkg"
+curl "https://globalcdn.nuget.org/packages/dontpaniclabs.ifx.mapping.dtomapper.$oldVersion.nupkg" \
+    --create-dirs -o "../LastMajorVersionBinary/dontpaniclabs.ifx.mapping.dtomapper.$oldVersion.nupkg"
 
-unzip -j "../LastMajorVersionBinary/automapper.$oldVersion.nupkg" \
-    lib/netstandard2.1/AutoMapper.dll -d ../LastMajorVersionBinary
+unzip -j "../LastMajorVersionBinary/dontpaniclabs.ifx.mapping.dtomapper.$oldVersion.nupkg" \
+    lib/net10.0/DontPanicLabs.Ifx.Mapping.DtoMapper.dll -d ../LastMajorVersionBinary

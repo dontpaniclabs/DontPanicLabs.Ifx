@@ -1,4 +1,4 @@
-namespace AutoMapper.UnitTests;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 
 interface IGeneric<T> { }
 public class When_an_extension_methods_contraints_fail : NonValidatingSpecBase

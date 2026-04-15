@@ -1,6 +1,6 @@
 ﻿using System.Dynamic;
 
-namespace AutoMapper.UnitTests.Mappers.Dynamic;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers.Dynamic;
 
 class Destination
 {

@@ -1,4 +1,4 @@
-namespace AutoMapper.Configuration;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration;
 public sealed class MappingExpression(MemberList memberList, TypePair types) : MappingExpressionBase<object, object, IMappingExpression>(memberList, types), IMappingExpression
 {
     public MappingExpression(TypeMap typeMap) : this(typeMap.ConfiguredMemberList, typeMap.Types) => Projection = typeMap.Projection;

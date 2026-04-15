@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
-namespace AutoMapper.Internal;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal;
 
 [EditorBrowsable(EditorBrowsableState.Never)]
 public static class PrimitiveHelper

@@ -1,4 +1,4 @@
-namespace AutoMapper.Internal.Mappers;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Internal.Mappers;
 
 public sealed class AssignableMapper : IObjectMapper
 {

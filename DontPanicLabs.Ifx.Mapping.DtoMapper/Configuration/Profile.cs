@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
-using AutoMapper.Configuration.Conventions;
-namespace AutoMapper;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Configuration.Conventions;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper;
 public interface IProfileConfiguration
 {
     bool? FieldMappingEnabled { get; }
