@@ -28,6 +28,15 @@ public class DropCreateDatabaseAlways<TContext> : IInitializer where TContext : 
 public abstract class LocalDbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(
-        @$"Data Source=(localdb)\mssqllocaldb;Integrated Security=True;MultipleActiveResultSets=True;Database={GetType()};Connection Timeout=300",
+        BuildConnectionString(GetType().ToString()),
         o => o.EnableRetryOnFailure(maxRetryCount: 10).CommandTimeout(120));
+
+    private static string BuildConnectionString(string databaseName)
+    {
+        var baseConnection = Environment.GetEnvironmentVariable("DTOMAPPER_SQL_CONNECTION");
+        if (!string.IsNullOrWhiteSpace(baseConnection))
+            return $"{baseConnection};Database={databaseName}";
+
+        return $@"Data Source=(localdb)\mssqllocaldb;Integrated Security=True;MultipleActiveResultSets=True;Database={databaseName};Connection Timeout=300";
+    }
 }
