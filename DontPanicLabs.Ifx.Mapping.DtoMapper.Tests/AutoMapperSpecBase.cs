@@ -1,3 +1,4 @@
+using DontPanicLabs.Ifx.Mapping.Contracts;
 namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 public abstract class AutoMapperSpecBase : NonValidatingSpecBase
 {

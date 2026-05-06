@@ -1,4 +1,5 @@
-﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers
+﻿using DontPanicLabs.Ifx.Mapping.Contracts;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests.Mappers
 {
     namespace ReadOnlyCollections
     {

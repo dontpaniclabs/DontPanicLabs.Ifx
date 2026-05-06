@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DontPanicLabs.Ifx.Mapping.Contracts\DontPanicLabs.Ifx.Mapping.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="System.Linq.Expressions.Expression" Static="true" />
     <Using Include="DontPanicLabs.Ifx.Mapping.DtoMapper.Execution.ExpressionBuilder" Static="true" />
     <Using Include="DontPanicLabs.Ifx.Mapping.DtoMapper.Execution" />

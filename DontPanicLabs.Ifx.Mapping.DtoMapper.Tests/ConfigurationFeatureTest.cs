@@ -1,4 +1,5 @@
-﻿using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
+﻿using DontPanicLabs.Ifx.Mapping.Contracts;
+using DontPanicLabs.Ifx.Mapping.DtoMapper.Features;
 
 namespace DontPanicLabs.Ifx.Mapping.DtoMapper.Tests;
 

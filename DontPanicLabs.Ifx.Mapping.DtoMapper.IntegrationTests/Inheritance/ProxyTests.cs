@@ -1,4 +1,5 @@
-﻿namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.Inheritance;
+﻿using DontPanicLabs.Ifx.Mapping.Contracts;
+namespace DontPanicLabs.Ifx.Mapping.DtoMapper.IntegrationTests.Inheritance;
 
 public class ProxyTests : IAsyncLifetime
 {
