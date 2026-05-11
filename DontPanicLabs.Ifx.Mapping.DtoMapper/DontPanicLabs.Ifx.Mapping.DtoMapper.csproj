@@ -36,10 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DontPanicLabs.Ifx.Mapping.Contracts\DontPanicLabs.Ifx.Mapping.Contracts.csproj" />
+    <PackageReference Include="DontPanicLabs.Ifx.Mapping.Contracts" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>
